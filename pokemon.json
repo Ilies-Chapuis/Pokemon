@@ -1,4 +1,717 @@
-Lors du démarrage de la partie, le joueur doit renseigner
-avec quel Pokémon il veut jouer, selon la liste des Pokémon.
-L'adversaire est quant à lui choisi de façon aléatoire dans le
-fichier “pokemon.json”.
+{
+  "pokemon": [
+    {
+      "id": 1,
+      "name": "AuredrisL",
+      "type": [
+        "Dragon",
+        "Psy"
+      ],
+      "legendary": true,
+      "image": "AuredrisL.png",
+      "description": "Un Pokémon légendaire dragon entouré d'une aura psychique violette",
+      "stats": {
+        "pv": 106,
+        "attaque": 130,
+        "defense": 110
+      }
+    },
+    {
+      "id": 2,
+      "name": "Bavoir",
+      "type": [
+        "Acier",
+        "Roche"
+      ],
+      "legendary": false,
+      "image": "Bavoir.png",
+      "description": "Un Pokémon de type acier avec une armure robuste",
+      "stats": {
+        "pv": 67,
+        "attaque": 77,
+        "defense": 87
+      }
+    },
+    {
+      "id": 3,
+      "name": "Bloupy",
+      "type": [
+        "Psy"
+      ],
+      "legendary": false,
+      "image": "Bloupy.png",
+      "description": "Un Pokémon psychique de couleur violette avec une forme imposante",
+      "stats": {
+        "pv": 68,
+        "attaque": 78,
+        "defense": 73
+      }
+    },
+    {
+      "id": 4,
+      "name": "BraseoL",
+      "type": [
+        "Feu",
+        "Spectre"
+      ],
+      "legendary": true,
+      "image": "BraseoL.png",
+      "description": "Un Pokémon légendaire spectral et enflammé avec des bras imposants",
+      "stats": {
+        "pv": 104,
+        "attaque": 124,
+        "defense": 109
+      }
+    },
+    {
+      "id": 5,
+      "name": "Brisaflamme",
+      "type": [
+        "Insecte",
+        "Vol"
+      ],
+      "legendary": false,
+      "image": "Brisaflamme.png",
+      "description": "Un Pokémon insecte volant avec des ailes cyan et une forme élancée",
+      "stats": {
+        "pv": 70,
+        "attaque": 80,
+        "defense": 75
+      }
+    },
+    {
+      "id": 6,
+      "name": "BuffMachok",
+      "type": [
+        "Combat"
+      ],
+      "legendary": false,
+      "image": "BuffMachok.png",
+      "description": "Un Pokémon de combat musclé avec une fourrure brune et blanche",
+      "stats": {
+        "pv": 71,
+        "attaque": 91,
+        "defense": 76
+      }
+    },
+    {
+      "id": 7,
+      "name": "Cendralis",
+      "type": [
+        "Feu",
+        "Vol"
+      ],
+      "legendary": false,
+      "image": "Cendralis.png",
+      "description": "Un Pokémon à trois têtes enflammées avec des ailes de feu majestueuses",
+      "stats": {
+        "pv": 72,
+        "attaque": 82,
+        "defense": 77
+      }
+    },
+    {
+      "id": 8,
+      "name": "Darkamph",
+      "type": [
+        "Ténèbres",
+        "Feu"
+      ],
+      "legendary": false,
+      "image": "Darkamph.png",
+      "description": "Un Pokémon sombre et massif avec des flammes rouges émanant de son corps",
+      "stats": {
+        "pv": 73,
+        "attaque": 83,
+        "defense": 78
+      }
+    },
+    {
+      "id": 9,
+      "name": "Dragodash",
+      "type": [
+        "Glace",
+        "Vol"
+      ],
+      "legendary": false,
+      "image": "Dragodash.png",
+      "description": "Un dragon ailé de glace bleue avec une corne élégante",
+      "stats": {
+        "pv": 74,
+        "attaque": 84,
+        "defense": 79
+      }
+    },
+    {
+      "id": 10,
+      "name": "Flameking",
+      "type": [
+        "Feu"
+      ],
+      "legendary": false,
+      "image": "Flameking.png",
+      "description": "Un Pokémon royal de type feu avec une couronne et des flammes violettes",
+      "stats": {
+        "pv": 65,
+        "attaque": 85,
+        "defense": 70
+      }
+    },
+    {
+      "id": 11,
+      "name": "Flamydra",
+      "type": [
+        "Feu",
+        "Dragon"
+      ],
+      "legendary": false,
+      "image": "Flamydra.png",
+      "description": "Un dragon serpentin élégant avec une crinière de flammes",
+      "stats": {
+        "pv": 76,
+        "attaque": 101,
+        "defense": 71
+      }
+    },
+    {
+      "id": 12,
+      "name": "Floraclaw",
+      "type": [
+        "Plante",
+        "Feu"
+      ],
+      "legendary": false,
+      "image": "Floraclaw.png",
+      "description": "Un Pokémon plante-feu ressemblant à un chat avec des fleurs enflammées",
+      "stats": {
+        "pv": 67,
+        "attaque": 75,
+        "defense": 72
+      }
+    },
+    {
+      "id": 13,
+      "name": "Floritank",
+      "type": [
+        "Plante",
+        "Acier"
+      ],
+      "legendary": false,
+      "image": "Floritank.png",
+      "description": "Un Pokémon blindé de type plante avec des fleurs roses et des pattes robustes",
+      "stats": {
+        "pv": 68,
+        "attaque": 76,
+        "defense": 88
+      }
+    },
+    {
+      "id": 14,
+      "name": "Gardekrom",
+      "type": [
+        "Psy",
+        "Dragon"
+      ],
+      "legendary": false,
+      "image": "Gardekrom.png",
+      "description": "Un Pokémon élégant combinant les traits psychiques et draconiques",
+      "stats": {
+        "pv": 79,
+        "attaque": 92,
+        "defense": 74
+      }
+    },
+    {
+      "id": 15,
+      "name": "Jiraly_Rare",
+      "type": [
+        "Acier",
+        "Psy"
+      ],
+      "legendary": false,
+      "image": "Jiraly_Rare.png",
+      "description": "Une fusion rare entre Jirachi et Ralts avec des rubans cosmiques",
+      "stats": {
+        "pv": 70,
+        "attaque": 78,
+        "defense": 90
+      }
+    },
+    {
+      "id": 16,
+      "name": "KarionLR",
+      "type": [
+        "Psy",
+        "Spectre"
+      ],
+      "legendary": true,
+      "image": "KarionLR.png",
+      "description": "Un Pokémon légendaire rare spectral avec des rubans orange et violet cosmiques",
+      "stats": {
+        "pv": 101,
+        "attaque": 136,
+        "defense": 106
+      }
+    },
+    {
+      "id": 17,
+      "name": "Keunotor",
+      "type": [
+        "Normal"
+      ],
+      "legendary": false,
+      "image": "Keunotor.png",
+      "description": "Un Pokémon castor simple et mignon avec une queue touffue",
+      "stats": {
+        "pv": 77,
+        "attaque": 75,
+        "defense": 72
+      }
+    },
+    {
+      "id": 18,
+      "name": "Lumyntha",
+      "type": [
+        "Spectre",
+        "Plante"
+      ],
+      "legendary": false,
+      "image": "Lumyntha.png",
+      "description": "Un Pokémon spectral élégant avec de longs cheveux verts luminescents",
+      "stats": {
+        "pv": 73,
+        "attaque": 86,
+        "defense": 73
+      }
+    },
+    {
+      "id": 19,
+      "name": "Lupika",
+      "type": [
+        "Électrik"
+      ],
+      "legendary": false,
+      "image": "Lupika.png",
+      "description": "Un Pokémon électrique jaune féroce avec des crocs acérés",
+      "stats": {
+        "pv": 74,
+        "attaque": 82,
+        "defense": 79
+      }
+    },
+    {
+      "id": 20,
+      "name": "Luvoir",
+      "type": [
+        "Eau",
+        "Glace"
+      ],
+      "legendary": false,
+      "image": "Luvoir.png",
+      "description": "Un Pokémon aquatique bleu élégant avec des ailes glacées",
+      "stats": {
+        "pv": 65,
+        "attaque": 83,
+        "defense": 70
+      }
+    },
+    {
+      "id": 21,
+      "name": "Magmire",
+      "type": [
+        "Feu",
+        "Roche"
+      ],
+      "legendary": false,
+      "image": "Magmire.png",
+      "description": "Un Pokémon de lave rouge avec une carapace de pierre volcanique",
+      "stats": {
+        "pv": 66,
+        "attaque": 84,
+        "defense": 86
+      }
+    },
+    {
+      "id": 22,
+      "name": "Nebulyx",
+      "type": [
+        "Spectre",
+        "Poison"
+      ],
+      "legendary": false,
+      "image": "Nebulyx.png",
+      "description": "Un Pokémon cosmique spectral violet avec des tentacules nébuleux",
+      "stats": {
+        "pv": 67,
+        "attaque": 90,
+        "defense": 67
+      }
+    },
+    {
+      "id": 23,
+      "name": "Noctevoir",
+      "type": [
+        "Psy",
+        "Ténèbres"
+      ],
+      "legendary": false,
+      "image": "Noctevoir.png",
+      "description": "Un Pokémon psychique nocturne avec une robe élégante blanche et bleue",
+      "stats": {
+        "pv": 68,
+        "attaque": 86,
+        "defense": 73
+      }
+    },
+    {
+      "id": 24,
+      "name": "Noctyssor",
+      "type": [
+        "Spectre",
+        "Feu"
+      ],
+      "legendary": false,
+      "image": "Noctyssor.png",
+      "description": "Un Pokémon spectral violet sombre avec des flammes mystiques",
+      "stats": {
+        "pv": 69,
+        "attaque": 80,
+        "defense": 69
+      }
+    },
+    {
+      "id": 25,
+      "name": "Noxalis",
+      "type": [
+        "Acier",
+        "Psy"
+      ],
+      "legendary": false,
+      "image": "Noxalis.png",
+      "description": "Un Pokémon robotique blanc avec des ornements violets et mécaniques",
+      "stats": {
+        "pv": 70,
+        "attaque": 76,
+        "defense": 90
+      }
+    },
+    {
+      "id": 26,
+      "name": "Noxor",
+      "type": [
+        "Ténèbres",
+        "Spectre"
+      ],
+      "legendary": false,
+      "image": "Noxor.png",
+      "description": "Un Pokémon ténébreux avec des tentacules rouges et noirs menaçants",
+      "stats": {
+        "pv": 71,
+        "attaque": 82,
+        "defense": 71
+      }
+    },
+    {
+      "id": 27,
+      "name": "Okeloke",
+      "type": [
+        "Eau",
+        "Ténèbres"
+      ],
+      "legendary": false,
+      "image": "Okeloke.png",
+      "description": "Une fusion aquatique bleue et noire avec une apparence double",
+      "stats": {
+        "pv": 72,
+        "attaque": 78,
+        "defense": 77
+      }
+    },
+    {
+      "id": 28,
+      "name": "PyraflinL",
+      "type": [
+        "Électrik",
+        "Eau"
+      ],
+      "legendary": true,
+      "image": "PyraflinL.png",
+      "description": "Un Pokémon légendaire électrique et aquatique avec une crinière dorée majestueuse",
+      "stats": {
+        "pv": 113,
+        "attaque": 128,
+        "defense": 118
+      }
+    },
+    {
+      "id": 29,
+      "name": "Reshiflame",
+      "type": [
+        "Feu",
+        "Dragon"
+      ],
+      "legendary": false,
+      "image": "Reshiflame.png",
+      "description": "Une fusion de feu et de dragon avec des ailes majestueuses et une crinière enflammée",
+      "stats": {
+        "pv": 84,
+        "attaque": 95,
+        "defense": 79
+      }
+    },
+    {
+      "id": 30,
+      "name": "Reshirom",
+      "type": [
+        "Dragon",
+        "Ténèbres"
+      ],
+      "legendary": false,
+      "image": "Reshirom.png",
+      "description": "Un dragon noir et blanc imposant avec des détails cyan lumineux",
+      "stats": {
+        "pv": 75,
+        "attaque": 96,
+        "defense": 70
+      }
+    },
+    {
+      "id": 31,
+      "name": "Reshivoir",
+      "type": [
+        "Psy",
+        "Feu"
+      ],
+      "legendary": false,
+      "image": "Reshivoir.png",
+      "description": "Une fusion psychique et enflammée avec une forme élégante et royale",
+      "stats": {
+        "pv": 66,
+        "attaque": 82,
+        "defense": 71
+      }
+    },
+    {
+      "id": 32,
+      "name": "Rubycire",
+      "type": [
+        "Feu",
+        "Roche"
+      ],
+      "legendary": false,
+      "image": "Rubycire.png",
+      "description": "Un petit Pokémon avec un rubis incandescent sur sa tête",
+      "stats": {
+        "pv": 67,
+        "attaque": 83,
+        "defense": 87
+      }
+    },
+    {
+      "id": 33,
+      "name": "Scalydra",
+      "type": [
+        "Acier",
+        "Poison"
+      ],
+      "legendary": false,
+      "image": "Scalydra.png",
+      "description": "Un Pokémon blindé avec des écailles d'acier et des éléments venimeux verts",
+      "stats": {
+        "pv": 68,
+        "attaque": 84,
+        "defense": 88
+      }
+    },
+    {
+      "id": 34,
+      "name": "Skelerat",
+      "type": [
+        "Spectre",
+        "Ténèbres"
+      ],
+      "legendary": false,
+      "image": "Skelerat.png",
+      "description": "Un Pokémon squelettique félin avec un œil rouge sinistre",
+      "stats": {
+        "pv": 69,
+        "attaque": 90,
+        "defense": 69
+      }
+    },
+    {
+      "id": 35,
+      "name": "Staralon",
+      "type": [
+        "Acier",
+        "Psy"
+      ],
+      "legendary": false,
+      "image": "Staralon.png",
+      "description": "Un Pokémon cosmique métallique en forme d'étoile avec des joyaux violets",
+      "stats": {
+        "pv": 70,
+        "attaque": 86,
+        "defense": 90
+      }
+    },
+    {
+      "id": 36,
+      "name": "SylphraL",
+      "type": [
+        "Plante",
+        "Fée"
+      ],
+      "legendary": true,
+      "image": "SylphraL.png",
+      "description": "Un Pokémon légendaire sylphe vert avec des ailes éthérées et cristallines",
+      "stats": {
+        "pv": 106,
+        "attaque": 136,
+        "defense": 111
+      }
+    },
+    {
+      "id": 37,
+      "name": "Timiki",
+      "type": [
+        "Normal"
+      ],
+      "legendary": false,
+      "image": "Timiki.png",
+      "description": "Un petit Pokémon lapin timide avec de grandes oreilles",
+      "stats": {
+        "pv": 77,
+        "attaque": 71,
+        "defense": 72
+      }
+    },
+    {
+      "id": 38,
+      "name": "Tournecendre",
+      "type": [
+        "Feu",
+        "Roche"
+      ],
+      "legendary": false,
+      "image": "Tournecendre.png",
+      "description": "Un Pokémon volcanique de cendre et de pierre enflammée",
+      "stats": {
+        "pv": 73,
+        "attaque": 77,
+        "defense": 93
+      }
+    },
+    {
+      "id": 39,
+      "name": "Ventoryx",
+      "type": [
+        "Dragon",
+        "Acier"
+      ],
+      "legendary": false,
+      "image": "Ventoryx.png",
+      "description": "Un dragon robotique vert et gris avec des appendices mécaniques",
+      "stats": {
+        "pv": 84,
+        "attaque": 93,
+        "defense": 94
+      }
+    },
+    {
+      "id": 40,
+      "name": "Verdalune",
+      "type": [
+        "Plante",
+        "Eau"
+      ],
+      "legendary": false,
+      "image": "Verdalune.png",
+      "description": "Un Pokémon serpentin élégant avec des feuilles vertes et bleues aquatiques",
+      "stats": {
+        "pv": 65,
+        "attaque": 79,
+        "defense": 70
+      }
+    },
+    {
+      "id": 41,
+      "name": "Voltalin",
+      "type": [
+        "Électrik"
+      ],
+      "legendary": false,
+      "image": "Voltalin.png",
+      "description": "Un Pokémon félin électrique avec une fourrure blanche et des rayures jaunes",
+      "stats": {
+        "pv": 66,
+        "attaque": 80,
+        "defense": 71
+      }
+    },
+    {
+      "id": 42,
+      "name": "Zaptile",
+      "type": [
+        "Électrik",
+        "Normal"
+      ],
+      "legendary": false,
+      "image": "Zaptile.png",
+      "description": "Un petit Pokémon ours avec des joues électriques jaunes",
+      "stats": {
+        "pv": 72,
+        "attaque": 76,
+        "defense": 67
+      }
+    },
+    {
+      "id": 43,
+      "name": "ZapZap",
+      "type": [
+        "Électrik",
+        "Eau"
+      ],
+      "legendary": false,
+      "image": "ZapZap.png",
+      "description": "Un Pokémon méduse orange et cyan avec des capacités électriques aquatiques",
+      "stats": {
+        "pv": 68,
+        "attaque": 82,
+        "defense": 73
+      }
+    },
+    {
+      "id": 44,
+      "name": "Zevoir",
+      "type": [
+        "Ténèbres",
+        "Psy"
+      ],
+      "legendary": false,
+      "image": "Zevoir.png",
+      "description": "Un Pokémon sombre et élégant avec des traits psychiques bleus lumineux",
+      "stats": {
+        "pv": 69,
+        "attaque": 83,
+        "defense": 74
+      }
+    },
+    {
+      "id": 45,
+      "name": "Zorova",
+      "type": [
+        "Plante",
+        "Ténèbres"
+      ],
+      "legendary": false,
+      "image": "Zorova.png",
+      "description": "Un Pokémon loup-renard vert avec des flammes bleues et une apparence sauvage",
+      "stats": {
+        "pv": 70,
+        "attaque": 84,
+        "defense": 75
+      }
+    }
+  ]
+}

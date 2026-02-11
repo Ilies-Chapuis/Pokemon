@@ -712,6 +712,134 @@
         "attaque": 84,
         "defense": 75
       }
+    },
+    {
+      "id": 46,
+      "name": "Arrchamp",
+      "type": [
+        "Combat",
+        "Acier"
+      ],
+      "legendary": false,
+      "image": "Arrchamp.png",
+      "description": "Un Pokémon de combat métallique avec plusieurs bras puissants",
+      "stats": {
+        "pv": 76,
+        "attaque": 98,
+        "defense": 92
+      }
+    },
+    {
+      "id": 47,
+      "name": "Dragodreavus",
+      "type": [
+        "Dragon",
+        "Spectre"
+      ],
+      "legendary": false,
+      "image": "Dragodreavus.png",
+      "description": "Un petit dragon spectral bleu avec des ailes fantomatiques",
+      "stats": {
+        "pv": 82,
+        "attaque": 95,
+        "defense": 68
+      }
+    },
+    {
+      "id": 48,
+      "name": "Muddew",
+      "type": [
+        "Eau",
+        "Combat"
+      ],
+      "legendary": false,
+      "image": "Muddew.png",
+      "description": "Un Pokémon aquatique de combat avec des poings oranges",
+      "stats": {
+        "pv": 73,
+        "attaque": 88,
+        "defense": 75
+      }
+    },
+    {
+      "id": 49,
+      "name": "Snubrua",
+      "type": [
+        "Fée",
+        "Combat"
+      ],
+      "legendary": false,
+      "image": "Snubrua.png",
+      "description": "Un Pokémon fée rose costaud avec une attitude féroce",
+      "stats": {
+        "pv": 74,
+        "attaque": 87,
+        "defense": 71
+      }
+    },
+    {
+      "id": 50,
+      "name": "Poryluff",
+      "type": [
+        "Normal",
+        "Fée"
+      ],
+      "legendary": false,
+      "image": "Poryluff.png",
+      "description": "Une fusion mignonne et technologique rose et bleue",
+      "stats": {
+        "pv": 75,
+        "attaque": 65,
+        "defense": 70
+      }
+    },
+    {
+      "id": 51,
+      "name": "Reunito",
+      "type": [
+        "Psy",
+        "Vol"
+      ],
+      "legendary": false,
+      "image": "Reunito.png",
+      "description": "Un Pokémon psychique volant vert avec un motif mystique",
+      "stats": {
+        "pv": 70,
+        "attaque": 76,
+        "defense": 71
+      }
+    },
+    {
+      "id": 52,
+      "name": "Minikoal",
+      "type": [
+        "Roche",
+        "Normal"
+      ],
+      "legendary": false,
+      "image": "Minikoal.png",
+      "description": "Un petit Pokémon koala fait de pierre et de nuages",
+      "stats": {
+        "pv": 67,
+        "attaque": 72,
+        "defense": 82
+      }
+    },
+    {
+      "id": 53,
+      "name": "Doubwak",
+      "type": [
+        "Combat",
+        "Psy"
+      ],
+      "legendary": false,
+      "image": "Doubwak.png",
+      "description": "Un Pokémon de combat psychique avec des rubans violets et une épée",
+      "stats": {
+        "pv": 73,
+        "attaque": 91,
+        "defense": 74
+      }
     }
   ]
 }

@@ -13,7 +13,7 @@ pygame.display.set_caption("Pokemon")
 
 # Mise à jour de la vraie taille de la fenêtre
 settings.window_width, settings.window_height = window.get_size()
-settings.full_screen = False  # juste un état logique si tu veux le garder
+settings.full_screen = False  # état initial
 
 # --- Background ---
 background = pygame.image.load(settings.background_path)
@@ -22,6 +22,7 @@ background = pygame.transform.smoothscale(background, (settings.window_width, se
 # --- Musique ---
 pygame.mixer.init()
 pygame.mixer.music.load(settings.music_path)
+pygame.mixer.music.set_volume(settings.volume)  # volume initial
 pygame.mixer.music.play(-1)
 
 font = pygame.font.Font(None, 40)
@@ -48,22 +49,37 @@ while running:
         # ----- ESCAPE POUR QUITTER LE FULLSCREEN -----
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
-                if settings.full_screen:
+
+                # Retour depuis le menu volume
+                if menu_state == "volume":
+                    menu_state = "options"
+
+                # Retour depuis fullscreen
+                elif settings.full_screen:
                     settings.full_screen = False
 
-                    # Retour en fenêtré
                     window = pygame.display.set_mode((settings.windowed_width, settings.windowed_height))
 
-                    # Mise à jour des dimensions
                     settings.window_width = settings.windowed_width
                     settings.window_height = settings.windowed_height
 
-                    # Rescale du background
                     background = pygame.image.load(settings.background_path)
                     background = pygame.transform.smoothscale(
                         background,
                         (settings.window_width, settings.window_height)
                     )
+
+        # ----- CONTROLES DU VOLUME -----
+        if menu_state == "volume":
+            if event.type == pygame.KEYDOWN:
+
+                if event.key == pygame.K_LEFT:
+                    settings.volume = max(0, settings.volume - 0.1)
+                    pygame.mixer.music.set_volume(settings.volume)
+
+                elif event.key == pygame.K_RIGHT:
+                    settings.volume = min(1, settings.volume + 0.1)
+                    pygame.mixer.music.set_volume(settings.volume)
 
         # ----- CLIC SOURIS -----
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
@@ -88,17 +104,13 @@ while running:
                     if rect.collidepoint(mouse_x, mouse_y):
                         choice = options_menu[i]
 
-                        # ----- FULLSCREEN -----
                         if choice == "Fullscreen":
                             settings.full_screen = True
 
-                            # Passage en fullscreen
                             window = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 
-                            # Mise à jour des dimensions
                             settings.window_width, settings.window_height = window.get_size()
 
-                            # Rescale du background
                             background = pygame.image.load(settings.background_path)
                             background = pygame.transform.smoothscale(
                                 background,
@@ -106,7 +118,8 @@ while running:
                             )
 
                         elif choice == "Volume":
-                            print("Volume pas encore implémenté")
+                            menu_state = "volume"
+
                         elif choice == "Back":
                             menu_state = "main"
 
@@ -118,6 +131,18 @@ while running:
 
     elif menu_state == "options":
         rects = renderer.show(window, font, options_menu)
+
+    elif menu_state == "volume":
+        # Affichage du volume
+        text = font.render(f"Volume : {int(settings.volume * 100)}%", True, settings.Black)
+        text_x = settings.window_width // 2 - text.get_width() // 2
+        text_y = settings.window_height // 2 - 20
+        window.blit(text, (text_x, text_y))
+
+        info = font.render("← / → pour changer, ESC pour revenir", True, settings.Black)
+        info_x = settings.window_width // 2 - info.get_width() // 2
+        info_y = settings.window_height // 2 + 40
+        window.blit(info, (info_x, info_y))
 
     elif menu_state == "game":
         text = font.render("Starting new game...", True, settings.Black)

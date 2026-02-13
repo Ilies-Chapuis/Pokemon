@@ -14,7 +14,7 @@ class MenuRenderer:
         window_width = self.settings.window_width
         window_height = self.settings.window_height
 
-        # Style original : boutons en bas de l'écran
+        # Style original : boutons en bas
         bottom_margin = 0
         total_height = len(menu_list) * spacing
         start_y = window_height - total_height - bottom_margin

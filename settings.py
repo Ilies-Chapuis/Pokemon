@@ -12,7 +12,7 @@ class Settings:
         self.full_screen = False
 
         # --- Volume ---
-        self.volume = 0.5  # 🔥 Volume par défaut (50%)
+        self.volume = 0.5  # Volume par défaut (50%)
 
         # --- Couleurs ---
         self.White = (255, 255, 255)

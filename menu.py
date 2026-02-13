@@ -7,12 +7,19 @@ pygame.init()
 
 settings = Settings()
 
+# --- Création de la fenêtre ---
 window = pygame.display.set_mode((settings.window_width, settings.window_height))
 pygame.display.set_caption("Pokemon")
 
-background = pygame.image.load(settings.background_path)
-background = pygame.transform.scale(background, (settings.window_width, settings.window_height))
+# Mise à jour de la vraie taille de la fenêtre
+settings.window_width, settings.window_height = window.get_size()
+settings.full_screen = False  # juste un état logique si tu veux le garder
 
+# --- Background ---
+background = pygame.image.load(settings.background_path)
+background = pygame.transform.smoothscale(background, (settings.window_width, settings.window_height))
+
+# --- Musique ---
 pygame.mixer.init()
 pygame.mixer.music.load(settings.music_path)
 pygame.mixer.music.play(-1)
@@ -38,6 +45,27 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
+        # ----- ESCAPE POUR QUITTER LE FULLSCREEN -----
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                if settings.full_screen:
+                    settings.full_screen = False
+
+                    # Retour en fenêtré
+                    window = pygame.display.set_mode((settings.windowed_width, settings.windowed_height))
+
+                    # Mise à jour des dimensions
+                    settings.window_width = settings.windowed_width
+                    settings.window_height = settings.windowed_height
+
+                    # Rescale du background
+                    background = pygame.image.load(settings.background_path)
+                    background = pygame.transform.smoothscale(
+                        background,
+                        (settings.window_width, settings.window_height)
+                    )
+
+        # ----- CLIC SOURIS -----
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             mouse_x, mouse_y = event.pos
 
@@ -60,24 +88,47 @@ while running:
                     if rect.collidepoint(mouse_x, mouse_y):
                         choice = options_menu[i]
 
+                        # ----- FULLSCREEN -----
                         if choice == "Fullscreen":
-                            print("Fullscreen pas encore implémenté")
+                            settings.full_screen = True
+
+                            # Passage en fullscreen
+                            window = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+
+                            # Mise à jour des dimensions
+                            settings.window_width, settings.window_height = window.get_size()
+
+                            # Rescale du background
+                            background = pygame.image.load(settings.background_path)
+                            background = pygame.transform.smoothscale(
+                                background,
+                                (settings.window_width, settings.window_height)
+                            )
+
                         elif choice == "Volume":
                             print("Volume pas encore implémenté")
                         elif choice == "Back":
                             menu_state = "main"
 
+    # ----- AFFICHAGE -----
     window.blit(background, (0, 0))
 
     if menu_state == "main":
         rects = renderer.show(window, font, main_menu)
+
     elif menu_state == "options":
         rects = renderer.show(window, font, options_menu)
+
     elif menu_state == "game":
         text = font.render("Starting new game...", True, settings.Black)
-        window.blit(text, (337, 450))
+        text_x = settings.window_width // 2 - text.get_width() // 2
+        text_y = settings.window_height - 80
+        window.blit(text, (text_x, text_y))
+
     elif menu_state == "continue":
         text = font.render("Loading save...", True, settings.Black)
-        window.blit(text, (375, 450))
+        text_x = settings.window_width // 2 - text.get_width() // 2
+        text_y = settings.window_height - 80
+        window.blit(text, (text_x, text_y))
 
     pygame.display.flip()

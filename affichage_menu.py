@@ -11,16 +11,18 @@ class MenuRenderer:
         button_height = 40
         spacing = 40
 
-        # VERSION ORIGINALE
-        bottom_margin = 0
+        window_width = self.settings.window_width
+        window_height = self.settings.window_height
 
+        # Style original : boutons en bas de l'écran
+        bottom_margin = 0
         total_height = len(menu_list) * spacing
-        start_y = self.settings.window_height - total_height - bottom_margin
+        start_y = window_height - total_height - bottom_margin
 
         mouse_x, mouse_y = pygame.mouse.get_pos()
 
         for i, text in enumerate(menu_list):
-            center_x = self.settings.window_width // 2
+            center_x = window_width // 2
             center_y = start_y + i * spacing
 
             rect = pygame.Rect(0, 0, button_width, button_height)

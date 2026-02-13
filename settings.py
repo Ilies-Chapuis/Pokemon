@@ -3,6 +3,9 @@ class Settings:
         # Fenêtre
         self.window_width = 960
         self.window_height = 540
+        self.full_screen= False
+        self.windowed_width= 1280
+        self.windowed_height=720
 
         # Chemins
         self.background_path = "Assets/Image_Menu/background.png"

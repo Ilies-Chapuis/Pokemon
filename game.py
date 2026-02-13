@@ -1,5 +1,6 @@
 import pygame
 import json
+import os
 from pokemon import Pokemon
 from combat import Combat
 from map import Carte, RencontreManager, ZONES
@@ -7,22 +8,26 @@ from map import Carte, RencontreManager, ZONES
 
 class Game:
     def __init__(self):
-        pygame.init()
+        # Ne pas initialiser pygame ici, c'est fait par main.py
         self.largeur_ecran = 1000
         self.hauteur_ecran = 700
-        self.screen = pygame.display.set_mode((self.largeur_ecran, self.hauteur_ecran))
-        pygame.display.set_caption("Pokémon édition Nul")
+        self.screen = pygame.display.get_surface()
 
         # Polices
-        self.font_titre = pygame.font.SysFont("Comic sans MS", 32, bold=True)
-        self.font_normal = pygame.font.SysFont("Comic sans MS", 20)
-        self.font_petit = pygame.font.SysFont("Comic sans MS", 16)
+        self.font_titre = pygame.font.SysFont("Arial", 32, bold=True)
+        self.font_normal = pygame.font.SysFont("Arial", 20)
+        self.font_petit = pygame.font.SysFont("Arial", 16)
 
         self.clock = pygame.time.Clock()
 
         # Carte et système de rencontres
         self.carte = Carte(20, 15)
-        self.rencontre_manager = RencontreManager("/mnt/user-data/outputs/pokemon.json")
+
+        # Chercher le fichier pokemon.json
+        chemin_json = "pokemon.json"
+        if not os.path.exists(chemin_json):
+            chemin_json = "/mnt/user-data/outputs/pokemon.json"
+        self.rencontre_manager = RencontreManager(chemin_json)
 
         # Position du joueur
         self.joueur_x = 10
@@ -47,8 +52,27 @@ class Game:
         # Potions
         self.potions = 5
 
+        # État running pour l'application principale
+        self.running = True
+
+    def render(self):
+        """Affiche le jeu"""
+        self.screen.fill((20, 20, 40))
+
+        if self.etat == "exploration":
+            self.afficher_carte()
+            self.afficher_infos_zone()
+            self.afficher_equipe()
+
+            # Instructions
+            self.afficher_texte("Déplacement: Flèches ou ZQSD", 50, 650, self.font_petit, (200, 200, 200))
+            self.afficher_texte("[H] Soigner l'équipe | [ESC] Menu", 50, 670, self.font_petit, (200, 200, 200))
+
+        elif self.etat == "combat":
+            self.afficher_combat()
+
     def initialiser_equipe(self):
-        #Initialise l'équipe de départ du joueur
+        # Initialise l'équipe de départ du joueur
         # Charger un Pokémon de départ
         starter_data = self.rencontre_manager.pokedex.get("Keunotor")
         if starter_data:
@@ -56,7 +80,7 @@ class Game:
             self.equipe_joueur.append(starter)
 
     def deplacer_joueur(self, dx, dy):
-        #Déplace le joueur et vérifie les rencontres
+        # Déplace le joueur et vérifie les rencontres
         nouveau_x = self.joueur_x + dx
         nouveau_y = self.joueur_y + dy
 
@@ -78,7 +102,7 @@ class Game:
                     self.pas_depuis_combat = 0
 
     def demarrer_combat(self, pokemon_sauvage):
-        #Démarre un combat contre un Pokémon sauvage
+        # Démarre un combat contre un Pokémon sauvage
         self.etat = "combat"
         self.pokemon_sauvage = pokemon_sauvage
         pokemon_actif = self.get_pokemon_actif()
@@ -86,14 +110,14 @@ class Game:
             self.combat_actuel = Combat(pokemon_actif, pokemon_sauvage)
 
     def get_pokemon_actif(self):
-        #Retourne le premier Pokémon vivant de l'équipe
+        # Retourne le premier Pokémon vivant de l'équipe
         for pokemon in self.equipe_joueur:
             if pokemon.est_vivant():
                 return pokemon
         return None
 
     def afficher_carte(self):
-        #Affiche la carte et le joueur
+        # Affiche la carte et le joueur
         offset_x = 50
         offset_y = 50
 
@@ -126,7 +150,7 @@ class Game:
         )
 
     def afficher_infos_zone(self):
-        #Affiche les informations de la zone actuelle
+        # Affiche les informations de la zone actuelle
         zone_type = self.carte.get_zone(self.joueur_x, self.joueur_y)
         zone_info = ZONES[zone_type]
 
@@ -136,7 +160,7 @@ class Game:
         self.afficher_texte(f"Potions: {self.potions}", 850, y_offset + 60, self.font_petit)
 
     def afficher_equipe(self):
-        #Affiche l'équipe du joueur
+        # Affiche l'équipe du joueur
         y_offset = 200
         self.afficher_texte("Votre équipe:", 850, y_offset, self.font_normal, (255, 215, 0))
 
@@ -156,7 +180,7 @@ class Game:
             )
 
     def afficher_combat(self):
-        #Affiche l'écran de combat
+        # Affiche l'écran de combat
         if not self.combat_actuel:
             return
 
@@ -197,11 +221,13 @@ class Game:
             self.afficher_fin_combat()
 
     def afficher_boutons_combat(self):
-        #Affiche les boutons d'action en combat
+        # Affiche les boutons d'action en combat
         boutons_texte = [
             "[A] Attaquer",
             f"[P] Potion ({self.potions})",
+            "[C] Capturer",
             "[F] Fuir"
+
         ]
 
         x_boutons = 600
@@ -211,7 +237,7 @@ class Game:
             self.afficher_texte(texte, x_boutons, y_boutons + i * 40, self.font_normal, (255, 255, 100))
 
     def afficher_fin_combat(self):
-        #Affiche le résultat du combat
+        # Affiche le résultat du combat
         if self.combat_actuel.joueur_gagne:
             texte = "VICTOIRE !"
             couleur = (100, 255, 100)
@@ -223,7 +249,7 @@ class Game:
         self.afficher_texte("[ESPACE] Continuer", 350, 350, self.font_normal, (255, 255, 255))
 
     def afficher_barre_pv(self, pokemon, x, y, largeur):
-        #Affiche une barre de PV
+        # Affiche une barre de PV
         ratio_pv = pokemon.pv / pokemon.pv_max if pokemon.pv_max > 0 else 0
 
         # Couleur selon les PV
@@ -246,14 +272,14 @@ class Game:
         self.afficher_texte(texte_pv, x + largeur + 10, y, self.font_petit)
 
     def afficher_texte(self, texte, x, y, font=None, couleur=(255, 255, 255)):
-        #Affiche du texte à l'écran
+        # Affiche du texte à l'écran
         if font is None:
             font = self.font_normal
         surface = font.render(texte, True, couleur)
         self.screen.blit(surface, (x, y))
 
     def gerer_input_exploration(self, event):
-        #Gère les inputs en mode exploration
+        # Gère les inputs en mode exploration
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP or event.key == pygame.K_z:
                 self.deplacer_joueur(0, -1)
@@ -269,7 +295,7 @@ class Game:
                     pokemon.soigner()
 
     def gerer_input_combat(self, event):
-        #Gère les inputs en mode combat
+        # Gère les inputs en mode combat
         if event.type == pygame.KEYDOWN:
             if self.combat_actuel.termine:
                 if event.key == pygame.K_SPACE:
@@ -287,43 +313,8 @@ class Game:
                 elif event.key == pygame.K_f:
                     # Fuir
                     self.combat_actuel.tour_combat("fuite")
-
-    def loop(self):
-        #Boucle principale du jeu
-        running = True
-
-        while running:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    running = False
-
-                if self.etat == "exploration":
-                    self.gerer_input_exploration(event)
-                elif self.etat == "combat":
-                    self.gerer_input_combat(event)
-
-            # Affichage
-            self.screen.fill((20, 20, 40))
-
-            if self.etat == "exploration":
-                self.afficher_carte()
-                self.afficher_infos_zone()
-                self.afficher_equipe()
-
-                # Instructions
-                self.afficher_texte("Déplacement: Flèches ou ZQSD", 50, 650, self.font_petit, (200, 200, 200))
-                self.afficher_texte("[H] Soigner l'équipe", 50, 670, self.font_petit, (200, 200, 200))
-
-            elif self.etat == "combat":
-                self.afficher_combat()
-
-            pygame.display.flip()
-            self.clock.tick(60)
-
-        pygame.quit()
-
-
-# Point d'entrée
-if __name__ == "__main__":
-    game = Game()
-    game.loop()
+                elif event.key == pygame.K_c:
+                    self.combat_actuel.tour_combat("capture")
+                if self.combat_actuel.pokemon_capture:
+                    if len(self.equipe_joueur) < 6:
+                        self.equipe_joueur.append(self.pokemon_sauvage)

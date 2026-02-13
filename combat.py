@@ -8,10 +8,11 @@ class Combat:
         self.tour = 0
         self.termine = False
         self.joueur_gagne = False
+        self.pokemon_capture = False
         self.logs = []
 
     def tour_combat(self, action_joueur="attaque"):
-        #Execute un tour de combat
+        """Execute un tour de combat"""
         if self.termine:
             return
 
@@ -19,7 +20,6 @@ class Combat:
         self.logs.append(f"--- Tour {self.tour} ---")
 
         # Le Pokémon le plus rapide attaque en premier
-        # Pour simplifier, on utilise l'attaque comme stat de vitesse
         joueur_premier = self.pokemon_joueur.attaque >= self.pokemon_sauvage.attaque
 
         if action_joueur == "fuite":
@@ -39,7 +39,27 @@ class Combat:
                     self.joueur_gagne = False
                 return
 
-        # Action du joueur
+        if action_joueur == "capture":
+            # Tentative de capture
+            reussite = self.tenter_capture()
+            if reussite:
+                self.logs.append(f"Vous avez capturé {self.pokemon_sauvage.nom} !")
+                self.termine = True
+                self.joueur_gagne = True
+                self.pokemon_capture = True
+                return
+            else:
+                self.logs.append(f"La capture a échoué !")
+                # Le Pokémon sauvage attaque
+                resultat = self.pokemon_sauvage.attaquer(self.pokemon_joueur)
+                self.logs.append(resultat["message"])
+                if not self.pokemon_joueur.est_vivant():
+                    self.logs.append(f"{self.pokemon_joueur.nom} est K.O. !")
+                    self.termine = True
+                    self.joueur_gagne = False
+                return
+
+        # Action du joueur (attaque)
         if joueur_premier:
             # Le joueur attaque en premier
             resultat = self.pokemon_joueur.attaquer(self.pokemon_sauvage)
@@ -92,6 +112,28 @@ class Combat:
                     exp_gagnee *= 3
                 self.pokemon_joueur.gagner_experience(exp_gagnee)
                 self.logs.append(f"{self.pokemon_joueur.nom} gagne {exp_gagnee} points d'expérience !")
+
+    def tenter_capture(self):
+        """Tente de capturer le Pokémon sauvage"""
+        # Formule de capture inspirée de Pokémon
+        # Plus le Pokémon est faible, plus la capture est facile
+        ratio_pv = self.pokemon_sauvage.pv / self.pokemon_sauvage.pv_max
+
+        # Taux de base
+        taux_base = 50
+
+        # Bonus si PV faibles
+        if ratio_pv < 0.25:
+            taux_base = 90  # Très faible
+        elif ratio_pv < 0.5:
+            taux_base = 70  # Faible
+
+        # Malus pour les légendaires
+        if self.pokemon_sauvage.legendary:
+            taux_base = max(5, taux_base // 3)  # Très difficile
+
+        # Lancer le dé
+        return random.randint(1, 100) <= taux_base
 
     def utiliser_potion(self):
         """Utilise une potion pour soigner le Pokémon"""

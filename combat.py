@@ -59,7 +59,40 @@ class Combat:
                     self.joueur_gagne = False
                 return
 
-        # Action du joueur (attaque)
+        # Attaque spéciale : 50% réussite, 100% critique
+        if action_joueur == "attaque_speciale":
+            if random.random() < 0.5:
+                # Attaque réussie avec critique garanti
+                degats = int(self.pokemon_joueur.attaque * 1.5 * 1.5)  # x1.5 multiplicateur base + x1.5 critique
+                self.pokemon_sauvage.pv = max(0, self.pokemon_sauvage.pv - degats)
+                self.logs.append(f"⚡ ATTAQUE SPÉCIALE CRITIQUE ! {degats} dégâts !")
+
+                if not self.pokemon_sauvage.est_vivant():
+                    self.logs.append(f"{self.pokemon_sauvage.nom} est K.O. !")
+                    self.termine = True
+                    self.joueur_gagne = True
+
+                    # Gain d'expérience
+                    exp_gagnee = self.pokemon_sauvage.niveau * 50
+                    if self.pokemon_sauvage.legendary:
+                        exp_gagnee *= 3
+                    self.pokemon_joueur.gagner_experience(exp_gagnee)
+                    self.logs.append(f"{self.pokemon_joueur.nom} gagne {exp_gagnee} points d'expérience !")
+                    return
+            else:
+                # Attaque ratée
+                self.logs.append(f"✗ L'attaque spéciale a échoué !")
+
+            # Le Pokémon sauvage riposte
+            resultat = self.pokemon_sauvage.attaquer(self.pokemon_joueur)
+            self.logs.append(resultat["message"])
+            if not self.pokemon_joueur.est_vivant():
+                self.logs.append(f"{self.pokemon_joueur.nom} est K.O. !")
+                self.termine = True
+                self.joueur_gagne = False
+            return
+
+        # Action du joueur (attaque normale)
         if joueur_premier:
             # Le joueur attaque en premier
             resultat = self.pokemon_joueur.attaquer(self.pokemon_sauvage)

@@ -12,7 +12,7 @@ class Combat:
         self.logs = []
 
     def tour_combat(self, action_joueur="attaque"):
-        """Execute un tour de combat"""
+        #Execute un tour de combat
         if self.termine:
             return
 
@@ -29,7 +29,7 @@ class Combat:
                 self.termine = True
                 return
             else:
-                self.logs.append("Impossible de fuir !")
+                self.logs.append("Impossible de fuir c'est la merde!")
                 # Le Pokémon sauvage attaque
                 resultat = self.pokemon_sauvage.attaquer(self.pokemon_joueur)
                 self.logs.append(resultat["message"])
@@ -49,7 +49,7 @@ class Combat:
                 self.pokemon_capture = True
                 return
             else:
-                self.logs.append(f"La capture a échoué !")
+                self.logs.append(f"NUL GERMAIN NUL !")
                 # Le Pokémon sauvage attaque
                 resultat = self.pokemon_sauvage.attaquer(self.pokemon_joueur)
                 self.logs.append(resultat["message"])
@@ -65,7 +65,7 @@ class Combat:
                 # Attaque réussie avec critique garanti
                 degats = int(self.pokemon_joueur.attaque * 1.5 * 1.5)  # x1.5 multiplicateur base + x1.5 critique
                 self.pokemon_sauvage.pv = max(0, self.pokemon_sauvage.pv - degats)
-                self.logs.append(f"⚡ ATTAQUE SPÉCIALE CRITIQUE ! {degats} dégâts !")
+                self.logs.append(f" ATTAQUE SPÉCIALE CRITIQUE ! {degats} dégâts !")
 
                 if not self.pokemon_sauvage.est_vivant():
                     self.logs.append(f"{self.pokemon_sauvage.nom} est K.O. !")
@@ -81,7 +81,7 @@ class Combat:
                     return
             else:
                 # Attaque ratée
-                self.logs.append(f"✗ L'attaque spéciale a échoué !")
+                self.logs.append(f" L'attaque spéciale a échoué !")
 
             # Le Pokémon sauvage riposte
             resultat = self.pokemon_sauvage.attaquer(self.pokemon_joueur)
@@ -147,7 +147,7 @@ class Combat:
                 self.logs.append(f"{self.pokemon_joueur.nom} gagne {exp_gagnee} points d'expérience !")
 
     def tenter_capture(self):
-        """Tente de capturer le Pokémon sauvage"""
+        #Tente de capturer le Pokémon sauvage
         # Formule de capture inspirée de Pokémon
         # Plus le Pokémon est faible, plus la capture est facile
         ratio_pv = self.pokemon_sauvage.pv / self.pokemon_sauvage.pv_max
@@ -169,7 +169,7 @@ class Combat:
         return random.randint(1, 100) <= taux_base
 
     def utiliser_potion(self):
-        """Utilise une potion pour soigner le Pokémon"""
+        #Utilise une potion pour soigner le Pokémon
         soin = min(50, self.pokemon_joueur.pv_max - self.pokemon_joueur.pv)
         self.pokemon_joueur.pv += soin
         self.logs.append(f"{self.pokemon_joueur.nom} récupère {soin} PV !")
@@ -184,5 +184,5 @@ class Combat:
             self.joueur_gagne = False
 
     def get_derniers_logs(self, n=5):
-        """Retourne les n derniers logs"""
+        #Retourne les n derniers logs
         return self.logs[-n:]

@@ -7,7 +7,7 @@ MULTIPLICATEURS = type_dict
 
 
 def multiplicateur_type(type_attaquant, type_defenseur):
-    """Retourne le multiplicateur de dégâts en fonction des types"""
+    #Retourne le multiplicateur de dégâts en fonction des types
     if type_attaquant in MULTIPLICATEURS:
         return MULTIPLICATEURS[type_attaquant].get(type_defenseur, 1.0)
     return 1.0
@@ -34,11 +34,11 @@ class Pokemon:
         # 50% de réussite
         if random.random() <= 0.5:
             degats = self.attaque * 2  # critique x2
-            print("🔥 Attaque spéciale critique réussie !")
+            print("OOOOOH IL A TOUCHE QUEL GOAT !")
             adversaire.subir_degats(degats)
             return True
         else:
-            print("❌ Attaque spéciale ratée !")
+            print("MAIS IL EST NUL A CHIER !")
             return False
 
     def subir_degats(self, degats):
@@ -48,17 +48,17 @@ class Pokemon:
             self.pv = 0
 
     def soigner(self):
-        """Restaure tous les PV du Pokémon"""
+        #Restaure tous les PV du Pokémon
         self.pv = self.pv_max
 
     def gagner_experience(self, exp):
-        """Gagne de l'expérience et monte de niveau si nécessaire"""
+        #Gagne de l'expérience et monte de niveau si nécessaire
         self.experience += exp
         while self.experience >= self.experience_max:
             self.monter_niveau()
 
     def monter_niveau(self):
-        """Monte le Pokémon d'un niveau"""
+        #Monte le Pokémon d'un niveau
         self.niveau += 1
         self.experience -= self.experience_max
         self.experience_max = self.niveau * 100
@@ -72,7 +72,7 @@ class Pokemon:
         return True
 
     def attaquer(self, defenseur):
-        """Attaque un autre Pokémon"""
+        #Attaque un autre Pokémon
         # 10% de chance de rater
         if random.random() < 0.10:
             return {
@@ -103,11 +103,11 @@ class Pokemon:
         # Message d'efficacité
         msg_efficacite = ""
         if efficacite > 1.0:
-            msg_efficacite = " C'est super efficace !"
+            msg_efficacite = " Bravo c'est super efficace !"
         elif efficacite < 1.0 and efficacite > 0:
             msg_efficacite = " Ce n'est pas très efficace..."
         elif efficacite == 0:
-            msg_efficacite = " Ça n'a aucun effet..."
+            msg_efficacite = " MAIS C'EST QUOI "
 
         msg_critique = " Coup critique !" if critique else ""
 
@@ -138,7 +138,7 @@ class Pokemon:
 
     @staticmethod
     def from_dict(data):
-        """Crée un Pokémon à partir d'un dictionnaire"""
+        #Crée un Pokémon à partir d'un dictionnaire
         pokemon = Pokemon(
             data["nom"],
             data["types"],

@@ -1,0 +1,53 @@
+{
+  "date": "2026-02-16 14:38:12",
+  "joueur": {
+    "position_x": 10,
+    "position_y": 8,
+    "potions": 5,
+    "pokeballs": 20
+  },
+  "equipe": [
+    {
+      "nom": "Verdalune",
+      "niveau": 5,
+      "pv": 77,
+      "pv_max": 77,
+      "attaque": 87,
+      "defense": 78,
+      "experience": 301,
+      "types": [
+        "Plante",
+        "Eau"
+      ],
+      "legendary": false
+    },
+    {
+      "nom": "Skelerat",
+      "niveau": 6,
+      "pv": 84,
+      "pv_max": 84,
+      "attaque": 100,
+      "defense": 79,
+      "experience": 1,
+      "types": [
+        "Spectre",
+        "Ténèbres"
+      ],
+      "legendary": false
+    },
+    {
+      "nom": "Rubycire",
+      "niveau": 5,
+      "pv": 79,
+      "pv_max": 79,
+      "attaque": 91,
+      "defense": 95,
+      "experience": 1,
+      "types": [
+        "Feu",
+        "Roche"
+      ],
+      "legendary": false
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+
 """
 Pokémon JVSI - Édition Aventure
 Point d'entrée principal du jeu
@@ -14,7 +14,7 @@ from pokemon import Pokemon
 
 
 class Menu:
-    """Menu principal du jeu"""
+    #Menu principal du jeu
 
     def __init__(self, screen, font_titre, font_normal):
         self.screen = screen
@@ -25,17 +25,18 @@ class Menu:
         self.options = [
             "Nouvelle partie",
             "Continuer",
+            "Créateur de Pokémon",
             "Options",
             "Quitter"
         ]
         self.selection = 0
 
     def afficher(self):
-        """Affiche le menu principal"""
+        #Affiche le menu principal
         self.screen.fill((20, 20, 40))
 
         # Titre
-        titre = self.font_titre.render("POKÉMON JVSI", True, (255, 215, 0))
+        titre = self.font_titre.render("POKÉMON FRAUDE", True, (255, 215, 0))
         titre_rect = titre.get_rect(center=(500, 150))
         self.screen.blit(titre, titre_rect)
 
@@ -68,16 +69,16 @@ class Menu:
             self.screen.blit(texte, texte_rect)
 
     def naviguer(self, direction):
-        """Change la sélection du menu"""
+        #Change la sélection du menu
         self.selection = (self.selection + direction) % len(self.options)
 
     def obtenir_choix(self):
-        """Retourne l'option sélectionnée"""
+        #Retourne l'option sélectionnée
         return self.options[self.selection]
 
 
 class MenuOptions:
-    """Menu des options"""
+    #Menu des options
 
     def __init__(self, screen, font_titre, font_normal):
         self.screen = screen
@@ -96,7 +97,7 @@ class MenuOptions:
         self.selection = 0
 
     def afficher(self):
-        """Affiche le menu des options"""
+        #Affiche le menu des options
         self.screen.fill((20, 20, 40))
 
         # Titre
@@ -161,7 +162,7 @@ class MenuOptions:
 
 
 class MenuStarter:
-    """Menu de choix du Pokémon de départ"""
+    #Menu de choix du Pokémon de départ
 
     def __init__(self, screen, font_titre, font_normal, pokedex):
         self.screen = screen
@@ -175,7 +176,7 @@ class MenuStarter:
         self.images_cache = {}
 
     def charger_image_pokemon(self, nom_pokemon):
-        """Charge l'image d'un Pokémon"""
+        #Charge l'image d'un Pokémon
         if nom_pokemon in self.images_cache:
             return self.images_cache[nom_pokemon]
 
@@ -201,7 +202,7 @@ class MenuStarter:
         return None
 
     def afficher(self):
-        """Affiche l'écran de choix du Pokémon de départ"""
+        #Affiche l'écran de choix du Pokémon de départ
         self.screen.fill((20, 20, 40))
 
         # Titre
@@ -263,7 +264,7 @@ class MenuStarter:
             self.screen.blit(texte, texte_rect)
 
     def _get_couleur_type(self, type_name):
-        """Retourne une couleur en fonction du type"""
+        #Retourne une couleur en fonction du type
         couleurs = {
             "Feu": (255, 100, 50),
             "Eau": (50, 150, 255),
@@ -314,7 +315,7 @@ class Application:
         self.menu_starter = None
 
     def charger_pokedex(self):
-        """Charge le Pokédex depuis le fichier JSON"""
+        #Charge le Pokédex depuis le fichier JSON
         try:
             chemin_json = "pokemon.json"
             if not os.path.exists(chemin_json):
@@ -329,14 +330,77 @@ class Application:
             self.pokedex = {}
 
     def nouvelle_partie(self):
-        """Démarre une nouvelle partie"""
+        #Démarre une nouvelle partie
         self.etat = "choix_starter"
         self.menu_starter = MenuStarter(self.screen, self.font_titre, self.font_normal, self.pokedex)
 
     def continuer_partie(self):
-        """Continue une partie sauvegardée"""
-        print("Fonctionnalité à venir: Charger une sauvegarde")
-        self.nouvelle_partie()
+        #Continue une partie sauvegardée
+        try:
+            from game import Game
+            from save_manager import SaveManager
+
+            save_manager = SaveManager()
+
+            # Vérifier si une sauvegarde existe
+            if not save_manager.existe_sauvegarde():
+                print(" Aucune sauvegarde trouvée. Démarrage d'une nouvelle partie...")
+                self.nouvelle_partie()
+                return
+
+            # Charger les données
+            save_data = save_manager.charger()
+            if not save_data:
+                print(" Impossible de charger la sauvegarde. Démarrage d'une nouvelle partie...")
+                self.nouvelle_partie()
+                return
+
+            # Créer le jeu
+            self.game = Game()
+
+            # Charger l'état sauvegardé
+            if self.game.charger_partie(save_data):
+                self.etat = "jeu"
+                print(f" Partie chargée : {save_data['date']}")
+            else:
+                print(" Erreur lors du chargement. Démarrage d'une nouvelle partie...")
+                self.nouvelle_partie()
+
+        except Exception as e:
+            print(f"✗ Erreur : {e}")
+            import traceback
+            traceback.print_exc()
+            self.nouvelle_partie()
+
+    def lancer_createur_pokemon(self):
+        """Lance le créateur de Pokémon"""
+        try:
+            print("\n🎨 Lancement du Créateur de Pokémon...\n")
+
+            # Fermer la fenêtre actuelle
+            pygame.quit()
+
+            # Importer et lancer le créateur
+            from ajout import AjoutPokemon
+            createur = AjoutPokemon()
+            createur.run()
+
+            # Réinitialiser pygame et retourner au menu
+            pygame.init()
+            self.screen = pygame.display.set_mode((self.largeur_ecran, self.hauteur_ecran))
+            pygame.display.set_caption("Pokémon Fraude")
+            self.etat = "menu_principal"
+
+        except Exception as e:
+            print(f"✗ Erreur lors du lancement du créateur : {e}")
+            import traceback
+            traceback.print_exc()
+
+            # Réinitialiser pygame en cas d'erreur
+            pygame.init()
+            self.screen = pygame.display.set_mode((self.largeur_ecran, self.hauteur_ecran))
+            pygame.display.set_caption("Pokémon Fraude")
+            self.etat = "menu_principal"
 
     def lancer_jeu(self, pokemon_starter_nom):
         """Lance le jeu avec le Pokémon de départ choisi"""
@@ -349,7 +413,7 @@ class Application:
                 starter_data = self.pokedex[pokemon_starter_nom]
                 starter = Pokemon.from_pokedex(starter_data, 5)
                 self.game.equipe_joueur = [starter]
-                print(f"✓ Partie lancée avec {pokemon_starter_nom}")
+                print(f" Partie lancée avec {pokemon_starter_nom}")
 
             self.etat = "jeu"
         except Exception as e:
@@ -372,6 +436,8 @@ class Application:
                     self.nouvelle_partie()
                 elif choix == "Continuer":
                     self.continuer_partie()
+                elif choix == "Créateur de Pokémon":
+                    self.lancer_createur_pokemon()
                 elif choix == "Options":
                     self.etat = "options"
                 elif choix == "Quitter":
@@ -464,7 +530,7 @@ class Application:
 def main():
     """Point d'entrée principal"""
     print("=" * 50)
-    print("  POKÉMON JVSI - ÉDITION AVENTURE")
+    print("  POKÉMON FRAUDE")
     print("=" * 50)
     print()
 

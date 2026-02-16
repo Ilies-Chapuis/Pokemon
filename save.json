@@ -1,19 +1,64 @@
 {
+    "version": "1.0",
+    "date_sauvegarde": "2026-02-16 10:14:47",
     "joueur": {
-        "nom": "Dresseur JVSI",
-        "pokemons": [
+        "position": {
+            "x": 5,
+            "y": 0
+        },
+        "inventaire": {
+            "potions": 5,
+            "pokeballs": 8
+        },
+        "equipe": [
             {
-                "nom": "Carapuce",
-                "niveau": 12,
-                "experience": 320,
-                "pv_actuels": 80
+                "nom": "Rubycire",
+                "types": [
+                    "Feu",
+                    "Roche"
+                ],
+                "pv": 79,
+                "pv_max": 79,
+                "attaque": 91,
+                "defense": 95,
+                "niveau": 5,
+                "legendary": false,
+                "experience": 1,
+                "experience_max": 500
             },
             {
-                "nom": "Pikachu",
-                "niveau": 8,
-                "experience": 140,
-                "pv_actuels": 60
+                "nom": "Noctevoir",
+                "types": [
+                    "Psy",
+                    "Ténèbres"
+                ],
+                "pv": 110,
+                "pv_max": 110,
+                "attaque": 114,
+                "defense": 101,
+                "niveau": 15,
+                "legendary": false,
+                "experience": 1,
+                "experience_max": 1500
+            },
+            {
+                "nom": "Dragodash",
+                "types": [
+                    "Glace",
+                    "Vol"
+                ],
+                "pv": 89,
+                "pv_max": 89,
+                "attaque": 94,
+                "defense": 89,
+                "niveau": 6,
+                "legendary": false,
+                "experience": 1,
+                "experience_max": 600
             }
-        ]
+        ],
+        "stats": {
+            "pas_depuis_combat": 0
+        }
     }
 }

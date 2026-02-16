@@ -1769,5 +1769,21 @@
       "capturé": false,
       "vu": false
     }
+  ],
+  "pokemon": [
+    {
+      "name": "Guillaume",
+      "type": [
+        "Psy",
+        "Ténèbres"
+      ],
+      "stats": {
+        "pv": 200,
+        "attaque": 200,
+        "defense": 200
+      },
+      "description": "Je vous emmerde!",
+      "legendary": false
+    }
   ]
 }

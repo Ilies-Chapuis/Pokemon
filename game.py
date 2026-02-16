@@ -4,6 +4,7 @@ import os
 from pokemon import Pokemon
 from combat import Combat
 from map import Carte, RencontreManager, ZONES
+from save_manager import SaveManager
 
 
 class Game:
@@ -66,8 +67,50 @@ class Game:
         # Menu équipe
         self.selection_equipe = 0
 
+        # Gestionnaire de sauvegarde
+        self.save_manager = SaveManager()
+
+    def sauvegarder_partie(self):
+        #Sauvegarde la partie en cours
+        return self.save_manager.sauvegarder(self)
+
+    def charger_partie(self, save_data):
+        #Charge une partie sauvegardée
+        try:
+            # Restaurer la position
+            self.joueur_x = save_data["joueur"]["position_x"]
+            self.joueur_y = save_data["joueur"]["position_y"]
+            self.potions = save_data["joueur"]["potions"]
+            self.pokeballs = save_data["joueur"]["pokeballs"]
+
+            # Restaurer l'équipe
+            self.equipe_joueur = []
+            for pokemon_data in save_data["equipe"]:
+                pokemon = Pokemon(
+                    nom=pokemon_data["nom"],
+                    types=pokemon_data["types"],
+                    pv_max=pokemon_data["pv_max"],
+                    attaque=pokemon_data["attaque"],
+                    defense=pokemon_data["defense"],
+                    niveau=pokemon_data["niveau"],
+                    legendary=pokemon_data["legendary"]
+                )
+                # Restaurer les PV actuels et l'expérience
+                pokemon.pv = pokemon_data["pv"]
+                pokemon.experience = pokemon_data["experience"]
+                self.equipe_joueur.append(pokemon)
+
+            print(" Partie chargée avec succès !")
+            return True
+
+        except Exception as e:
+            print(f" Erreur lors du chargement de la partie : {e}")
+            import traceback
+            traceback.print_exc()
+            return False
+
     def charger_arena(self):
-        """Charge l'image de l'arène pour le combat"""
+        #Charge l'image de l'arène pour le combat
         chemins_possibles = [
             "Assets/arène_pokemon.png",  # En premier car c'est là qu'elle est
             "Assets/arena.png",
@@ -83,17 +126,17 @@ class Game:
                     img = pygame.image.load(chemin)
                     # Redimensionner à la taille de l'écran
                     img = pygame.transform.scale(img, (self.largeur_ecran, self.hauteur_ecran))
-                    print(f"✓ Arène chargée: {chemin}")
+                    print(f" Arène chargée: {chemin}")
                     return img
             except Exception as e:
-                print(f"✗ Erreur chargement arène {chemin}: {e}")
+                print(f" Erreur chargement arène {chemin}: {e}")
                 continue
 
-        print("⚠ Aucune image d'arène trouvée, utilisation du fond par défaut")
+        print(" Aucune image d'arène trouvée, utilisation du fond par défaut")
         return None
 
     def charger_image_pokemon(self, nom_pokemon):
-        """Charge l'image d'un Pokémon avec plusieurs tentatives de chemins"""
+        #Charge l'image d'un Pokémon avec plusieurs tentatives de chemins
         # Vérifier le cache
         if nom_pokemon in self.images_cache:
             return self.images_cache[nom_pokemon]
@@ -118,18 +161,18 @@ class Game:
                     img = pygame.transform.scale(img, (120, 120))
                     # Mettre en cache
                     self.images_cache[nom_pokemon] = img
-                    print(f"✓ Image chargée: {chemin}")
+                    print(f" Image chargée: {chemin}")
                     return img
             except Exception as e:
-                print(f"✗ Erreur chargement {chemin}: {e}")
+                print(f" Erreur chargement {chemin}: {e}")
                 continue
 
         # Aucune image trouvée
-        print(f"⚠ Aucune image trouvée pour {nom_pokemon}")
+        print(f" Aucune image trouvée pour {nom_pokemon}")
         return None
 
     def render(self):
-        """Affiche le jeu"""
+        #Affiche le jeu"""
         self.screen.fill((20, 20, 40))
 
         if self.etat == "exploration":
@@ -139,7 +182,8 @@ class Game:
 
             # Instructions
             self.afficher_texte("Déplacement: Flèches ou ZQSD", 50, 650, self.font_petit, (200, 200, 200))
-            self.afficher_texte("[H] Soigner | [E] Équipe | [ESC] Menu", 50, 670, self.font_petit, (200, 200, 200))
+            self.afficher_texte("[H] Soigner | [E] Équipe | [G] Sauvegarder | [ESC] Menu", 50, 670, self.font_petit,
+                                (200, 200, 200))
 
         elif self.etat == "combat":
             self.afficher_combat()
@@ -148,14 +192,14 @@ class Game:
             self.afficher_menu_equipe()
 
     def initialiser_equipe(self):
-        """Initialise l'équipe de départ du joueur"""
+        #Initialise l'équipe de départ du joueur"""
         starter_data = self.rencontre_manager.pokedex.get("Keunotor")
         if starter_data:
             starter = Pokemon.from_pokedex(starter_data, 5)
             self.equipe_joueur.append(starter)
 
     def deplacer_joueur(self, dx, dy):
-        """Déplace le joueur et vérifie les rencontres"""
+        #Déplace le joueur et vérifie les rencontres"""
         nouveau_x = self.joueur_x + dx
         nouveau_y = self.joueur_y + dy
 
@@ -175,7 +219,7 @@ class Game:
                     self.pas_depuis_combat = 0
 
     def demarrer_combat(self, pokemon_sauvage):
-        """Démarre un combat contre un Pokémon sauvage"""
+        #Démarre un combat contre un Pokémon sauvage
         self.etat = "combat"
         self.pokemon_sauvage = pokemon_sauvage
         pokemon_actif = self.get_pokemon_actif()
@@ -183,14 +227,14 @@ class Game:
             self.combat_actuel = Combat(pokemon_actif, pokemon_sauvage)
 
     def get_pokemon_actif(self):
-        """Retourne le premier Pokémon vivant de l'équipe"""
+        #Retourne le premier Pokémon vivant de l'équipe
         for pokemon in self.equipe_joueur:
             if pokemon.est_vivant():
                 return pokemon
         return None
 
     def afficher_carte(self):
-        """Affiche la carte et le joueur"""
+        #Affiche la carte et le joueur
         offset_x = 50
         offset_y = 50
 
@@ -223,7 +267,7 @@ class Game:
         )
 
     def afficher_infos_zone(self):
-        """Affiche les informations de la zone actuelle"""
+        #Affiche les informations de la zone actuelle
         zone_type = self.carte.get_zone(self.joueur_x, self.joueur_y)
         zone_info = ZONES[zone_type]
 
@@ -234,7 +278,7 @@ class Game:
         self.afficher_texte(f"Pokéballs: {self.pokeballs}", 850, y_offset + 85, self.font_petit)
 
     def afficher_equipe(self):
-        """Affiche l'équipe du joueur"""
+        #Affiche l'équipe du joueur
         y_offset = 200
         self.afficher_texte("Votre équipe:", 850, y_offset, self.font_normal, (255, 215, 0))
 
@@ -264,7 +308,7 @@ class Game:
         else:
             pygame.draw.rect(self.screen, (40, 40, 60), (0, 0, self.largeur_ecran, self.hauteur_ecran))
 
-        # Pokemon sauvage au milieu
+        # POKÉMON SAUVAGE (sur le logo P au centre-gauche)
         pos_sauvage_x = 380
         pos_sauvage_y = 480
 
@@ -277,7 +321,7 @@ class Game:
         else:
             pygame.draw.circle(self.screen, (255, 100, 100), (pos_sauvage_x, pos_sauvage_y), 50)
 
-        # Infos du Pokémon sauvage
+        # Infos Pokémon sauvage (en haut à gauche)
         y_info_sauvage = 80
         self.afficher_texte(
             f"{self.pokemon_sauvage.nom} Nv.{self.pokemon_sauvage.niveau}",
@@ -286,15 +330,15 @@ class Game:
         if self.pokemon_sauvage.legendary:
             self.afficher_texte("★ LÉGENDAIRE ★", 15, y_info_sauvage + 30, self.font_petit, (255, 215, 0))
 
-        # Barre de PV adverse
+        # Barre de PV sauvage
         self.afficher_barre_pv(self.pokemon_sauvage, 15, y_info_sauvage + 55, 250)
 
-        # Notre pokemon
+        # POKÉMON DU JOUEUR (sur le logo P au centre-droite)
         pokemon_joueur = self.combat_actuel.pokemon_joueur
         pos_joueur_x = 620
         pos_joueur_y = 480
 
-        # Charger et afficher l'image de notre pokemon
+        # Charger et afficher l'image du Pokémon du joueur
         img_joueur = self.charger_image_pokemon(pokemon_joueur.nom)
         if img_joueur:
             img_joueur_grande = pygame.transform.scale(img_joueur, (100, 100))
@@ -304,7 +348,7 @@ class Game:
         else:
             pygame.draw.circle(self.screen, (100, 255, 100), (pos_joueur_x, pos_joueur_y), 50)
 
-        # Infos Pokémon joueur
+        # Infos Pokémon joueur (EN HAUT À DROITE)
         y_info_joueur = 80
         x_info_joueur = 735
         self.afficher_texte(
@@ -312,7 +356,7 @@ class Game:
             x_info_joueur, y_info_joueur, self.font_normal, (255, 255, 255)
         )
 
-        # Barre de PV joueur
+        # Barre de PV joueur (EN HAUT À DROITE)
         self.afficher_barre_pv(pokemon_joueur, x_info_joueur, y_info_joueur + 30, 250)
 
         # ZONE DES BOUTONS ET LOGS avec fond opaque RÉDUIT
@@ -374,14 +418,14 @@ class Game:
             texte = "VICTOIRE !"
             couleur = (100, 255, 100)
         else:
-            texte = "DÉFAITE..."
+            texte = "TU ES MAUVAIS"
             couleur = (255, 100, 100)
 
         self.afficher_texte(texte, 400, 300, self.font_titre, couleur)
         self.afficher_texte("[ESPACE] Continuer", 350, 350, self.font_normal, (255, 255, 255))
 
     def afficher_barre_pv(self, pokemon, x, y, largeur):
-        """Affiche une barre de PV"""
+        #Affiche une barre de PV
         ratio_pv = pokemon.pv / pokemon.pv_max if pokemon.pv_max > 0 else 0
 
         if ratio_pv > 0.5:
@@ -399,14 +443,14 @@ class Game:
         self.afficher_texte(texte_pv, x + largeur + 10, y, self.font_petit)
 
     def afficher_texte(self, texte, x, y, font=None, couleur=(255, 255, 255)):
-        """Affiche du texte à l'écran"""
+        #Affiche du texte à l'écran
         if font is None:
             font = self.font_normal
         surface = font.render(texte, True, couleur)
         self.screen.blit(surface, (x, y))
 
     def gerer_input_exploration(self, event):
-        """Gère les inputs en mode exploration"""
+        #Gère les inputs en mode exploration
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP or event.key == pygame.K_z:
                 self.deplacer_joueur(0, -1)
@@ -419,7 +463,7 @@ class Game:
             elif event.key == pygame.K_h:
                 for pokemon in self.equipe_joueur:
                     pokemon.soigner()
-                print("TUT TUT TUT C'EST L'AMBULANCE")
+                print("TUT TUT TUT C'EST L'AMBULANCE !")
             elif event.key == pygame.K_e:
                 # Ouvrir menu équipe
                 self.etat = "menu_equipe"
@@ -427,9 +471,13 @@ class Game:
             elif event.key == pygame.K_r:
                 # Recharger Pokéballs en ville
                 self.recharger_pokeballs()
+            elif event.key == pygame.K_g:
+                # Sauvegarder la partie (touche G)
+                if self.sauvegarder_partie():
+                    print("TOUT va bien Partie sauvegardée !")
 
     def gerer_input_combat(self, event):
-        """Gère les inputs en mode combat"""
+        #Gère les inputs en mode combat
         if event.type == pygame.KEYDOWN:
             if self.combat_actuel.termine:
                 if event.key == pygame.K_SPACE:
@@ -437,9 +485,9 @@ class Game:
                     if self.combat_actuel.pokemon_capture:
                         if len(self.equipe_joueur) < 6:
                             self.equipe_joueur.append(self.pokemon_sauvage)
-                            print(f"✓ {self.pokemon_sauvage.nom} ajouté à l'équipe !")
+                            print(f" {self.pokemon_sauvage.nom} ajouté à l'équipe !")
                         else:
-                            print(f"C'est complet bordel on est trop serré {self.pokemon_sauvage.nom} tu dégages")
+                            print(f"On est déja complet bordel ! {self.pokemon_sauvage.nom} tu dégages")
 
                     self.etat = "exploration"
                     self.combat_actuel = None
@@ -464,21 +512,21 @@ class Game:
                     self.combat_actuel.tour_combat("fuite")
 
     def recharger_pokeballs(self):
-        """Recharge les Pokéballs en ville"""
+        #Recharge les Pokéballs en ville
         zone = self.carte.get_zone(self.joueur_x, self.joueur_y)
 
         if zone == "ville":
             if self.pokeballs < self.pokeballs_max:
                 recharge = min(10, self.pokeballs_max - self.pokeballs)
                 self.pokeballs += recharge
-                print(f"Merci c'est très gentil +{recharge} (Total: {self.pokeballs})")
+                print(f"Merci c'est gentil ! +{recharge} (Total: {self.pokeballs})")
             else:
-                print(f"PAS PLUS DE 20 CONNARD ({self.pokeballs_max})")
+                print(f"C'EST LIMITE A 20 CONNARD ({self.pokeballs_max})")
         else:
-            print("Tu dois être en ville abruti")
+            print("MAIS FAUT ÊTRE DANS UNE VILLE CRETIN POUR RECHARGER !")
 
     def afficher_menu_equipe(self):
-        """Affiche le menu de l'équipe"""
+        #Affiche le menu de l'équipe
         self.screen.fill((30, 30, 50))
 
         # Titre
@@ -531,7 +579,7 @@ class Game:
             self.afficher_texte(instruction, 50, y_instructions + i * 25, self.font_petit, (150, 150, 150))
 
     def gerer_input_menu_equipe(self, event):
-        """Gère les inputs du menu équipe"""
+        #Gère les inputs du menu équipe
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
                 self.selection_equipe = (self.selection_equipe - 1) % len(self.equipe_joueur)
@@ -568,7 +616,7 @@ class Game:
                         # Si on était en exploration, retourner à l'exploration
                         self.etat = "exploration"
                 else:
-                    print("IL EST KO DUGLAND LAISSE LE TRANQUILLE")
+                    print("MAIS LAISSE LE TRANQUILLE DUGLAND IL EST KO !")
             elif event.key == pygame.K_ESCAPE:
                 # Retour à l'état précédent
                 if self.combat_actuel:
@@ -577,7 +625,7 @@ class Game:
                     self.etat = "exploration"
 
     def charger_arena_ameliore(self):
-        """Charge l'image de l'arène avec tous les noms possibles"""
+        #Charge l'image de l'arène avec tous les noms possibles
         # Liste exhaustive de tous les noms possibles
         noms_fichiers = [
             "arène_pokemon.png",
@@ -602,5 +650,5 @@ class Game:
                 except Exception as e:
                     continue
 
-        print("ALLEZ ON SE BARRE IL N'Y A RIEN A VOIR")
+        print("OUST IL N'Y'A RIEN A VOIR")
         return None

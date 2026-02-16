@@ -157,7 +157,7 @@ class RencontreManager:
         return None
 
     def generer_pokemon_sauvage(self, zone_type):
-        """Génère un Pokémon sauvage en fonction de la zone"""
+        #Génère un Pokémon sauvage en fonction de la zone
         if zone_type not in ZONES:
             return None
 
@@ -183,7 +183,7 @@ class RencontreManager:
             # 3.8% très rares
             nom = random.choice(pokemon_zone["tres_rares"])
             niveau = random.randint(12, 20)
-        elif pokemon_zone["legendaires"]:
+        elif rand <0.999 and pokemon_zone["legendaires"]:
             # 0.2% légendaires
             nom = random.choice(pokemon_zone["legendaires"])
             niveau = random.randint(40, 50)

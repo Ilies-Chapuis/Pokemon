@@ -265,19 +265,16 @@ class Game:
             pygame.draw.rect(self.screen, (40, 40, 60), (0, 0, self.largeur_ecran, self.hauteur_ecran))
 
         # POKÉMON SAUVAGE (sur le logo P au centre-gauche)
-        # Position ajustée pour être sur le logo P jaune central
         pos_sauvage_x = 380
         pos_sauvage_y = 480
 
         # Charger et afficher l'image du Pokémon sauvage
         img_sauvage = self.charger_image_pokemon(self.pokemon_sauvage.nom)
         if img_sauvage:
-            # Redimensionner
             img_sauvage_grande = pygame.transform.scale(img_sauvage, (100, 100))
             img_rect = img_sauvage_grande.get_rect(center=(pos_sauvage_x, pos_sauvage_y))
             self.screen.blit(img_sauvage_grande, img_rect)
         else:
-            # Cercle de secours
             pygame.draw.circle(self.screen, (255, 100, 100), (pos_sauvage_x, pos_sauvage_y), 50)
 
         # Infos Pokémon sauvage (en haut à gauche)
@@ -293,7 +290,6 @@ class Game:
         self.afficher_barre_pv(self.pokemon_sauvage, 15, y_info_sauvage + 55, 250)
 
         # POKÉMON DU JOUEUR (sur le logo P au centre-droite)
-        # Position ajustée pour être sur le logo P jaune central
         pokemon_joueur = self.combat_actuel.pokemon_joueur
         pos_joueur_x = 620
         pos_joueur_y = 480
@@ -301,33 +297,31 @@ class Game:
         # Charger et afficher l'image du Pokémon du joueur
         img_joueur = self.charger_image_pokemon(pokemon_joueur.nom)
         if img_joueur:
-            # Redimensionner et inverser
             img_joueur_grande = pygame.transform.scale(img_joueur, (100, 100))
             img_joueur_flip = pygame.transform.flip(img_joueur_grande, True, False)
             img_rect = img_joueur_flip.get_rect(center=(pos_joueur_x, pos_joueur_y))
             self.screen.blit(img_joueur_flip, img_rect)
         else:
-            # Cercle de secours
             pygame.draw.circle(self.screen, (100, 255, 100), (pos_joueur_x, pos_joueur_y), 50)
 
-        # Infos Pokémon joueur (en bas à gauche)
-        y_info_joueur = 600
+        # Infos Pokémon joueur (EN HAUT À DROITE)
+        y_info_joueur = 80
+        x_info_joueur = 735
         self.afficher_texte(
             f"Votre {pokemon_joueur.nom} Nv.{pokemon_joueur.niveau}",
-            15, y_info_joueur, self.font_normal, (255, 255, 255)
+            x_info_joueur, y_info_joueur, self.font_normal, (255, 255, 255)
         )
 
-        # Barre de PV joueur
-        self.afficher_barre_pv(pokemon_joueur, 15, y_info_joueur + 30, 250)
+        # Barre de PV joueur (EN HAUT À DROITE)
+        self.afficher_barre_pv(pokemon_joueur, x_info_joueur, y_info_joueur + 30, 250)
 
         # ZONE DES BOUTONS ET LOGS avec fond opaque RÉDUIT
-        # Fond opaque plus petit
         fond_interface = pygame.Surface((450, 180))
         fond_interface.set_alpha(220)
         fond_interface.fill((30, 30, 50))
         self.screen.blit(fond_interface, (530, 520))
 
-        # Logs de combat (en haut de la zone opaque)
+        # Logs de combat
         y_logs = 530
         x_logs = 550
 
@@ -551,11 +545,36 @@ class Game:
                         self.equipe_joueur[self.selection_equipe], self.equipe_joueur[0]
                     self.selection_equipe = 0
                     print(f"✓ {self.equipe_joueur[0].nom} est maintenant actif !")
-                    self.etat = "exploration"
+
+                    # Si on était en combat, mettre à jour le combat et y retourner
+                    if self.combat_actuel:
+                        self.combat_actuel.pokemon_joueur = self.equipe_joueur[0]
+                        self.combat_actuel.logs.append(f"Vous envoyez {self.equipe_joueur[0].nom} !")
+
+                        # Le Pokémon sauvage attaque pendant le changement
+                        if not self.combat_actuel.termine:
+                            resultat = self.combat_actuel.pokemon_sauvage.attaquer(self.combat_actuel.pokemon_joueur)
+                            self.combat_actuel.logs.append(resultat["message"])
+
+                            if not self.combat_actuel.pokemon_joueur.est_vivant():
+                                self.combat_actuel.logs.append(f"{self.combat_actuel.pokemon_joueur.nom} est K.O. !")
+                                # Vérifier si tous les Pokémon sont K.O.
+                                if not any(p.est_vivant() for p in self.equipe_joueur):
+                                    self.combat_actuel.termine = True
+                                    self.combat_actuel.joueur_gagne = False
+
+                        self.etat = "combat"
+                    else:
+                        # Si on était en exploration, retourner à l'exploration
+                        self.etat = "exploration"
                 else:
                     print("⚠ Ce Pokémon est K.O. !")
             elif event.key == pygame.K_ESCAPE:
-                self.etat = "exploration"
+                # Retour à l'état précédent
+                if self.combat_actuel:
+                    self.etat = "combat"
+                else:
+                    self.etat = "exploration"
 
     def charger_arena_ameliore(self):
         """Charge l'image de l'arène avec tous les noms possibles"""

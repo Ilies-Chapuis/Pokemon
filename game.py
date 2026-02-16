@@ -57,11 +57,40 @@ class Game:
         # Cache des images
         self.images_cache = {}
 
+        # Charger l'image de l'arène
+        self.arena_background = self.charger_arena_ameliore()
+
         # État running
         self.running = True
 
         # Menu équipe
         self.selection_equipe = 0
+
+    def charger_arena(self):
+        """Charge l'image de l'arène pour le combat"""
+        chemins_possibles = [
+            "Assets/arène_pokemon.png",  # En premier car c'est là qu'elle est
+            "Assets/arena.png",
+            "arène_pokemon.png",
+            "arena.png",
+            "backgrounds/arena.png",
+            "backgrounds/arène_pokemon.png"
+        ]
+
+        for chemin in chemins_possibles:
+            try:
+                if os.path.exists(chemin):
+                    img = pygame.image.load(chemin)
+                    # Redimensionner à la taille de l'écran
+                    img = pygame.transform.scale(img, (self.largeur_ecran, self.hauteur_ecran))
+                    print(f"✓ Arène chargée: {chemin}")
+                    return img
+            except Exception as e:
+                print(f"✗ Erreur chargement arène {chemin}: {e}")
+                continue
+
+        print("⚠ Aucune image d'arène trouvée, utilisation du fond par défaut")
+        return None
 
     def charger_image_pokemon(self, nom_pokemon):
         """Charge l'image d'un Pokémon avec plusieurs tentatives de chemins"""
@@ -225,83 +254,122 @@ class Game:
             )
 
     def afficher_combat(self):
-        """Affiche l'écran de combat"""
+        """Affiche l'écran de combat avec l'arène"""
         if not self.combat_actuel:
             return
 
-        # Fond
-        pygame.draw.rect(self.screen, (40, 40, 60), (0, 0, self.largeur_ecran, self.hauteur_ecran))
+        # Fond d'arène ou couleur par défaut
+        if self.arena_background:
+            self.screen.blit(self.arena_background, (0, 0))
+        else:
+            pygame.draw.rect(self.screen, (40, 40, 60), (0, 0, self.largeur_ecran, self.hauteur_ecran))
 
-        # Pokémon sauvage
-        y_sauvage = 100
+        # POKÉMON SAUVAGE (sur le logo P au centre-gauche)
+        # Position ajustée pour être sur le logo P jaune central
+        pos_sauvage_x = 380
+        pos_sauvage_y = 480
 
-        # Essayer de charger l'image du Pokémon sauvage
+        # Charger et afficher l'image du Pokémon sauvage
         img_sauvage = self.charger_image_pokemon(self.pokemon_sauvage.nom)
         if img_sauvage:
-            img_rect = img_sauvage.get_rect(center=(250, y_sauvage))
-            self.screen.blit(img_sauvage, img_rect)
+            # Redimensionner
+            img_sauvage_grande = pygame.transform.scale(img_sauvage, (100, 100))
+            img_rect = img_sauvage_grande.get_rect(center=(pos_sauvage_x, pos_sauvage_y))
+            self.screen.blit(img_sauvage_grande, img_rect)
         else:
             # Cercle de secours
-            pygame.draw.circle(self.screen, (255, 100, 100), (250, y_sauvage), 60)
+            pygame.draw.circle(self.screen, (255, 100, 100), (pos_sauvage_x, pos_sauvage_y), 50)
 
+        # Infos Pokémon sauvage (en haut à gauche)
+        y_info_sauvage = 80
         self.afficher_texte(
-            f"Pokémon sauvage: {self.pokemon_sauvage.nom} Nv.{self.pokemon_sauvage.niveau}",
-            50, y_sauvage + 80, self.font_titre, (255, 100, 100)
+            f"{self.pokemon_sauvage.nom} Nv.{self.pokemon_sauvage.niveau}",
+            15, y_info_sauvage, self.font_normal, (255, 255, 255)
         )
         if self.pokemon_sauvage.legendary:
-            self.afficher_texte("★ LÉGENDAIRE ★", 50, y_sauvage + 115, self.font_normal, (255, 215, 0))
+            self.afficher_texte("★ LÉGENDAIRE ★", 15, y_info_sauvage + 30, self.font_petit, (255, 215, 0))
 
-        self.afficher_barre_pv(self.pokemon_sauvage, 50, y_sauvage + 140, 300)
+        # Barre de PV sauvage
+        self.afficher_barre_pv(self.pokemon_sauvage, 15, y_info_sauvage + 55, 250)
 
-        # Pokémon du joueur
+        # POKÉMON DU JOUEUR (sur le logo P au centre-droite)
+        # Position ajustée pour être sur le logo P jaune central
         pokemon_joueur = self.combat_actuel.pokemon_joueur
-        y_joueur = 300
+        pos_joueur_x = 620
+        pos_joueur_y = 480
 
-        # Essayer de charger l'image du Pokémon du joueur
+        # Charger et afficher l'image du Pokémon du joueur
         img_joueur = self.charger_image_pokemon(pokemon_joueur.nom)
         if img_joueur:
-            # Inverser l'image (effet miroir)
-            img_joueur_flip = pygame.transform.flip(img_joueur, True, False)
-            img_rect = img_joueur_flip.get_rect(center=(700, y_joueur))
+            # Redimensionner et inverser
+            img_joueur_grande = pygame.transform.scale(img_joueur, (100, 100))
+            img_joueur_flip = pygame.transform.flip(img_joueur_grande, True, False)
+            img_rect = img_joueur_flip.get_rect(center=(pos_joueur_x, pos_joueur_y))
             self.screen.blit(img_joueur_flip, img_rect)
         else:
             # Cercle de secours
-            pygame.draw.circle(self.screen, (100, 255, 100), (700, y_joueur), 60)
+            pygame.draw.circle(self.screen, (100, 255, 100), (pos_joueur_x, pos_joueur_y), 50)
 
+        # Infos Pokémon joueur (en bas à gauche)
+        y_info_joueur = 600
         self.afficher_texte(
             f"Votre {pokemon_joueur.nom} Nv.{pokemon_joueur.niveau}",
-            50, y_joueur + 80, self.font_titre, (100, 255, 100)
+            15, y_info_joueur, self.font_normal, (255, 255, 255)
         )
-        self.afficher_barre_pv(pokemon_joueur, 50, y_joueur + 120, 300)
 
-        # Logs
-        y_logs = 470
-        self.afficher_texte("Combat:", 50, y_logs, self.font_normal)
-        logs = self.combat_actuel.get_derniers_logs(3)
+        # Barre de PV joueur
+        self.afficher_barre_pv(pokemon_joueur, 15, y_info_joueur + 30, 250)
+
+        # ZONE DES BOUTONS ET LOGS avec fond opaque RÉDUIT
+        # Fond opaque plus petit
+        fond_interface = pygame.Surface((450, 180))
+        fond_interface.set_alpha(220)
+        fond_interface.fill((30, 30, 50))
+        self.screen.blit(fond_interface, (530, 520))
+
+        # Logs de combat (en haut de la zone opaque)
+        y_logs = 530
+        x_logs = 550
+
+        self.afficher_texte("Combat:", x_logs, y_logs, self.font_petit, (255, 215, 0))
+        logs = self.combat_actuel.get_derniers_logs(2)
         for i, log in enumerate(logs):
-            self.afficher_texte(log, 50, y_logs + 30 + i * 25, self.font_petit, (200, 200, 200))
+            self.afficher_texte(log, x_logs, y_logs + 25 + i * 20, self.font_petit, (255, 255, 255))
 
-        # Boutons
+        # Boutons d'action dans la zone opaque
         if not self.combat_actuel.termine:
             self.afficher_boutons_combat()
         else:
             self.afficher_fin_combat()
 
     def afficher_boutons_combat(self):
-        """Affiche les boutons d'action en combat"""
-        boutons_texte = [
+        """Affiche les boutons d'action en combat sur 2 colonnes"""
+        # Organisation en 2 colonnes avec attaque spéciale
+        boutons_gauche = [
             "[A] Attaquer",
+            "[S] Attaque Spé.",
             f"[P] Potion ({self.potions})",
-            f"[C] Capturer ({self.pokeballs})",
-            "[X] Changer Pokémon",
+            f"[C] Capturer ({self.pokeballs})"
+        ]
+
+        boutons_droite = [
+            "[X] Changer",
             "[F] Fuir"
         ]
 
-        x_boutons = 600
-        y_boutons = 450
+        # Position dans la zone opaque réduite
+        x_gauche = 550
+        x_droite = 760
+        y_start = 590
 
-        for i, texte in enumerate(boutons_texte):
-            self.afficher_texte(texte, x_boutons, y_boutons + i * 35, self.font_normal, (255, 255, 100))
+        # Colonne de gauche
+        for i, texte in enumerate(boutons_gauche):
+            couleur = (255, 100, 255) if "Spé" in texte else (255, 255, 100)
+            self.afficher_texte(texte, x_gauche, y_start + i * 25, self.font_petit, couleur)
+
+        # Colonne de droite
+        for i, texte in enumerate(boutons_droite):
+            self.afficher_texte(texte, x_droite, y_start + i * 25, self.font_petit, (255, 255, 100))
 
     def afficher_fin_combat(self):
         """Affiche le résultat du combat"""
@@ -385,6 +453,9 @@ class Game:
             else:
                 if event.key == pygame.K_a:
                     self.combat_actuel.tour_combat("attaque")
+                elif event.key == pygame.K_s:
+                    # Attaque spéciale : 50% réussite, 100% critique
+                    self.combat_actuel.tour_combat("attaque_speciale")
                 elif event.key == pygame.K_p and self.potions > 0:
                     self.combat_actuel.utiliser_potion()
                     self.potions -= 1
@@ -485,3 +556,32 @@ class Game:
                     print("⚠ Ce Pokémon est K.O. !")
             elif event.key == pygame.K_ESCAPE:
                 self.etat = "exploration"
+
+    def charger_arena_ameliore(self):
+        """Charge l'image de l'arène avec tous les noms possibles"""
+        # Liste exhaustive de tous les noms possibles
+        noms_fichiers = [
+            "arène_pokemon.png",
+            "arene_pokemon.png",  # sans accent
+            "arena_pokemon.png",
+            "arena.png",
+            "arène pokemon.png",  # avec espace
+            "arene pokemon.png"
+        ]
+
+        dossiers = ["Assets/", "assets/", "Assets/backgrounds/", ""]
+
+        for dossier in dossiers:
+            for nom in noms_fichiers:
+                chemin = dossier + nom
+                try:
+                    if os.path.exists(chemin):
+                        img = pygame.image.load(chemin)
+                        img = pygame.transform.scale(img, (self.largeur_ecran, self.hauteur_ecran))
+                        print(f"✓ Arène chargée: {chemin}")
+                        return img
+                except Exception as e:
+                    continue
+
+        print("⚠ Aucune image d'arène trouvée")
+        return None

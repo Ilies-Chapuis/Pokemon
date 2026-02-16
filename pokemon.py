@@ -1,8 +1,9 @@
 import random
 import json
-from types import type_dict
+from pokemon_types import type_dict
+
 # Tableau des multiplicateurs de types
-MULTIPLICATEURS = type_dict()
+MULTIPLICATEURS = type_dict
 
 
 def multiplicateur_type(type_attaquant, type_defenseur):
@@ -13,7 +14,7 @@ def multiplicateur_type(type_attaquant, type_defenseur):
 
 
 class Pokemon:
-    def __init__(self, nom, types, pv_max, attaque, defense, niveau=5, legendary=False):
+    def __init__(self, nom, types, pv_max, attaque, defense, niveau=1, legendary=False,):
         self.nom = nom
         self.types = types
         self.pv_max = pv_max
@@ -22,17 +23,29 @@ class Pokemon:
         self.defense = defense
         self.niveau = niveau
         self.legendary = legendary
-        self.experience = 0
+        self.experience = 1
         self.experience_max = niveau * 100
 
     def est_vivant(self):
         return self.pv > 0
 
+
+    def attaque_speciale(self, adversaire):
+        # 50% de réussite
+        if random.random() <= 0.5:
+            degats = self.attaque * 2  # critique x2
+            print("🔥 Attaque spéciale critique réussie !")
+            adversaire.subir_degats(degats)
+            return True
+        else:
+            print("❌ Attaque spéciale ratée !")
+            return False
+
     def subir_degats(self, degats):
-        """Le Pokémon subit des dégâts en tenant compte de sa défense"""
-        degats_reels = max(1, degats - self.defense // 2)
-        self.pv = max(0, self.pv - degats_reels)
-        return degats_reels
+        degats_reels = max(0, degats - self.defense)
+        self.pv -= degats_reels
+        if self.pv < 0:
+            self.pv = 0
 
     def soigner(self):
         """Restaure tous les PV du Pokémon"""
@@ -142,7 +155,7 @@ class Pokemon:
 
     @staticmethod
     def from_pokedex(pokedex_data, niveau=5):
-        #Crée un Pokémon à partir des données du Pokédex
+        """Crée un Pokémon à partir des données du Pokédex"""
         return Pokemon(
             pokedex_data["name"],
             pokedex_data["type"],

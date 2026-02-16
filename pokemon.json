@@ -8,7 +8,7 @@
         "Psy"
       ],
       "legendary": true,
-      "image": "AuredrisL.png",
+      "image": "Assets/pokemon/AuredrisL.png",
       "description": "Un Pokémon légendaire dragon entouré d'une aura psychique violette",
       "stats": {
         "pv": 106,
@@ -24,7 +24,7 @@
         "Roche"
       ],
       "legendary": false,
-      "image": "Bavoir.png",
+      "image": "Assets/pokemon/Bavoir.png",
       "description": "Un Pokémon de type acier avec une armure robuste",
       "stats": {
         "pv": 67,
@@ -39,7 +39,7 @@
         "Psy"
       ],
       "legendary": false,
-      "image": "Bloupy.png",
+      "image": "Assets/pokemon/Bloupy.png",
       "description": "Un Pokémon psychique de couleur violette avec une forme imposante",
       "stats": {
         "pv": 68,
@@ -55,7 +55,7 @@
         "Spectre"
       ],
       "legendary": true,
-      "image": "BraseoL.png",
+      "image": "Assets/pokemon/BraseoL.png",
       "description": "Un Pokémon légendaire spectral et enflammé avec des bras imposants",
       "stats": {
         "pv": 104,
@@ -71,7 +71,7 @@
         "Vol"
       ],
       "legendary": false,
-      "image": "Brisaflamme.png",
+      "image": "Assets/pokemon/Brisaflamme.png",
       "description": "Un Pokémon insecte volant avec des ailes cyan et une forme élancée",
       "stats": {
         "pv": 70,
@@ -86,7 +86,7 @@
         "Combat"
       ],
       "legendary": false,
-      "image": "BuffMachok.png",
+      "image": "Assets/pokemon/BuffMachok.png",
       "description": "Un Pokémon de combat musclé avec une fourrure brune et blanche",
       "stats": {
         "pv": 71,
@@ -102,7 +102,7 @@
         "Vol"
       ],
       "legendary": false,
-      "image": "Cendralis.png",
+      "image": "Assets/pokemon/Cendralis.png",
       "description": "Un Pokémon à trois têtes enflammées avec des ailes de feu majestueuses",
       "stats": {
         "pv": 72,
@@ -118,7 +118,7 @@
         "Feu"
       ],
       "legendary": false,
-      "image": "Darkamph.png",
+      "image": "Assets/pokemon/Darkamph.png",
       "description": "Un Pokémon sombre et massif avec des flammes rouges émanant de son corps",
       "stats": {
         "pv": 73,
@@ -134,7 +134,7 @@
         "Vol"
       ],
       "legendary": false,
-      "image": "Dragodash.png",
+      "image": "Assets/pokemon/Dragodash.png",
       "description": "Un dragon ailé de glace bleue avec une corne élégante",
       "stats": {
         "pv": 74,
@@ -149,7 +149,7 @@
         "Feu"
       ],
       "legendary": false,
-      "image": "Flameking.png",
+      "image": "Assets/pokemon/Flameking.png",
       "description": "Un Pokémon royal de type feu avec une couronne et des flammes violettes",
       "stats": {
         "pv": 65,
@@ -165,7 +165,7 @@
         "Dragon"
       ],
       "legendary": false,
-      "image": "Flamydra.png",
+      "image": "Assets/pokemon/Flamydra.png",
       "description": "Un dragon serpentin élégant avec une crinière de flammes",
       "stats": {
         "pv": 76,
@@ -181,7 +181,7 @@
         "Feu"
       ],
       "legendary": false,
-      "image": "Floraclaw.png",
+      "image": "Assets/pokemon/Floraclaw.png",
       "description": "Un Pokémon plante-feu ressemblant à un chat avec des fleurs enflammées",
       "stats": {
         "pv": 67,
@@ -197,7 +197,7 @@
         "Acier"
       ],
       "legendary": false,
-      "image": "Floritank.png",
+      "image": "Assets/pokemon/Floritank.png",
       "description": "Un Pokémon blindé de type plante avec des fleurs roses et des pattes robustes",
       "stats": {
         "pv": 68,
@@ -213,7 +213,7 @@
         "Dragon"
       ],
       "legendary": false,
-      "image": "Gardekrom.png",
+      "image": "Assets/pokemon/Gardekrom.png",
       "description": "Un Pokémon élégant combinant les traits psychiques et draconiques",
       "stats": {
         "pv": 79,
@@ -229,7 +229,7 @@
         "Psy"
       ],
       "legendary": false,
-      "image": "Jiraly_Rare.png",
+      "image": "Assets/pokemon/Jiraly_Rare.png",
       "description": "Une fusion rare entre Jirachi et Ralts avec des rubans cosmiques",
       "stats": {
         "pv": 70,
@@ -245,7 +245,7 @@
         "Spectre"
       ],
       "legendary": true,
-      "image": "KarionLR.png",
+      "image": "Assets/pokemon/KarionLR.png",
       "description": "Un Pokémon légendaire rare spectral avec des rubans orange et violet cosmiques",
       "stats": {
         "pv": 101,
@@ -260,7 +260,7 @@
         "Normal"
       ],
       "legendary": false,
-      "image": "Castopuff.png",
+      "image": "Assets/pokemon/Castopuff.png",
       "description": "Un Pokémon castor simple et mignon avec une queue touffue, mais à l'air un peu ahuri ",
       "stats": {
         "pv": 77,
@@ -276,7 +276,7 @@
         "Plante"
       ],
       "legendary": false,
-      "image": "Lumyntha.png",
+      "image": "Assets/pokemon/Lumyntha.png",
       "description": "Un Pokémon spectral élégant avec de longs cheveux verts luminescents",
       "stats": {
         "pv": 73,
@@ -499,7 +499,7 @@
         "Roche"
       ],
       "legendary": false,
-      "image": "Rubycire.png",
+      "image": "Assets/pokemon/Rubycire.png",
       "description": "Un petit Pokémon avec un rubis incandescent sur sa tête",
       "stats": {
         "pv": 67,

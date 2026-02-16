@@ -1,0 +1,1773 @@
+{
+  "version": "1.0",
+  "total_pokemon": 71,
+  "pokedex": [
+    {
+      "id": 1,
+      "nom": "AuredrisL",
+      "numero_national": 1,
+      "types": [
+        "Dragon",
+        "Psy"
+      ],
+      "categorie": "Pokémon Dragon",
+      "taille": 0.6,
+      "poids": 12,
+      "description": "Un Pokémon légendaire dragon entouré d'une aura psychique violette",
+      "stats_base": {
+        "pv": 106,
+        "attaque": 130,
+        "defense": 110,
+        "attaque_speciale": 130,
+        "defense_speciale": 110,
+        "vitesse": 110
+      },
+      "legendary": true,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 2,
+      "nom": "Bavoir",
+      "numero_national": 2,
+      "types": [
+        "Acier",
+        "Roche"
+      ],
+      "categorie": "Pokémon Acier",
+      "taille": 0.7,
+      "poids": 14,
+      "description": "Un Pokémon de type acier avec une armure robuste",
+      "stats_base": {
+        "pv": 67,
+        "attaque": 77,
+        "defense": 87,
+        "attaque_speciale": 77,
+        "defense_speciale": 87,
+        "vitesse": 57
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 3,
+      "nom": "Bloupy",
+      "numero_national": 3,
+      "types": [
+        "Psy"
+      ],
+      "categorie": "Pokémon Psy",
+      "taille": 0.8,
+      "poids": 16,
+      "description": "Un Pokémon psychique de couleur violette avec une forme imposante",
+      "stats_base": {
+        "pv": 68,
+        "attaque": 78,
+        "defense": 73,
+        "attaque_speciale": 78,
+        "defense_speciale": 73,
+        "vitesse": 58
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 4,
+      "nom": "BraseoL",
+      "numero_national": 4,
+      "types": [
+        "Feu",
+        "Spectre"
+      ],
+      "categorie": "Pokémon Feu",
+      "taille": 0.9,
+      "poids": 18,
+      "description": "Un Pokémon légendaire spectral et enflammé avec des bras imposants",
+      "stats_base": {
+        "pv": 104,
+        "attaque": 124,
+        "defense": 109,
+        "attaque_speciale": 124,
+        "defense_speciale": 109,
+        "vitesse": 104
+      },
+      "legendary": true,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 5,
+      "nom": "Brisaflamme",
+      "numero_national": 5,
+      "types": [
+        "Insecte",
+        "Vol"
+      ],
+      "categorie": "Pokémon Insecte",
+      "taille": 1.0,
+      "poids": 20,
+      "description": "Un Pokémon insecte volant avec des ailes cyan et une forme élancée",
+      "stats_base": {
+        "pv": 70,
+        "attaque": 80,
+        "defense": 75,
+        "attaque_speciale": 80,
+        "defense_speciale": 75,
+        "vitesse": 60
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 6,
+      "nom": "BuffMachok",
+      "numero_national": 6,
+      "types": [
+        "Combat"
+      ],
+      "categorie": "Pokémon Combat",
+      "taille": 1.1,
+      "poids": 22,
+      "description": "Un Pokémon de combat musclé avec une fourrure brune et blanche",
+      "stats_base": {
+        "pv": 71,
+        "attaque": 91,
+        "defense": 76,
+        "attaque_speciale": 91,
+        "defense_speciale": 76,
+        "vitesse": 71
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 7,
+      "nom": "Cendralis",
+      "numero_national": 7,
+      "types": [
+        "Feu",
+        "Vol"
+      ],
+      "categorie": "Pokémon Feu",
+      "taille": 1.2,
+      "poids": 24,
+      "description": "Un Pokémon à trois têtes enflammées avec des ailes de feu majestueuses",
+      "stats_base": {
+        "pv": 72,
+        "attaque": 82,
+        "defense": 77,
+        "attaque_speciale": 82,
+        "defense_speciale": 77,
+        "vitesse": 62
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 8,
+      "nom": "Darkamph",
+      "numero_national": 8,
+      "types": [
+        "Ténèbres",
+        "Feu"
+      ],
+      "categorie": "Pokémon Ténèbres",
+      "taille": 1.3,
+      "poids": 26,
+      "description": "Un Pokémon sombre et massif avec des flammes rouges émanant de son corps",
+      "stats_base": {
+        "pv": 73,
+        "attaque": 83,
+        "defense": 78,
+        "attaque_speciale": 83,
+        "defense_speciale": 78,
+        "vitesse": 63
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 9,
+      "nom": "Dragodash",
+      "numero_national": 9,
+      "types": [
+        "Glace",
+        "Vol"
+      ],
+      "categorie": "Pokémon Glace",
+      "taille": 1.4,
+      "poids": 28,
+      "description": "Un dragon ailé de glace bleue avec une corne élégante",
+      "stats_base": {
+        "pv": 74,
+        "attaque": 84,
+        "defense": 79,
+        "attaque_speciale": 84,
+        "defense_speciale": 79,
+        "vitesse": 64
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 10,
+      "nom": "Flameking",
+      "numero_national": 10,
+      "types": [
+        "Feu"
+      ],
+      "categorie": "Pokémon Feu",
+      "taille": 1.5,
+      "poids": 30,
+      "description": "Un Pokémon royal de type feu avec une couronne et des flammes violettes",
+      "stats_base": {
+        "pv": 65,
+        "attaque": 85,
+        "defense": 70,
+        "attaque_speciale": 85,
+        "defense_speciale": 70,
+        "vitesse": 65
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 11,
+      "nom": "Flamydra",
+      "numero_national": 11,
+      "types": [
+        "Feu",
+        "Dragon"
+      ],
+      "categorie": "Pokémon Feu",
+      "taille": 1.6,
+      "poids": 32,
+      "description": "Un dragon serpentin élégant avec une crinière de flammes",
+      "stats_base": {
+        "pv": 76,
+        "attaque": 101,
+        "defense": 71,
+        "attaque_speciale": 101,
+        "defense_speciale": 71,
+        "vitesse": 81
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 12,
+      "nom": "Floraclaw",
+      "numero_national": 12,
+      "types": [
+        "Plante",
+        "Feu"
+      ],
+      "categorie": "Pokémon Plante",
+      "taille": 1.7,
+      "poids": 34,
+      "description": "Un Pokémon plante-feu ressemblant à un chat avec des fleurs enflammées",
+      "stats_base": {
+        "pv": 67,
+        "attaque": 75,
+        "defense": 72,
+        "attaque_speciale": 75,
+        "defense_speciale": 72,
+        "vitesse": 55
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 13,
+      "nom": "Floritank",
+      "numero_national": 13,
+      "types": [
+        "Plante",
+        "Acier"
+      ],
+      "categorie": "Pokémon Plante",
+      "taille": 1.8,
+      "poids": 36,
+      "description": "Un Pokémon blindé de type plante avec des fleurs roses et des pattes robustes",
+      "stats_base": {
+        "pv": 68,
+        "attaque": 76,
+        "defense": 88,
+        "attaque_speciale": 76,
+        "defense_speciale": 88,
+        "vitesse": 56
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 14,
+      "nom": "Gardekrom",
+      "numero_national": 14,
+      "types": [
+        "Psy",
+        "Dragon"
+      ],
+      "categorie": "Pokémon Psy",
+      "taille": 1.9,
+      "poids": 38,
+      "description": "Un Pokémon élégant combinant les traits psychiques et draconiques",
+      "stats_base": {
+        "pv": 79,
+        "attaque": 92,
+        "defense": 74,
+        "attaque_speciale": 92,
+        "defense_speciale": 74,
+        "vitesse": 72
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 15,
+      "nom": "Jiraly_Rare",
+      "numero_national": 15,
+      "types": [
+        "Acier",
+        "Psy"
+      ],
+      "categorie": "Pokémon Acier",
+      "taille": 2.0,
+      "poids": 40,
+      "description": "Une fusion rare entre Jirachi et Ralts avec des rubans cosmiques",
+      "stats_base": {
+        "pv": 70,
+        "attaque": 78,
+        "defense": 90,
+        "attaque_speciale": 78,
+        "defense_speciale": 90,
+        "vitesse": 58
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 16,
+      "nom": "KarionLR",
+      "numero_national": 16,
+      "types": [
+        "Psy",
+        "Spectre"
+      ],
+      "categorie": "Pokémon Psy",
+      "taille": 2.1,
+      "poids": 42,
+      "description": "Un Pokémon légendaire rare spectral avec des rubans orange et violet cosmiques",
+      "stats_base": {
+        "pv": 101,
+        "attaque": 136,
+        "defense": 106,
+        "attaque_speciale": 136,
+        "defense_speciale": 106,
+        "vitesse": 116
+      },
+      "legendary": true,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 17,
+      "nom": "Castopuff",
+      "numero_national": 17,
+      "types": [
+        "Normal"
+      ],
+      "categorie": "Pokémon Normal",
+      "taille": 2.2,
+      "poids": 44,
+      "description": "Un Pokémon castor simple et mignon avec une queue touffue, mais à l'air un peu ahuri ",
+      "stats_base": {
+        "pv": 77,
+        "attaque": 75,
+        "defense": 72,
+        "attaque_speciale": 75,
+        "defense_speciale": 72,
+        "vitesse": 55
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 18,
+      "nom": "Lumyntha",
+      "numero_national": 18,
+      "types": [
+        "Spectre",
+        "Plante"
+      ],
+      "categorie": "Pokémon Spectre",
+      "taille": 2.3,
+      "poids": 46,
+      "description": "Un Pokémon spectral élégant avec de longs cheveux verts luminescents",
+      "stats_base": {
+        "pv": 73,
+        "attaque": 86,
+        "defense": 73,
+        "attaque_speciale": 86,
+        "defense_speciale": 73,
+        "vitesse": 66
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 19,
+      "nom": "Lupika",
+      "numero_national": 19,
+      "types": [
+        "Électrik"
+      ],
+      "categorie": "Pokémon Électrik",
+      "taille": 2.4,
+      "poids": 48,
+      "description": "Un Pokémon électrique jaune féroce avec des crocs acérés",
+      "stats_base": {
+        "pv": 74,
+        "attaque": 82,
+        "defense": 79,
+        "attaque_speciale": 82,
+        "defense_speciale": 79,
+        "vitesse": 62
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 20,
+      "nom": "Luvoir",
+      "numero_national": 20,
+      "types": [
+        "Eau",
+        "Glace"
+      ],
+      "categorie": "Pokémon Eau",
+      "taille": 0.5,
+      "poids": 50,
+      "description": "Un Pokémon aquatique bleu élégant avec des ailes glacées",
+      "stats_base": {
+        "pv": 65,
+        "attaque": 83,
+        "defense": 70,
+        "attaque_speciale": 83,
+        "defense_speciale": 70,
+        "vitesse": 63
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 21,
+      "nom": "Magmire",
+      "numero_national": 21,
+      "types": [
+        "Feu",
+        "Roche"
+      ],
+      "categorie": "Pokémon Feu",
+      "taille": 0.6,
+      "poids": 52,
+      "description": "Un Pokémon de lave rouge avec une carapace de pierre volcanique",
+      "stats_base": {
+        "pv": 66,
+        "attaque": 84,
+        "defense": 86,
+        "attaque_speciale": 84,
+        "defense_speciale": 86,
+        "vitesse": 64
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 22,
+      "nom": "Nebulyx",
+      "numero_national": 22,
+      "types": [
+        "Spectre",
+        "Poison"
+      ],
+      "categorie": "Pokémon Spectre",
+      "taille": 0.7,
+      "poids": 54,
+      "description": "Un Pokémon cosmique spectral violet avec des tentacules nébuleux",
+      "stats_base": {
+        "pv": 67,
+        "attaque": 90,
+        "defense": 67,
+        "attaque_speciale": 90,
+        "defense_speciale": 67,
+        "vitesse": 70
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 23,
+      "nom": "Noctevoir",
+      "numero_national": 23,
+      "types": [
+        "Psy",
+        "Ténèbres"
+      ],
+      "categorie": "Pokémon Psy",
+      "taille": 0.8,
+      "poids": 56,
+      "description": "Un Pokémon psychique nocturne avec une robe élégante blanche et bleue",
+      "stats_base": {
+        "pv": 68,
+        "attaque": 86,
+        "defense": 73,
+        "attaque_speciale": 86,
+        "defense_speciale": 73,
+        "vitesse": 66
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 24,
+      "nom": "Noctyssor",
+      "numero_national": 24,
+      "types": [
+        "Spectre",
+        "Feu"
+      ],
+      "categorie": "Pokémon Spectre",
+      "taille": 0.9,
+      "poids": 58,
+      "description": "Un Pokémon spectral violet sombre avec des flammes mystiques",
+      "stats_base": {
+        "pv": 69,
+        "attaque": 80,
+        "defense": 69,
+        "attaque_speciale": 80,
+        "defense_speciale": 69,
+        "vitesse": 60
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 25,
+      "nom": "Noxalis",
+      "numero_national": 25,
+      "types": [
+        "Acier",
+        "Psy"
+      ],
+      "categorie": "Pokémon Acier",
+      "taille": 1.0,
+      "poids": 60,
+      "description": "Un Pokémon robotique blanc avec des ornements violets et mécaniques",
+      "stats_base": {
+        "pv": 70,
+        "attaque": 76,
+        "defense": 90,
+        "attaque_speciale": 76,
+        "defense_speciale": 90,
+        "vitesse": 56
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 26,
+      "nom": "Noxor",
+      "numero_national": 26,
+      "types": [
+        "Ténèbres",
+        "Spectre"
+      ],
+      "categorie": "Pokémon Ténèbres",
+      "taille": 1.1,
+      "poids": 62,
+      "description": "Un Pokémon ténébreux avec des tentacules rouges et noirs menaçants",
+      "stats_base": {
+        "pv": 71,
+        "attaque": 82,
+        "defense": 71,
+        "attaque_speciale": 82,
+        "defense_speciale": 71,
+        "vitesse": 62
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 27,
+      "nom": "Okeloke",
+      "numero_national": 27,
+      "types": [
+        "Eau",
+        "Ténèbres"
+      ],
+      "categorie": "Pokémon Eau",
+      "taille": 1.2,
+      "poids": 64,
+      "description": "Une fusion aquatique bleue et noire avec une apparence double",
+      "stats_base": {
+        "pv": 72,
+        "attaque": 78,
+        "defense": 77,
+        "attaque_speciale": 78,
+        "defense_speciale": 77,
+        "vitesse": 58
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 28,
+      "nom": "PyraflinL",
+      "numero_national": 28,
+      "types": [
+        "Électrik",
+        "Eau"
+      ],
+      "categorie": "Pokémon Électrik",
+      "taille": 1.3,
+      "poids": 66,
+      "description": "Un Pokémon légendaire électrique et aquatique avec une crinière dorée majestueuse",
+      "stats_base": {
+        "pv": 113,
+        "attaque": 128,
+        "defense": 118,
+        "attaque_speciale": 128,
+        "defense_speciale": 118,
+        "vitesse": 108
+      },
+      "legendary": true,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 29,
+      "nom": "Reshiflame",
+      "numero_national": 29,
+      "types": [
+        "Feu",
+        "Dragon"
+      ],
+      "categorie": "Pokémon Feu",
+      "taille": 1.4,
+      "poids": 68,
+      "description": "Une fusion de feu et de dragon avec des ailes majestueuses et une crinière enflammée",
+      "stats_base": {
+        "pv": 84,
+        "attaque": 95,
+        "defense": 79,
+        "attaque_speciale": 95,
+        "defense_speciale": 79,
+        "vitesse": 75
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 30,
+      "nom": "Reshirom",
+      "numero_national": 30,
+      "types": [
+        "Dragon",
+        "Ténèbres"
+      ],
+      "categorie": "Pokémon Dragon",
+      "taille": 1.5,
+      "poids": 70,
+      "description": "Un dragon noir et blanc imposant avec des détails cyan lumineux",
+      "stats_base": {
+        "pv": 75,
+        "attaque": 96,
+        "defense": 70,
+        "attaque_speciale": 96,
+        "defense_speciale": 70,
+        "vitesse": 76
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 31,
+      "nom": "Reshivoir",
+      "numero_national": 31,
+      "types": [
+        "Psy",
+        "Feu"
+      ],
+      "categorie": "Pokémon Psy",
+      "taille": 1.6,
+      "poids": 72,
+      "description": "Une fusion psychique et enflammée avec une forme élégante et royale",
+      "stats_base": {
+        "pv": 66,
+        "attaque": 82,
+        "defense": 71,
+        "attaque_speciale": 82,
+        "defense_speciale": 71,
+        "vitesse": 62
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 32,
+      "nom": "Rubycire",
+      "numero_national": 32,
+      "types": [
+        "Feu",
+        "Roche"
+      ],
+      "categorie": "Pokémon Feu",
+      "taille": 1.7,
+      "poids": 74,
+      "description": "Un petit Pokémon avec un rubis incandescent sur sa tête",
+      "stats_base": {
+        "pv": 67,
+        "attaque": 83,
+        "defense": 87,
+        "attaque_speciale": 83,
+        "defense_speciale": 87,
+        "vitesse": 63
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 33,
+      "nom": "Scalydra",
+      "numero_national": 33,
+      "types": [
+        "Acier",
+        "Poison"
+      ],
+      "categorie": "Pokémon Acier",
+      "taille": 1.8,
+      "poids": 76,
+      "description": "Un Pokémon blindé avec des écailles d'acier et des éléments venimeux verts",
+      "stats_base": {
+        "pv": 68,
+        "attaque": 84,
+        "defense": 88,
+        "attaque_speciale": 84,
+        "defense_speciale": 88,
+        "vitesse": 64
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 34,
+      "nom": "Skelerat",
+      "numero_national": 34,
+      "types": [
+        "Spectre",
+        "Ténèbres"
+      ],
+      "categorie": "Pokémon Spectre",
+      "taille": 1.9,
+      "poids": 78,
+      "description": "Un Pokémon squelettique félin avec un œil rouge sinistre",
+      "stats_base": {
+        "pv": 69,
+        "attaque": 90,
+        "defense": 69,
+        "attaque_speciale": 90,
+        "defense_speciale": 69,
+        "vitesse": 70
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 35,
+      "nom": "Staralon",
+      "numero_national": 35,
+      "types": [
+        "Acier",
+        "Psy"
+      ],
+      "categorie": "Pokémon Acier",
+      "taille": 2.0,
+      "poids": 80,
+      "description": "Un Pokémon cosmique métallique en forme d'étoile avec des joyaux violets",
+      "stats_base": {
+        "pv": 70,
+        "attaque": 86,
+        "defense": 90,
+        "attaque_speciale": 86,
+        "defense_speciale": 90,
+        "vitesse": 66
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 36,
+      "nom": "SylphraL",
+      "numero_national": 36,
+      "types": [
+        "Plante",
+        "Fée"
+      ],
+      "categorie": "Pokémon Plante",
+      "taille": 2.1,
+      "poids": 82,
+      "description": "Un Pokémon légendaire sylphe vert avec des ailes éthérées et cristallines",
+      "stats_base": {
+        "pv": 106,
+        "attaque": 136,
+        "defense": 111,
+        "attaque_speciale": 136,
+        "defense_speciale": 111,
+        "vitesse": 116
+      },
+      "legendary": true,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 37,
+      "nom": "Timiki",
+      "numero_national": 37,
+      "types": [
+        "Normal"
+      ],
+      "categorie": "Pokémon Normal",
+      "taille": 2.2,
+      "poids": 84,
+      "description": "Un petit Pokémon lapin timide avec de grandes oreilles",
+      "stats_base": {
+        "pv": 77,
+        "attaque": 71,
+        "defense": 72,
+        "attaque_speciale": 71,
+        "defense_speciale": 72,
+        "vitesse": 51
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 38,
+      "nom": "Tournecendre",
+      "numero_national": 38,
+      "types": [
+        "Feu",
+        "Roche"
+      ],
+      "categorie": "Pokémon Feu",
+      "taille": 2.3,
+      "poids": 86,
+      "description": "Un Pokémon volcanique de cendre et de pierre enflammée",
+      "stats_base": {
+        "pv": 73,
+        "attaque": 77,
+        "defense": 93,
+        "attaque_speciale": 77,
+        "defense_speciale": 93,
+        "vitesse": 57
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 39,
+      "nom": "Ventoryx",
+      "numero_national": 39,
+      "types": [
+        "Dragon",
+        "Acier"
+      ],
+      "categorie": "Pokémon Dragon",
+      "taille": 2.4,
+      "poids": 88,
+      "description": "Un dragon robotique vert et gris avec des appendices mécaniques",
+      "stats_base": {
+        "pv": 84,
+        "attaque": 93,
+        "defense": 94,
+        "attaque_speciale": 93,
+        "defense_speciale": 94,
+        "vitesse": 73
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 40,
+      "nom": "Verdalune",
+      "numero_national": 40,
+      "types": [
+        "Plante",
+        "Eau"
+      ],
+      "categorie": "Pokémon Plante",
+      "taille": 0.5,
+      "poids": 90,
+      "description": "Un Pokémon serpentin élégant avec des feuilles vertes et bleues aquatiques",
+      "stats_base": {
+        "pv": 65,
+        "attaque": 79,
+        "defense": 70,
+        "attaque_speciale": 79,
+        "defense_speciale": 70,
+        "vitesse": 59
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 41,
+      "nom": "Voltalin",
+      "numero_national": 41,
+      "types": [
+        "Électrik"
+      ],
+      "categorie": "Pokémon Électrik",
+      "taille": 0.6,
+      "poids": 92,
+      "description": "Un Pokémon félin électrique avec une fourrure blanche et des rayures jaunes",
+      "stats_base": {
+        "pv": 66,
+        "attaque": 80,
+        "defense": 71,
+        "attaque_speciale": 80,
+        "defense_speciale": 71,
+        "vitesse": 60
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 42,
+      "nom": "Zaptile",
+      "numero_national": 42,
+      "types": [
+        "Électrik",
+        "Normal"
+      ],
+      "categorie": "Pokémon Électrik",
+      "taille": 0.7,
+      "poids": 94,
+      "description": "Un petit Pokémon ours avec des joues électriques jaunes",
+      "stats_base": {
+        "pv": 72,
+        "attaque": 76,
+        "defense": 67,
+        "attaque_speciale": 76,
+        "defense_speciale": 67,
+        "vitesse": 56
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 43,
+      "nom": "ZapZap",
+      "numero_national": 43,
+      "types": [
+        "Électrik",
+        "Eau"
+      ],
+      "categorie": "Pokémon Électrik",
+      "taille": 0.8,
+      "poids": 96,
+      "description": "Un Pokémon méduse orange et cyan avec des capacités électriques aquatiques",
+      "stats_base": {
+        "pv": 68,
+        "attaque": 82,
+        "defense": 73,
+        "attaque_speciale": 82,
+        "defense_speciale": 73,
+        "vitesse": 62
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 44,
+      "nom": "Zevoir",
+      "numero_national": 44,
+      "types": [
+        "Ténèbres",
+        "Psy"
+      ],
+      "categorie": "Pokémon Ténèbres",
+      "taille": 0.9,
+      "poids": 98,
+      "description": "Un Pokémon sombre et élégant avec des traits psychiques bleus lumineux",
+      "stats_base": {
+        "pv": 69,
+        "attaque": 83,
+        "defense": 74,
+        "attaque_speciale": 83,
+        "defense_speciale": 74,
+        "vitesse": 63
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 45,
+      "nom": "Zorova",
+      "numero_national": 45,
+      "types": [
+        "Plante",
+        "Ténèbres"
+      ],
+      "categorie": "Pokémon Plante",
+      "taille": 1.0,
+      "poids": 100,
+      "description": "Un Pokémon loup-renard vert avec des flammes bleues et une apparence sauvage",
+      "stats_base": {
+        "pv": 70,
+        "attaque": 84,
+        "defense": 75,
+        "attaque_speciale": 84,
+        "defense_speciale": 75,
+        "vitesse": 64
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 46,
+      "nom": "Arrchamp",
+      "numero_national": 46,
+      "types": [
+        "Combat",
+        "Acier"
+      ],
+      "categorie": "Pokémon Combat",
+      "taille": 1.1,
+      "poids": 102,
+      "description": "Un Pokémon de combat métallique avec plusieurs bras puissants",
+      "stats_base": {
+        "pv": 76,
+        "attaque": 98,
+        "defense": 92,
+        "attaque_speciale": 98,
+        "defense_speciale": 92,
+        "vitesse": 78
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 47,
+      "nom": "Dragodreavus",
+      "numero_national": 47,
+      "types": [
+        "Dragon",
+        "Spectre"
+      ],
+      "categorie": "Pokémon Dragon",
+      "taille": 1.2,
+      "poids": 104,
+      "description": "Un petit dragon spectral bleu avec des ailes fantomatiques",
+      "stats_base": {
+        "pv": 82,
+        "attaque": 95,
+        "defense": 68,
+        "attaque_speciale": 95,
+        "defense_speciale": 68,
+        "vitesse": 75
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 48,
+      "nom": "Muddew",
+      "numero_national": 48,
+      "types": [
+        "Eau",
+        "Combat"
+      ],
+      "categorie": "Pokémon Eau",
+      "taille": 1.3,
+      "poids": 106,
+      "description": "Un Pokémon aquatique de combat avec des poings oranges",
+      "stats_base": {
+        "pv": 73,
+        "attaque": 88,
+        "defense": 75,
+        "attaque_speciale": 88,
+        "defense_speciale": 75,
+        "vitesse": 68
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 49,
+      "nom": "Snubrua",
+      "numero_national": 49,
+      "types": [
+        "Fée",
+        "Combat"
+      ],
+      "categorie": "Pokémon Fée",
+      "taille": 1.4,
+      "poids": 108,
+      "description": "Un Pokémon fée rose costaud avec une attitude féroce",
+      "stats_base": {
+        "pv": 74,
+        "attaque": 87,
+        "defense": 71,
+        "attaque_speciale": 87,
+        "defense_speciale": 71,
+        "vitesse": 67
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 50,
+      "nom": "Poryluff",
+      "numero_national": 50,
+      "types": [
+        "Normal",
+        "Fée"
+      ],
+      "categorie": "Pokémon Normal",
+      "taille": 1.5,
+      "poids": 10,
+      "description": "Une fusion mignonne et technologique rose et bleue",
+      "stats_base": {
+        "pv": 75,
+        "attaque": 65,
+        "defense": 70,
+        "attaque_speciale": 65,
+        "defense_speciale": 70,
+        "vitesse": 45
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 51,
+      "nom": "Reunito",
+      "numero_national": 51,
+      "types": [
+        "Psy",
+        "Vol"
+      ],
+      "categorie": "Pokémon Psy",
+      "taille": 1.6,
+      "poids": 12,
+      "description": "Un Pokémon psychique volant vert avec un motif mystique",
+      "stats_base": {
+        "pv": 70,
+        "attaque": 76,
+        "defense": 71,
+        "attaque_speciale": 76,
+        "defense_speciale": 71,
+        "vitesse": 56
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 52,
+      "nom": "Minikoal",
+      "numero_national": 52,
+      "types": [
+        "Roche",
+        "Normal"
+      ],
+      "categorie": "Pokémon Roche",
+      "taille": 1.7,
+      "poids": 14,
+      "description": "Un petit Pokémon koala fait de pierre et de nuages",
+      "stats_base": {
+        "pv": 67,
+        "attaque": 72,
+        "defense": 82,
+        "attaque_speciale": 72,
+        "defense_speciale": 82,
+        "vitesse": 52
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 53,
+      "nom": "Doubwak",
+      "numero_national": 53,
+      "types": [
+        "Combat",
+        "Psy"
+      ],
+      "categorie": "Pokémon Combat",
+      "taille": 1.8,
+      "poids": 16,
+      "description": "Un Pokémon de combat psychique avec des rubans violets et une épée",
+      "stats_base": {
+        "pv": 73,
+        "attaque": 91,
+        "defense": 74,
+        "attaque_speciale": 91,
+        "defense_speciale": 74,
+        "vitesse": 71
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 54,
+      "nom": "Alcolyx",
+      "numero_national": 54,
+      "types": [
+        "Eau",
+        "Vol"
+      ],
+      "categorie": "Pokémon Eau",
+      "taille": 1.9,
+      "poids": 18,
+      "description": "Un Pokémon pingouin bleu avec un grand bec orange",
+      "stats_base": {
+        "pv": 79,
+        "attaque": 84,
+        "defense": 76,
+        "attaque_speciale": 84,
+        "defense_speciale": 76,
+        "vitesse": 64
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 55,
+      "nom": "Champillion",
+      "numero_national": 55,
+      "types": [
+        "Plante",
+        "Poison"
+      ],
+      "categorie": "Pokémon Plante",
+      "taille": 2.0,
+      "poids": 20,
+      "description": "Un Pokémon champignon vert avec une coquille d'escargot",
+      "stats_base": {
+        "pv": 70,
+        "attaque": 68,
+        "defense": 85,
+        "attaque_speciale": 68,
+        "defense_speciale": 85,
+        "vitesse": 48
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 56,
+      "nom": "Emperia",
+      "numero_national": 56,
+      "types": [
+        "Plante",
+        "Psy"
+      ],
+      "categorie": "Pokémon Plante",
+      "taille": 2.1,
+      "poids": 22,
+      "description": "Un Pokémon royal plante avec plusieurs têtes et lianes",
+      "stats_base": {
+        "pv": 85,
+        "attaque": 92,
+        "defense": 78,
+        "attaque_speciale": 92,
+        "defense_speciale": 78,
+        "vitesse": 72
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 57,
+      "nom": "Florika",
+      "numero_national": 57,
+      "types": [
+        "Plante",
+        "Électrik"
+      ],
+      "categorie": "Pokémon Plante",
+      "taille": 2.2,
+      "poids": 24,
+      "description": "Un Pokémon fleur vert avec une couronne électrique",
+      "stats_base": {
+        "pv": 72,
+        "attaque": 81,
+        "defense": 69,
+        "attaque_speciale": 81,
+        "defense_speciale": 69,
+        "vitesse": 61
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 58,
+      "nom": "Spirigas",
+      "numero_national": 58,
+      "types": [
+        "Roche",
+        "Spectre"
+      ],
+      "categorie": "Pokémon Roche",
+      "taille": 2.3,
+      "poids": 26,
+      "description": "Un Pokémon rocheux spectral entouré de flammes violettes",
+      "stats_base": {
+        "pv": 77,
+        "attaque": 86,
+        "defense": 94,
+        "attaque_speciale": 86,
+        "defense_speciale": 94,
+        "vitesse": 66
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 59,
+      "nom": "KiyogronR",
+      "numero_national": 59,
+      "types": [
+        "Eau",
+        "Dragon"
+      ],
+      "categorie": "Pokémon Eau",
+      "taille": 2.4,
+      "poids": 28,
+      "description": "Un Pokémon légendaire dragon-requin bleu féroce avec des crocs acérés",
+      "stats_base": {
+        "pv": 109,
+        "attaque": 135,
+        "defense": 113,
+        "attaque_speciale": 135,
+        "defense_speciale": 113,
+        "vitesse": 115
+      },
+      "legendary": true,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 60,
+      "nom": "Zobou",
+      "numero_national": 60,
+      "types": [
+        "Insecte",
+        "Glace"
+      ],
+      "categorie": "Pokémon Insecte",
+      "taille": 0.5,
+      "poids": 30,
+      "description": "Un petit Pokémon insecte noir avec des ailes de glace cyan",
+      "stats_base": {
+        "pv": 66,
+        "attaque": 73,
+        "defense": 72,
+        "attaque_speciale": 73,
+        "defense_speciale": 72,
+        "vitesse": 53
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 61,
+      "nom": "Triocogneur",
+      "numero_national": 61,
+      "types": [
+        "Combat"
+      ],
+      "categorie": "Pokémon Combat",
+      "taille": 0.6,
+      "poids": 32,
+      "description": "Un Pokémon de combat brun avec trois têtes musclées",
+      "stats_base": {
+        "pv": 88,
+        "attaque": 105,
+        "defense": 79,
+        "attaque_speciale": 105,
+        "defense_speciale": 79,
+        "vitesse": 85
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 62,
+      "nom": "Kyuchok",
+      "numero_national": 62,
+      "types": [
+        "Combat",
+        "Acier"
+      ],
+      "categorie": "Pokémon Combat",
+      "taille": 0.7,
+      "poids": 34,
+      "description": "Un Pokémon guerrier gris avec une lame sur la tête",
+      "stats_base": {
+        "pv": 74,
+        "attaque": 96,
+        "defense": 88,
+        "attaque_speciale": 96,
+        "defense_speciale": 88,
+        "vitesse": 76
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 63,
+      "nom": "Suikalin",
+      "numero_national": 63,
+      "types": [
+        "Glace",
+        "Psy"
+      ],
+      "categorie": "Pokémon Glace",
+      "taille": 0.8,
+      "poids": 36,
+      "description": "Un Pokémon élégant bleu et violet avec une queue de cristal",
+      "stats_base": {
+        "pv": 76,
+        "attaque": 83,
+        "defense": 74,
+        "attaque_speciale": 83,
+        "defense_speciale": 74,
+        "vitesse": 63
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 64,
+      "nom": "Mekang",
+      "numero_national": 64,
+      "types": [
+        "Acier",
+        "Spectre"
+      ],
+      "categorie": "Pokémon Acier",
+      "taille": 0.9,
+      "poids": 38,
+      "description": "Un Pokémon fantôme métallique jaune avec une armure spectrale",
+      "stats_base": {
+        "pv": 80,
+        "attaque": 89,
+        "defense": 97,
+        "attaque_speciale": 89,
+        "defense_speciale": 97,
+        "vitesse": 69
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 65,
+      "nom": "Onisteve",
+      "numero_national": 65,
+      "types": [
+        "Insecte",
+        "Spectre"
+      ],
+      "categorie": "Pokémon Insecte",
+      "taille": 1.0,
+      "poids": 40,
+      "description": "Un Pokémon insecte spectral rouge et noir avec des flammes violettes",
+      "stats_base": {
+        "pv": 71,
+        "attaque": 78,
+        "defense": 82,
+        "attaque_speciale": 78,
+        "defense_speciale": 82,
+        "vitesse": 58
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 66,
+      "nom": "Galia",
+      "numero_national": 66,
+      "types": [
+        "Acier",
+        "Fée"
+      ],
+      "categorie": "Pokémon Acier",
+      "taille": 1.1,
+      "poids": 42,
+      "description": "Un Pokémon mécanimal bleu et blanc élégant",
+      "stats_base": {
+        "pv": 73,
+        "attaque": 81,
+        "defense": 90,
+        "attaque_speciale": 81,
+        "defense_speciale": 90,
+        "vitesse": 61
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 67,
+      "nom": "Lativa",
+      "numero_national": 67,
+      "types": [
+        "Glace",
+        "Fée"
+      ],
+      "categorie": "Pokémon Glace",
+      "taille": 1.2,
+      "poids": 44,
+      "description": "Un Pokémon féerique blanc et rouge avec des ailes glacées",
+      "stats_base": {
+        "pv": 75,
+        "attaque": 84,
+        "defense": 77,
+        "attaque_speciale": 84,
+        "defense_speciale": 77,
+        "vitesse": 64
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 68,
+      "nom": "Karavor",
+      "numero_national": 68,
+      "types": [
+        "Acier",
+        "Vol"
+      ],
+      "categorie": "Pokémon Acier",
+      "taille": 1.3,
+      "poids": 46,
+      "description": "Un Pokémon oiseau mécanique bleu et rouge avec des lames",
+      "stats_base": {
+        "pv": 77,
+        "attaque": 93,
+        "defense": 86,
+        "attaque_speciale": 93,
+        "defense_speciale": 86,
+        "vitesse": 73
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 69,
+      "nom": "Roucarage",
+      "numero_national": 69,
+      "types": [
+        "Vol",
+        "Ténèbres"
+      ],
+      "categorie": "Pokémon Vol",
+      "taille": 1.4,
+      "poids": 48,
+      "description": "Un Pokémon corbeau violet sombre avec une apparence menaçante",
+      "stats_base": {
+        "pv": 78,
+        "attaque": 87,
+        "defense": 73,
+        "attaque_speciale": 87,
+        "defense_speciale": 73,
+        "vitesse": 67
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 70,
+      "nom": "Simiablack",
+      "numero_national": 70,
+      "types": [
+        "Ténèbres",
+        "Électrik"
+      ],
+      "categorie": "Pokémon Ténèbres",
+      "taille": 1.5,
+      "poids": 50,
+      "description": "Un Pokémon singe noir et cyan avec des motifs électriques",
+      "stats_base": {
+        "pv": 76,
+        "attaque": 91,
+        "defense": 70,
+        "attaque_speciale": 91,
+        "defense_speciale": 70,
+        "vitesse": 71
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    },
+    {
+      "id": 71,
+      "nom": "Keunorex",
+      "numero_national": 71,
+      "types": [
+        "Normal",
+        "Roche"
+      ],
+      "categorie": "Pokémon Normal",
+      "taille": 1.6,
+      "poids": 52,
+      "description": "Un Pokémon castor brun avec des dents de pierre massives",
+      "stats_base": {
+        "pv": 82,
+        "attaque": 95,
+        "defense": 89,
+        "attaque_speciale": 95,
+        "defense_speciale": 89,
+        "vitesse": 75
+      },
+      "legendary": false,
+      "generation": 1,
+      "capturé": false,
+      "vu": false
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+    "joueur": {
+        "nom": "Dresseur JVSI",
+        "pokemons": [
+            {
+                "nom": "Carapuce",
+                "niveau": 12,
+                "experience": 320,
+                "pv_actuels": 80
+            },
+            {
+                "nom": "Pikachu",
+                "niveau": 8,
+                "experience": 140,
+                "pv_actuels": 60
+            }
+        ]
+    }
+}

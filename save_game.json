@@ -1,8 +1,8 @@
 {
-  "date": "2026-02-16 14:38:12",
+  "date": "2026-02-19 09:04:18",
   "joueur": {
     "position_x": 10,
-    "position_y": 8,
+    "position_y": 4,
     "potions": 5,
     "pokeballs": 20
   },
@@ -49,5 +49,6 @@
       ],
       "legendary": false
     }
-  ]
+  ],
+  "reserve": []
 }

@@ -59,11 +59,11 @@ class Combat:
                     self.joueur_gagne = False
                 return
 
-        # Attaque spéciale : 50% réussite, 100% critique
+        # Attaque spéciale : 33% réussite, 100% critique
         if action_joueur == "attaque_speciale":
-            if random.random() < 0.5:
+            if random.random() < 0.33:
                 # Attaque réussie avec critique garanti
-                degats = int(self.pokemon_joueur.attaque * 1.5 * 1.5)  # x1.5 multiplicateur base + x1.5 critique
+                degats = int(self.pokemon_joueur.attaque  * 1.5)  #   x1.5 critique
                 self.pokemon_sauvage.pv = max(0, self.pokemon_sauvage.pv - degats)
                 self.logs.append(f" ATTAQUE SPÉCIALE CRITIQUE ! {degats} dégâts !")
 

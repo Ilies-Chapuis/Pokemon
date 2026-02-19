@@ -379,23 +379,27 @@ class AjoutPokemon:
         pygame.draw.rect(self.screen, (255, 255, 255), (150, y, 700, 100), 2)
 
         # Afficher le texte (avec retour à la ligne si trop long)
-        mots = self.input_text.split(' ')
-        ligne = ""
-        y_text = y + 10
-        for mot in mots:
-            test = ligne + mot + " "
-            if self.font_petit.size(test)[0] < 680:
-                ligne = test
-            else:
-                txt = self.font_petit.render(ligne, True, (255, 255, 255))
-                self.screen.blit(txt, (160, y_text))
-                ligne = mot + " "
-                y_text += 25
+        if self.input_text:
+            mots = self.input_text.split(' ')
+            ligne = ""
+            y_text = y + 10
+            for mot in mots:
+                test = ligne + mot + " "
+                if self.font_petit.size(test)[0] < 680:
+                    ligne = test
+                else:
+                    txt = self.font_petit.render(ligne, True, (255, 255, 255))
+                    self.screen.blit(txt, (160, y_text))
+                    ligne = mot + " "
+                    y_text += 25
 
-        # Dernière ligne
-        if ligne:
-            txt = self.font_petit.render(ligne + "_", True, (255, 255, 255))
-            self.screen.blit(txt, (160, y_text))
+            # Dernière ligne
+            if ligne:
+                txt = self.font_petit.render(ligne + "_", True, (255, 255, 255))
+                self.screen.blit(txt, (160, y_text))
+        else:
+            txt = self.font_petit.render("_", True, (255, 255, 255))
+            self.screen.blit(txt, (160, y + 10))
 
         y += 150
 
@@ -577,6 +581,7 @@ class AjoutPokemon:
                 if event.key == pygame.K_i:
                     self.selectionner_image()
                 elif event.key == pygame.K_RETURN:
+                    self.input_text = ""  # Réinitialiser pour la description
                     self.etape = 4
                 elif event.key == pygame.K_ESCAPE:
                     self.etape = 2
@@ -589,7 +594,7 @@ class AjoutPokemon:
                     self.etape = 5
                 elif event.key == pygame.K_BACKSPACE:
                     self.input_text = self.input_text[:-1]
-                elif event.key == pygame.K_X:
+                elif event.key == pygame.K_x:
                     self.pokemon_data["legendary"] = not self.pokemon_data["legendary"]
                 elif event.key == pygame.K_ESCAPE:
                     self.etape = 3
@@ -645,5 +650,3 @@ def main():
 
     app = AjoutPokemon()
     app.run()
-
-

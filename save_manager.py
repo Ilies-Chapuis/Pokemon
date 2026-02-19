@@ -34,6 +34,20 @@ class SaveManager:
                         "legendary": pokemon.legendary
                     }
                     for pokemon in game_state.equipe_joueur
+                ],
+                "reserve": [
+                    {
+                        "nom": pokemon.nom,
+                        "niveau": pokemon.niveau,
+                        "pv": pokemon.pv,
+                        "pv_max": pokemon.pv_max,
+                        "attaque": pokemon.attaque,
+                        "defense": pokemon.defense,
+                        "experience": pokemon.experience,
+                        "types": pokemon.types,
+                        "legendary": pokemon.legendary
+                    }
+                    for pokemon in game_state.reserve_pokemon
                 ]
             }
 
@@ -41,6 +55,8 @@ class SaveManager:
                 json.dump(save_data, f, indent=2, ensure_ascii=False)
 
             print(f"✓ Partie sauvegardée : {self.save_file}")
+            print(f"  - Équipe: {len(game_state.equipe_joueur)} Pokémon")
+            print(f"  - Réserve: {len(game_state.reserve_pokemon)} Pokémon")
             return True
 
         except Exception as e:

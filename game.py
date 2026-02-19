@@ -294,6 +294,7 @@ class Game:
                 self.selection_pokedex = min(total - 1, self.selection_pokedex + 1)
             elif event.key == pygame.K_ESCAPE:
                 self.etat = "exploration"
+                print("↩ Retour à l'exploration")
 
     def afficher_evolution(self):
         """Affiche l'écran d'évolution"""
@@ -1140,7 +1141,7 @@ class Game:
         if self.mode_reserve == "equipe":
             # Envoyer un Pokémon de l'équipe vers la réserve
             if len(self.equipe_joueur) <= 1:
-                print("⚠ Vous devez garder au moins 1 Pokémon dans votre équipe !")
+                print(" Faut au moins 1 pokemon tu penses pas !")
                 return
 
             pokemon = self.equipe_joueur[self.selection_equipe]

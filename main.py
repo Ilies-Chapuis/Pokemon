@@ -265,7 +265,7 @@ class MenuStarter:
             self.screen.blit(texte, texte_rect)
 
     def _get_couleur_type(self, type_name):
-        """Retourne une couleur en fonction du type"""
+        #Retourne une couleur en fonction du type
         couleurs = {
             "Feu": (255, 100, 50),
             "Eau": (50, 150, 255),
@@ -285,14 +285,14 @@ class MenuStarter:
 
 class Application:
     def __init__(self):
-        """Initialise l'application"""
+        #Initialise l'application
         pygame.init()
 
         # Configuration de l'écran
         self.largeur_ecran = 1000
         self.hauteur_ecran = 700
         self.screen = pygame.display.set_mode((self.largeur_ecran, self.hauteur_ecran))
-        pygame.display.set_caption("Pokémon JVSI - Édition Aventure")
+        pygame.display.set_caption("Pokémon FRAUDE - Édition FRAUDE")
 
         # Polices
         self.font_titre = pygame.font.SysFont("Arial", 48, bold=True)
@@ -325,9 +325,9 @@ class Application:
             with open(chemin_json, 'r', encoding='utf-8') as f:
                 data = json.load(f)
                 self.pokedex = {p["name"]: p for p in data["pokemon"]}
-                print(f"✓ Pokédex chargé: {len(self.pokedex)} Pokémon")
+                print(f" Pokédex chargé: {len(self.pokedex)} Pokémon")
         except Exception as e:
-            print(f"✗ Erreur lors du chargement du Pokédex: {e}")
+            print(f" Erreur lors du chargement du Pokédex: {e}")
             self.pokedex = {}
 
     def nouvelle_partie(self):
@@ -336,7 +336,7 @@ class Application:
         self.menu_starter = MenuStarter(self.screen, self.font_titre, self.font_normal, self.pokedex)
 
     def continuer_partie(self):
-        """Continue une partie sauvegardée"""
+        #Continue une partie sauvegardée
         try:
             from game import Game
             from save_manager import SaveManager
@@ -345,14 +345,14 @@ class Application:
 
             # Vérifier si une sauvegarde existe
             if not save_manager.existe_sauvegarde():
-                print("⚠ Aucune sauvegarde trouvée. Démarrage d'une nouvelle partie...")
+                print(" Aucune sauvegarde trouvée. Démarrage d'une nouvelle partie...")
                 self.nouvelle_partie()
                 return
 
             # Charger les données
             save_data = save_manager.charger()
             if not save_data:
-                print("✗ Impossible de charger la sauvegarde. Démarrage d'une nouvelle partie...")
+                print(" Impossible de charger la sauvegarde. Démarrage d'une nouvelle partie...")
                 self.nouvelle_partie()
                 return
 
@@ -362,19 +362,19 @@ class Application:
             # Charger l'état sauvegardé
             if self.game.charger_partie(save_data):
                 self.etat = "jeu"
-                print(f"✓ Partie chargée : {save_data['date']}")
+                print(f" Partie chargée : {save_data['date']}")
             else:
-                print("✗ Erreur lors du chargement. Démarrage d'une nouvelle partie...")
+                print(" Erreur lors du chargement. Démarrage d'une nouvelle partie...")
                 self.nouvelle_partie()
 
         except Exception as e:
-            print(f"✗ Erreur : {e}")
+            print(f" Erreur : {e}")
             import traceback
             traceback.print_exc()
             self.nouvelle_partie()
 
     def lancer_createur_pokemon(self):
-        """Lance le créateur de Pokémon"""
+        #Lance le créateur de Pokémon"
         try:
             print("\n🎨 Lancement du Créateur de Pokémon...\n")
 
@@ -404,7 +404,7 @@ class Application:
             self.etat = "menu_principal"
 
     def lancer_jeu(self, pokemon_starter_nom):
-        """Lance le jeu avec le Pokémon de départ choisi"""
+        #Lance le jeu avec le Pokémon de départ choisi
         try:
             from game import Game
             self.game = Game()
@@ -424,7 +424,7 @@ class Application:
             self.etat = "menu_principal"
 
     def gerer_menu_principal(self, event):
-        """Gère les événements du menu principal"""
+        #Gère les événements du menu principal
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
                 self.menu_principal.naviguer(-1)
@@ -449,7 +449,7 @@ class Application:
         return True
 
     def gerer_menu_options(self, event):
-        """Gère les événements du menu des options"""
+        #Gère les événements du menu des options
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
                 self.menu_options.naviguer(-1)
@@ -468,7 +468,7 @@ class Application:
         return True
 
     def gerer_choix_starter(self, event):
-        """Gère les événements du choix du Pokémon de départ"""
+        #Gère les événements du choix du Pokémon de départ
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
                 self.menu_starter.naviguer(-1)
@@ -483,8 +483,9 @@ class Application:
         return True
 
     def afficher_pokedex_menu(self):
-        """Affiche le Pokédex depuis le menu (sans partie en cours)"""
+        #Affiche le Pokédex depuis le menu (sans partie en cours)"""
         from Pokedex_manager import PokedexManager
+        from game import Game
 
         # Créer un Pokédex temporaire
         pokedex_temp = PokedexManager()
@@ -504,17 +505,13 @@ class Application:
         print(f"  Capturés: {stats['captures']}/{total}")
         print(f"  Complétion: {completion:.1f}%")
         print("=" * 50)
-        print("\n[ENTRÉE] Retour au menu")
+        print("\n[ESC] Retour au menu")
 
-        # Attendre que l'utilisateur appuie sur ENTRÉE
-        waiting = True
-        while waiting:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    waiting = False
-                elif event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_RETURN:
-                        waiting = False
+        # Créer une instance Game pour l'affichage graphique du Pokédex
+        if not hasattr(self, '_game_pokedex') or self._game_pokedex is None:
+            self._game_pokedex = Game()
+        self._game_pokedex.selection_pokedex = 0
+        self.etat = "pokedex_menu"
 
     def run(self):
         """Boucle principale de l'application"""
@@ -533,24 +530,36 @@ class Application:
                     running = self.gerer_menu_options(event)
                 elif self.etat == "choix_starter":
                     running = self.gerer_choix_starter(event)
+                elif self.etat == "pokedex_menu":
+                    if event.type == pygame.KEYDOWN:
+                        with open("pokemon.json", "r", encoding="utf-8") as pf:
+                            total_poke = len(json.load(pf)["pokemon"])
+                        if event.key == pygame.K_UP:
+                            self._game_pokedex.selection_pokedex = max(0, self._game_pokedex.selection_pokedex - 1)
+                        elif event.key == pygame.K_DOWN:
+                            self._game_pokedex.selection_pokedex = min(total_poke - 1, self._game_pokedex.selection_pokedex + 1)
+                        elif event.key == pygame.K_ESCAPE:
+                            print(" Retour au menu principal")
+                            self.etat = "menu_principal"
                 elif self.etat == "jeu":
-                    if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-                        self.etat = "menu_principal"
-                        self.game = None
-                    else:
-                        if self.game:
-                            if self.game.etat == "exploration":
+                    if self.game:
+                        if self.game.etat == "exploration":
+                            # ESC depuis l'exploration = retour menu principal
+                            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                                self.etat = "menu_principal"
+                                self.game = None
+                            else:
                                 self.game.gerer_input_exploration(event)
-                            elif self.game.etat == "combat":
-                                self.game.gerer_input_combat(event)
-                            elif self.game.etat == "menu_equipe":
-                                self.game.gerer_input_menu_equipe(event)
-                            elif self.game.etat == "menu_reserve":
-                                self.game.gerer_input_menu_reserve(event)
-                            elif self.game.etat == "pokedex":  # ← NOUVEAU
-                                self.game.gerer_input_pokedex(event)  # ← NOUVEAU
-                            elif self.game.etat == "evolution":  # ← NOUVEAU
-                                self.game.gerer_input_evolution(event)  # ← NOUVEAU
+                        elif self.game.etat == "combat":
+                            self.game.gerer_input_combat(event)
+                        elif self.game.etat == "menu_equipe":
+                            self.game.gerer_input_menu_equipe(event)
+                        elif self.game.etat == "menu_reserve":
+                            self.game.gerer_input_menu_reserve(event)
+                        elif self.game.etat == "pokedex":
+                            self.game.gerer_input_pokedex(event)
+                        elif self.game.etat == "evolution":
+                            self.game.gerer_input_evolution(event)
             # Affichage selon l'état
             if self.etat == "menu_principal":
                 self.menu_principal.afficher()
@@ -558,6 +567,9 @@ class Application:
                 self.menu_options.afficher()
             elif self.etat == "choix_starter":
                 self.menu_starter.afficher()
+            elif self.etat == "pokedex_menu":
+                self._game_pokedex.screen = self.screen
+                self._game_pokedex.afficher_pokedex()
             elif self.etat == "jeu":
                 if self.game:
                     self.game.render()
@@ -572,7 +584,7 @@ class Application:
 def main():
     """Point d'entrée principal"""
     print("=" * 50)
-    print("  POKÉMON JVSI - ÉDITION AVENTURE")
+    print("  POKÉMON FRAUDE - ÉDITION FRAUDE")
     print("=" * 50)
     print()
 

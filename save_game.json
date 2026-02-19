@@ -1,19 +1,19 @@
 {
-  "date": "2026-02-19 09:04:18",
+  "date": "2026-02-19 13:19:27",
   "joueur": {
-    "position_x": 10,
-    "position_y": 4,
+    "position_x": 8,
+    "position_y": 7,
     "potions": 5,
-    "pokeballs": 20
+    "pokeballs": 19
   },
   "equipe": [
     {
       "nom": "Verdalune",
-      "niveau": 5,
-      "pv": 77,
-      "pv_max": 77,
-      "attaque": 87,
-      "defense": 78,
+      "niveau": 9,
+      "pv": 96,
+      "pv_max": 96,
+      "attaque": 104,
+      "defense": 93,
       "experience": 301,
       "types": [
         "Plante",
@@ -42,10 +42,36 @@
       "pv_max": 79,
       "attaque": 91,
       "defense": 95,
-      "experience": 1,
+      "experience": 151,
       "types": [
         "Feu",
         "Roche"
+      ],
+      "legendary": false
+    },
+    {
+      "nom": "Voltalin",
+      "niveau": 6,
+      "pv": 81,
+      "pv_max": 81,
+      "attaque": 90,
+      "defense": 81,
+      "experience": 1,
+      "types": [
+        "Électrik"
+      ],
+      "legendary": false
+    },
+    {
+      "nom": "Lupika",
+      "niveau": 5,
+      "pv": 86,
+      "pv_max": 86,
+      "attaque": 90,
+      "defense": 87,
+      "experience": 1,
+      "types": [
+        "Électrik"
       ],
       "legendary": false
     }

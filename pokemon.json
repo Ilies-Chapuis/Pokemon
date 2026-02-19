@@ -1,4 +1,1134 @@
-Lors du démarrage de la partie, le joueur doit renseigner
-avec quel Pokémon il veut jouer, selon la liste des Pokémon.
-L'adversaire est quant à lui choisi de façon aléatoire dans le
-fichier “pokemon.json”.
+{
+  "pokemon": [
+    {
+      "id": 1,
+      "name": "AuredrisL",
+      "type": [
+        "Dragon",
+        "Psy"
+      ],
+      "legendary": true,
+      "image": "Assets/pokemon/AuredrisL.png",
+      "description": "Un Pokémon légendaire dragon entouré d'une aura psychique violette",
+      "stats": {
+        "pv": 106,
+        "attaque": 130,
+        "defense": 110
+      }
+    },
+    {
+      "id": 2,
+      "name": "Bavoir",
+      "type": [
+        "Acier",
+        "Roche"
+      ],
+      "legendary": false,
+      "image": "Assets/pokemon/Bavoir.png",
+      "description": "Un Pokémon de type acier et roche avec une armure robuste et des détails métalliques. On dit que ce pokémon est un défenseur infatigable qui utilise sa carapace solide pour protéger les autres Pokémon et les humains, sa nature loyale et sa capacité à résister aux attaques physiques en font un compagnon précieux pour ceux qui cherchent à explorer les mystères de la nature sauvage, on dit aussi que ce pokémon aurait inspiré la célèbre marque Bavoir's Shield.",
+      "stats": {
+        "pv": 67,
+        "attaque": 77,
+        "defense": 87
+      }
+    },
+    {
+      "id": 3,
+      "name": "Bloupy",
+      "type": [
+        "Poison"
+      ],
+      "legendary": false,
+      "image": "Assets/pokemon/Bloupy.png",
+      "description": "Un Pokémon poison, on dit que ce pokémon est capable de libérer des toxines puissantes pour se défendre contre les prédateurs, malgré son apparence mignonne pour certaines personnes, il est en réalité très dangereux. Sa nature imprévisible et sa capacité à contaminer son environnement en font un compagnon redoutable pour ceux qui cherchent à explorer les mystères du poison, on dit aussi que ce pokémon aurait inspiré le célèbre jeu vidéo Pokémon Poison.",
+      "stats": {
+        "pv": 68,
+        "attaque": 78,
+        "defense": 73
+      }
+    },
+    {
+      "id": 4,
+      "name": "BraseoL",
+      "type": [
+        "Feu",
+        "Spectre"
+      ],
+      "legendary": true,
+      "image": "Assets/pokemon/BraseoL.png",
+      "description": "Un Pokémon légendaire spectral enflammé avec des détails rouges et noirs menaçants, on raconte que ce pokémon est capable de manipuler les flammes et les esprits pour semer la terreur dans les régions qu'il habite, sa nature redoutable et sa capacité à contrôler les éléments en font un compagnon redoutable pour ceux qui cherchent à explorer les mystères du feu et du spectre, on dit aussi que ce pokémon aurait inspiré le célèbre jeu vidéo Poukemon Infermo.",
+      "stats": {
+        "pv": 104,
+        "attaque": 124,
+        "defense": 109
+      }
+    },
+    {
+      "id": 5,
+      "name": "Brisaflamme",
+      "type": [
+        "Combat",
+        "Ténèbres"
+      ],
+      "legendary": false,
+      "image": "Assets/pokemon/Brisaflamme.png",
+      "description": "Un Pokémon de combat et ténèbres avec une apparence féroce et des flammes vertes émanant de son corps",
+      "stats": {
+        "pv": 70,
+        "attaque": 80,
+        "defense": 75
+      }
+    },
+    {
+      "id": 6,
+      "name": "BuffMachok",
+      "type": [
+        "Combat"
+      ],
+      "legendary": false,
+      "image": "Assets/pokemon/BuffMachok.png",
+      "description": "Un Pokémon de combat musclé avec ",
+      "stats": {
+        "pv": 71,
+        "attaque": 91,
+        "defense": 76
+      }
+    },
+    {
+      "id": 7,
+      "name": "Cendralis",
+      "type": [
+        "Feu",
+        "Vol"
+      ],
+      "legendary": false,
+      "image": "Assets/pokemon/Cendralis.png",
+      "description": "Un Pokémon à trois têtes enflammées avec des ailes de feu majestueuses",
+      "stats": {
+        "pv": 72,
+        "attaque": 82,
+        "defense": 77
+      }
+    },
+    {
+      "id": 8,
+      "name": "Darkamph",
+      "type": [
+        "Ténèbres",
+        "Feu"
+      ],
+      "legendary": false,
+      "image": "Assets/pokemon/Darkamph.png",
+      "description": "Un Pokémon sombre et massif avec des flammes rouges émanant de son corps",
+      "stats": {
+        "pv": 73,
+        "attaque": 83,
+        "defense": 78
+      }
+    },
+    {
+      "id": 9,
+      "name": "Dragodash",
+      "type": [
+        "Glace",
+        "Vol"
+      ],
+      "legendary": false,
+      "image": "Assets/pokemon/Dragodash.png",
+      "description": "Un dragon ailé de glace bleue avec une corne élégante",
+      "stats": {
+        "pv": 74,
+        "attaque": 84,
+        "defense": 79
+      }
+    },
+    {
+      "id": 10,
+      "name": "Flameking",
+      "type": [
+        "Feu"
+      ],
+      "legendary": false,
+      "image": "Assets/pokemon/Flameking.png",
+      "description": "Un Pokémon royal de type feu avec une couronne et des flammes violettes",
+      "stats": {
+        "pv": 65,
+        "attaque": 85,
+        "defense": 70
+      }
+    },
+    {
+      "id": 11,
+      "name": "Flamydra",
+      "type": [
+        "Feu",
+        "Dragon"
+      ],
+      "legendary": false,
+      "image": "Assets/pokemon/Flamydra.png",
+      "description": "Un dragon serpentin élégant avec une crinière de flammes",
+      "stats": {
+        "pv": 76,
+        "attaque": 101,
+        "defense": 71
+      }
+    },
+    {
+      "id": 12,
+      "name": "Floraclaw",
+      "type": [
+        "Plante",
+        "Feu"
+      ],
+      "legendary": false,
+      "image": "Assets/pokemon/Floraclaw.png",
+      "description": "Un Pokémon plante-feu ressemblant à un chat avec des fleurs enflammées",
+      "stats": {
+        "pv": 67,
+        "attaque": 75,
+        "defense": 72
+      }
+    },
+    {
+      "id": 13,
+      "name": "Floritank",
+      "type": [
+        "Plante",
+        "Acier"
+      ],
+      "legendary": false,
+      "image": "Assets/pokemon/Floritank.png",
+      "description": "Un Pokémon blindé de type plante avec des fleurs roses et des pattes robustes",
+      "stats": {
+        "pv": 68,
+        "attaque": 76,
+        "defense": 88
+      }
+    },
+    {
+      "id": 14,
+      "name": "Gardekrom",
+      "type": [
+        "Psy",
+        "Dragon"
+      ],
+      "legendary": false,
+      "image": "Assets/pokemon/Gardekrom.png",
+      "description": "Un Pokémon élégant combinant les traits psychiques et draconiques",
+      "stats": {
+        "pv": 79,
+        "attaque": 92,
+        "defense": 74
+      }
+    },
+    {
+      "id": 15,
+      "name": "Jiraly_Rare",
+      "type": [
+        "Acier",
+        "Psy"
+      ],
+      "legendary": false,
+      "image": "Assets/pokemon/Jiraly_Rare.png",
+      "description": "Une fusion rare entre Jirachi et Ralts avec des rubans cosmiques",
+      "stats": {
+        "pv": 70,
+        "attaque": 78,
+        "defense": 90
+      }
+    },
+    {
+      "id": 16,
+      "name": "KarionLR",
+      "type": [
+        "Psy",
+        "Spectre"
+      ],
+      "legendary": true,
+      "image": "Assets/pokemon/KarionLR.png",
+      "description": "Un Pokémon légendaire rare spectral avec des rubans orange et violet cosmiques",
+      "stats": {
+        "pv": 101,
+        "attaque": 136,
+        "defense": 106
+      }
+    },
+    {
+      "id": 17,
+      "name": "Castopuff",
+      "type": [
+        "Normal"
+      ],
+      "legendary": false,
+      "image": "Assets/pokemon/Castopuff.png",
+      "description": "Un Pokémon castor simple et mignon avec une queue touffue, mais à l'air un peu ahuri ",
+      "stats": {
+        "pv": 77,
+        "attaque": 75,
+        "defense": 72
+      }
+    },
+    {
+      "id": 18,
+      "name": "Lumyntha",
+      "type": [
+        "Spectre",
+        "Plante"
+      ],
+      "legendary": false,
+      "image": "Assets/pokemon/Lumyntha.png",
+      "description": "Un Pokémon spectral élégant avec de longs cheveux verts luminescents",
+      "stats": {
+        "pv": 73,
+        "attaque": 86,
+        "defense": 73
+      }
+    },
+    {
+      "id": 19,
+      "name": "Lupika",
+      "type": [
+        "Électrik"
+      ],
+      "legendary": false,
+      "image": "Lupika.png",
+      "description": "Un Pokémon électrique jaune féroce avec des crocs acérés",
+      "stats": {
+        "pv": 74,
+        "attaque": 82,
+        "defense": 79
+      }
+    },
+    {
+      "id": 20,
+      "name": "Luvoir",
+      "type": [
+        "Eau",
+        "Glace"
+      ],
+      "legendary": false,
+      "image": "Luvoir.png",
+      "description": "Un Pokémon aquatique bleu élégant avec des ailes glacées",
+      "stats": {
+        "pv": 65,
+        "attaque": 83,
+        "defense": 70
+      }
+    },
+    {
+      "id": 21,
+      "name": "Magmire",
+      "type": [
+        "Feu",
+        "Roche"
+      ],
+      "legendary": false,
+      "image": "Magmire.png",
+      "description": "Un Pokémon de lave rouge avec une carapace de pierre volcanique",
+      "stats": {
+        "pv": 66,
+        "attaque": 84,
+        "defense": 86
+      }
+    },
+    {
+      "id": 22,
+      "name": "Nebulyx",
+      "type": [
+        "Spectre",
+        "Poison"
+      ],
+      "legendary": false,
+      "image": "Nebulyx.png",
+      "description": "Un Pokémon cosmique spectral violet avec des tentacules nébuleux",
+      "stats": {
+        "pv": 67,
+        "attaque": 90,
+        "defense": 67
+      }
+    },
+    {
+      "id": 23,
+      "name": "Noctevoir",
+      "type": [
+        "Psy",
+        "Ténèbres"
+      ],
+      "legendary": false,
+      "image": "Noctevoir.png",
+      "description": "Un Pokémon psychique nocturne avec une robe élégante blanche et bleue",
+      "stats": {
+        "pv": 68,
+        "attaque": 86,
+        "defense": 73
+      }
+    },
+    {
+      "id": 24,
+      "name": "Noctyssor",
+      "type": [
+        "Spectre",
+        "Feu"
+      ],
+      "legendary": false,
+      "image": "Noctyssor.png",
+      "description": "Un Pokémon spectral violet sombre avec des flammes mystiques",
+      "stats": {
+        "pv": 69,
+        "attaque": 80,
+        "defense": 69
+      }
+    },
+    {
+      "id": 25,
+      "name": "Noxalis",
+      "type": [
+        "Acier",
+        "Psy"
+      ],
+      "legendary": false,
+      "image": "Noxalis.png",
+      "description": "Un Pokémon robotique blanc avec des ornements violets et mécaniques",
+      "stats": {
+        "pv": 70,
+        "attaque": 76,
+        "defense": 90
+      }
+    },
+    {
+      "id": 26,
+      "name": "Noxor",
+      "type": [
+        "Ténèbres",
+        "Spectre"
+      ],
+      "legendary": false,
+      "image": "Noxor.png",
+      "description": "Un Pokémon ténébreux avec des tentacules rouges et noirs menaçants",
+      "stats": {
+        "pv": 71,
+        "attaque": 82,
+        "defense": 71
+      }
+    },
+    {
+      "id": 27,
+      "name": "Okeloke",
+      "type": [
+        "Eau",
+        "Ténèbres"
+      ],
+      "legendary": false,
+      "image": "Okeloke.png",
+      "description": "Une fusion aquatique bleue et noire avec une apparence double",
+      "stats": {
+        "pv": 72,
+        "attaque": 78,
+        "defense": 77
+      }
+    },
+    {
+      "id": 28,
+      "name": "PyraflinL",
+      "type": [
+        "Électrik",
+        "Eau"
+      ],
+      "legendary": true,
+      "image": "PyraflinL.png",
+      "description": "Un Pokémon légendaire électrique et aquatique avec une crinière dorée majestueuse",
+      "stats": {
+        "pv": 113,
+        "attaque": 128,
+        "defense": 118
+      }
+    },
+    {
+      "id": 29,
+      "name": "Reshiflame",
+      "type": [
+        "Feu",
+        "Dragon"
+      ],
+      "legendary": false,
+      "image": "Reshiflame.png",
+      "description": "Une fusion de feu et de dragon avec des ailes majestueuses et une crinière enflammée",
+      "stats": {
+        "pv": 84,
+        "attaque": 95,
+        "defense": 79
+      }
+    },
+    {
+      "id": 30,
+      "name": "Reshirom",
+      "type": [
+        "Dragon",
+        "Ténèbres"
+      ],
+      "legendary": false,
+      "image": "Reshirom.png",
+      "description": "Un dragon noir et blanc imposant avec des détails cyan lumineux",
+      "stats": {
+        "pv": 75,
+        "attaque": 96,
+        "defense": 70
+      }
+    },
+    {
+      "id": 31,
+      "name": "Reshivoir",
+      "type": [
+        "Psy",
+        "Feu"
+      ],
+      "legendary": false,
+      "image": "Reshivoir.png",
+      "description": "Une fusion psychique et enflammée avec une forme élégante et royale",
+      "stats": {
+        "pv": 66,
+        "attaque": 82,
+        "defense": 71
+      }
+    },
+    {
+      "id": 32,
+      "name": "Rubycire",
+      "type": [
+        "Feu",
+        "Roche"
+      ],
+      "legendary": false,
+      "image": "Assets/pokemon/Rubycire.png",
+      "description": "Un petit Pokémon avec un rubis incandescent sur sa tête",
+      "stats": {
+        "pv": 67,
+        "attaque": 83,
+        "defense": 87
+      }
+    },
+    {
+      "id": 33,
+      "name": "Scalydra",
+      "type": [
+        "Acier",
+        "Poison"
+      ],
+      "legendary": false,
+      "image": "Scalydra.png",
+      "description": "Un Pokémon blindé avec des écailles d'acier et des éléments venimeux verts",
+      "stats": {
+        "pv": 68,
+        "attaque": 84,
+        "defense": 88
+      }
+    },
+    {
+      "id": 34,
+      "name": "Skelerat",
+      "type": [
+        "Spectre",
+        "Ténèbres"
+      ],
+      "legendary": false,
+      "image": "Skelerat.png",
+      "description": "Un Pokémon squelettique félin avec un œil rouge sinistre",
+      "stats": {
+        "pv": 69,
+        "attaque": 90,
+        "defense": 69
+      }
+    },
+    {
+      "id": 35,
+      "name": "Staralon",
+      "type": [
+        "Acier",
+        "Psy"
+      ],
+      "legendary": false,
+      "image": "Staralon.png",
+      "description": "Un Pokémon cosmique métallique en forme d'étoile avec des joyaux violets",
+      "stats": {
+        "pv": 70,
+        "attaque": 86,
+        "defense": 90
+      }
+    },
+    {
+      "id": 36,
+      "name": "SylphraL",
+      "type": [
+        "Plante",
+        "Fée"
+      ],
+      "legendary": true,
+      "image": "SylphraL.png",
+      "description": "Un Pokémon légendaire sylphe vert avec des ailes éthérées et cristallines",
+      "stats": {
+        "pv": 106,
+        "attaque": 136,
+        "defense": 111
+      }
+    },
+    {
+      "id": 37,
+      "name": "Timiki",
+      "type": [
+        "Normal",
+        "Ténèbres"
+      ],
+      "legendary": false,
+      "image": "Timiki.png",
+      "description": "Timiki est un petit pokémon lapin timide avec de grandes oreilles,  ",
+      "stats": {
+        "pv": 77,
+        "attaque": 71,
+        "defense": 72
+      }
+    },
+    {
+      "id": 38,
+      "name": "Tournecendre",
+      "type": [
+        "Feu",
+        "Roche"
+      ],
+      "legendary": false,
+      "image": "Tournecendre.png",
+      "description": "Tournecendre est un pokémon volcanique de cendre et de pierre enflammée, ce pokémon est souvent vu en train de se prélasser près des volcans actifs ou de se cacher dans les grottes de lave, on raconte que ce pokémon est capable de résister à des températures extrêmes grâce à sa carapace de pierre volcanique, sa nature robuste et sa capacité à manipuler les éléments de type feu en font un compagnon précieux pour ceux qui cherchent à explorer les mystères du feu et de la roche.",
+      "stats": {
+        "pv": 73,
+        "attaque": 77,
+        "defense": 93
+      }
+    },
+    {
+      "id": 39,
+      "name": "Ventoryx",
+      "type": [
+        "Insecte",
+        "Acier"
+      ],
+      "legendary": false,
+      "image": "Ventoryx.png",
+      "description": "Ventoryx est un pokémon insecte métallique avec des ailes de métal tranchantes, on dit que ce pokémon est capable de voler à des vitesses incroyables grâce à ses ailes en acier, il est souvent vu en train de patrouiller les forêts et les montagnes à la recherche de proies ou de menaces, sa nature rapide et sa capacité à trancher à travers les obstacles en font un compagnon redoutable pour ceux qui cherchent à explorer les mystères de la nature sauvage et de l'acier, on dit aussi que ce pokémon aurait inspiré la célèbre série Ventoryx's High-Speed Adventures pour son côté rapide et tranchant.",
+      "stats": {
+        "pv": 84,
+        "attaque": 93,
+        "defense": 94
+      }
+    },
+    {
+      "id": 40,
+      "name": "Verdalune",
+      "type": [
+        "Plante",
+        "Eau"
+      ],
+      "legendary": false,
+      "image": "Verdalune.png",
+      "description": "Verdalune est un pokémon rare serpentin élégant avec des feuilles vertes et bleues aquatiques, dans les légendes anciennes il était considéré comme la représentations vivantes de la lune du à sa forme majestueuse et sa nature mystérieuse, on dit que ce pokémon est capable de contrôler les marées et les courants pour protéger les écosystèmes aquatiques, sa capacité à manipuler les éléments naturels en font un compagnon fascinant pour ceux qui cherchent à explorer les mystères de la nature et de l'eau, on dit aussi que ce pokémon aurait inspiré la célèbre série Verdalune's Mystical Adventures pour son côté mystérieux et majestueux.",
+      "stats": {
+        "pv": 65,
+        "attaque": 79,
+        "defense": 70
+      }
+    },
+    {
+      "id": 41,
+      "name": "Voltalin",
+      "type": [
+        "Électrik"
+      ],
+      "legendary": false,
+      "image": "Voltalin.png",
+      "description": "Voltalin, dans les anciennes légendes ce pokémon était considéré comme le gardien des sanctuaires divins, on dit que ce pokémon est capable de générer des éclairs d'une puissance incroyable pour protéger les lieux sacrés et les trésors cachés, sa nature mystérieuse et sa capacité à contrôler les forces électriques en font un compagnon redoutable pour ceux qui cherchent à explorer les mystères de l'électricité.",
+      "stats": {
+        "pv": 66,
+        "attaque": 80,
+        "defense": 71
+      }
+    },
+    {
+      "id": 42,
+      "name": "Zaptile",
+      "type": [
+        "Électrik",
+        "Normal"
+      ],
+      "legendary": false,
+      "image": "Zaptile.png",
+      "description": "Zaptile est un pokémon stupide, on dit qu'il est si stupide qu'il ne peut pas apprendre de nouvelles attaques, il est souvent vu en train de se cogner contre les murs ou de se faire électrocuter lui même par accident, malgré son manque d'intelligence, il est très apprécié pour sa nature amicale et rigolote. Sa capacité à illuminer les endroits sombres avec ses éclairs électriques, on dit aussi que ce pokémon aurait inspiré la célèbre série Zaptile's Bizarre Adventure pour son côté loufoque.",
+      "stats": {
+        "pv": 72,
+        "attaque": 76,
+        "defense": 67
+      }
+    },
+    {
+      "id": 43,
+      "name": "ZapZap",
+      "type": [
+        "Électrik",
+        "Eau"
+      ],
+      "legendary": false,
+      "image": "ZapZap.png",
+      "description": "Un pokémon méduse orange et cyan avec des capacités électriques aquatiques. C'est un pokémon apprécié par les marins car on dis souvant que dans un phare il y a toujours un ZapZap pour guider les navires perdus dans les tempêtes.",
+      "stats": {
+        "pv": 68,
+        "attaque": 82,
+        "defense": 73
+      }
+    },
+    {
+      "id": 44,
+      "name": "Zevoir",
+      "type": [
+        "Ténèbres",
+        "Psy"
+      ],
+      "legendary": false,
+      "image": "Zevoir.png",
+      "description": "Un pokémon sombre et élégant avec des traits psychiques bleus lumineux, on raconte de nombreuses légendes sur ce pokémon, certains disent que Zevoir est un esprit mystérieux qui erre dans les ruines de l'oublie, d'autres prétendent qu'il est capable de manipuler les esprits et les émotions des autres Pokémon et des humains, sa nature énigmatique et ses capacité à influencer les pensées et les toutes formes d'états en font un compagnon fascinant pour ceux qui cherchent à explorer les mystères du psychique et du ténèbres, on dit aussi que ce pokémon aurait inspiré le célèbre détective Enigma.",
+      "stats": {
+        "pv": 69,
+        "attaque": 83,
+        "defense": 74
+      }
+    },
+    {
+      "id": 45,
+      "name": "Zorova",
+      "type": [
+        "Plante",
+        "Ténèbres"
+      ],
+      "legendary": false,
+      "image": "Zorova.png",
+      "description": "Zorova est un pokémon sauvage et mystérieux avec une apparence verdoyante et énigmatique",
+      "stats": {
+        "pv": 70,
+        "attaque": 84,
+        "defense": 75
+      }
+    },
+    {
+      "id": 46,
+      "name": "Arrchamp",
+      "type": [
+        "Combat",
+        "Acier"
+      ],
+      "legendary": false,
+      "image": "Arrchamp.png",
+      "description": "Un pokémon de combat métallique avec plusieurs bras puissants",
+      "stats": {
+        "pv": 76,
+        "attaque": 98,
+        "defense": 92
+      }
+    },
+    {
+      "id": 47,
+      "name": "Dragodreavus",
+      "type": [
+        "Dragon",
+        "Spectre"
+      ],
+      "legendary": false,
+      "image": "Dragodreavus.png",
+      "description": "Un petit dragon spectral bleu avec des ailes fantomatiques",
+      "stats": {
+        "pv": 82,
+        "attaque": 95,
+        "defense": 68
+      }
+    },
+    {
+      "id": 48,
+      "name": "Muddew",
+      "type": [
+        "Eau",
+        "Combat"
+      ],
+      "legendary": false,
+      "image": "Muddew.png",
+      "description": "Un Pokémon aquatique de combat avec des poings oranges",
+      "stats": {
+        "pv": 73,
+        "attaque": 88,
+        "defense": 75
+      }
+    },
+    {
+      "id": 49,
+      "name": "Snubrua",
+      "type": [
+        "Fée",
+        "Combat"
+      ],
+      "legendary": false,
+      "image": "Snubrua.png",
+      "description": "Un Pokémon fée rose costaud avec une attitude féroce",
+      "stats": {
+        "pv": 74,
+        "attaque": 87,
+        "defense": 71
+      }
+    },
+    {
+      "id": 50,
+      "name": "Poryluff",
+      "type": [
+        "Normal",
+        "Fée"
+      ],
+      "legendary": false,
+      "image": "Poryluff.png",
+      "description": "Une fusion mignonne et technologique rose et bleue",
+      "stats": {
+        "pv": 75,
+        "attaque": 65,
+        "defense": 70
+      }
+    },
+    {
+      "id": 51,
+      "name": "Reunito",
+      "type": [
+        "Psy",
+        "Vol"
+      ],
+      "legendary": false,
+      "image": "Reunito.png",
+      "description": "Un Pokémon psychique volant vert avec un motif mystique",
+      "stats": {
+        "pv": 70,
+        "attaque": 76,
+        "defense": 71
+      }
+    },
+    {
+      "id": 52,
+      "name": "Minikoal",
+      "type": [
+        "Roche",
+        "Normal"
+      ],
+      "legendary": false,
+      "image": "Minikoal.png",
+      "description": "Minikoal est un petit pokémon koala fait de pierre et de nuages, on dit que ce pokémon est capable de se camoufler parfaitement dans les montagnes rocheuses grâce à sa fourrure de pierre, il est souvent vu en train de se reposer sur les falaises ou de se cacher dans les grottes, on raconte que ce pokémon est un maître du camouflage et de la furtivité, sa nature paisible et sa capacité à se fondre dans son environnement en font un compagnon précieux pour ceux qui cherchent à explorer les mystères de la nature sauvage, on dit aussi que ce pokémon aurait inspiré le célèbre escape game Minikoal's Hideout.",
+      "stats": {
+        "pv": 67,
+        "attaque": 72,
+        "defense": 82
+      }
+    },
+    {
+      "id": 53,
+      "name": "Doubwak",
+      "type": [
+        "Combat",
+        "Psy"
+      ],
+      "legendary": false,
+      "image": "Doubwak.png",
+      "description": "Doubwak est un pokémon de combat psychique avec des rubans violets et une épée. On dit que Doubwak est un guerrier solitaire qui erre dans les terres désolées à la recherche de défis pour tester sa force et sa sagesse, il est connu pour son épée mystique qui peut trancher à travers n'importe quelle matière, sa nature déterminée et sa capacité à maîtriser les arts du combat en font un compagnon redoutable pour ceux qui cherchent à explorer les mystères du combat et de la psychologie, on dit aussi que ce pokémon aurait inspiré le célèbre jeu vidéo Doubwak's Quest.",
+      "stats": {
+        "pv": 73,
+        "attaque": 91,
+        "defense": 74
+      }
+    },
+    {
+      "id": 54,
+      "name": "Alcolyx",
+      "type": [
+        "Eau",
+        "Vol"
+      ],
+      "legendary": false,
+      "image": "Alcolyx.png",
+      "description": "Alcolyx est un pokémon alcolique, on dit qu'il n'y a pas de tavernes dans lesquelles on ne peut pas le trouver, il est souvent vu en train de voler au dessus des bars et des discothèques pour se nourrir de l'alcool qui s'en échappe, on raconte que ce pokémon est capable de libérer des vapeurs d'alcool si puissantes qu'elles peuvent causer des dommages graves rendant bourré toute être vivant se trouvant à proximité. Sa nature imprévisible et sa capacité à contaminer son environnement en font un compagnon redoutable pour ceux qui cherchent à explorer les mystères de l'alcool. On dit aussi que ce pokémon aurait inspiré les célèbres Alcolympics et le célèbre chanteur Melvin Presseles",
+      "stats": {
+        "pv": 79,
+        "attaque": 84,
+        "defense": 76
+      }
+    },
+    {
+      "id": 55,
+      "name": "Champillion",
+      "type": [
+        "Plante",
+        "Poison"
+      ],
+      "legendary": false,
+      "image": "Champillion.png",
+      "description": "Champillion est un pokémon utilisant sa capacité à se camoufler dans n'importe quel environnement. On raconte que ce camouflage est tellement efficace que les chercheurs pokémon ne l'on découvert que récement.",
+      "stats": {
+        "pv": 70,
+        "attaque": 68,
+        "defense": 85
+      }
+    },
+    {
+      "id": 56,
+      "name": "Emperia",
+      "type": [
+        "Plante",
+        "Insecte"
+      ],
+      "legendary": false,
+      "image": "Emperia.png",
+      "description": "Emperia est un pokémon plante et insecte avec plusieurs têtes et lianes. On raconte que ce pokémon est célèbre dans la communautée des fans de plantes carnivores",
+      "stats": {
+        "pv": 85,
+        "attaque": 92,
+        "defense": 78
+      }
+    },
+    {
+      "id": 57,
+      "name": "Florika",
+      "type": [
+        "Plante",
+        "Électrik"
+      ],
+      "legendary": false,
+      "image": "Florika.png",
+      "description": "Florika est un pokémon de type plante et électrique, On dit que ce pokémon aurait inspiré la célèbre société ninpendo pour sa mascotte du jeu vidéo Pokrémon.",
+      "stats": {
+        "pv": 72,
+        "attaque": 81,
+        "defense": 69
+      }
+    },
+    {
+      "id": 58,
+      "name": "Spirigas",
+      "type": [
+        "Roche",
+        "Spectre"
+      ],
+      "legendary": false,
+      "image": "Spirigas.png",
+      "description": "Spirigas est un pokémon spectre de type roche, On raconte que le gas qu'il émet est capable de faire perdre la raison à ceux qui le respirent du à sa puanteur extrême...",
+      "stats": {
+        "pv": 77,
+        "attaque": 86,
+        "defense": 94
+      }
+    },
+    {
+      "id": 59,
+      "name": "Kiyogron",
+      "type": [
+        "Eau",
+        "Dragon"
+      ],
+      "legendary": true,
+      "image": "Kiyogron.png",
+      "description": "Kiyogron est un pokémon légendaire de type eau et dragon, il a une apparence majestueuse et imposante. On raconte que ce pokémon est le gardien des océans, il protège les mers et les créatures marines des dangers qui les menacent. Sa nature noble et sa capacité à contrôler les eaux en font un compagnon précieux pour ceux qui cherchent à explorer les mystères de l'océan, on dit aussi que ce pokémon aurait inspiré le célèbre jeu vidéo Soubmautica.",
+      "stats": {
+        "pv": 109,
+        "attaque": 135,
+        "defense": 113
+      }
+    },
+    {
+      "id": 60,
+      "name": "Zobou",
+      "type": [
+        "Fée",
+        "Glace"
+      ],
+      "legendary": false,
+      "image": "Zobou.png",
+      "description": "Zobou est un pokémon radioactif, il a une apparence mignonne et inoffensive, mais il est en réalité très dangereux. On raconte que ce pokémon est capable de libérer des radiations toxiques qui peuvent causer des dommages graves à tout ce qui se trouve à proximité. Sa nature imprévisible et sa capacité à contaminer son environnement en font un compagnon redoutable pour ceux qui cherchent à explorer les mystères des radiations, on dit aussi que ce pokémon aurait inspiré le célèbre jeu vidéo Falloutre.",
+      "stats": {
+        "pv": 66,
+        "attaque": 73,
+        "defense": 72
+      }
+    },
+    {
+      "id": 61,
+      "name": "Triocogneur",
+      "type": [
+        "Combat",
+        "Roche"
+      ],
+      "legendary": false,
+      "image": "Triocogneur.png",
+      "description": "Triocogneur est un pokémon de type combat et roche, il a une apparence imposante et des bras puissants. On raconte que ce pokémon est un guerrier redoutable qui utilise sa force brute pour protéger son territoire et défendre les autres Pokémon, ce qu'il la fait rentré dans l'Histoire. Sa nature courageuse et sa capacité à résister aux attaques physiques en font un compagnon précieux pour ceux qui cherchent à explorer les mystères de la nature sauvage.",
+      "stats": {
+        "pv": 90,
+        "attaque": 105,
+        "defense": 100
+      }
+    },
+    {
+      "id": 62,
+      "name": "Kyuchok",
+      "type": [
+        "Combat",
+        "Acier"
+      ],
+      "legendary": false,
+      "image": "Kyuchok.png",
+      "description": "Kyuchok est un pokémon qui est très demandé pour les constructions de bâtiments, il est notament très solicité pour la construction de bâtiments dans les millieux gelés.",
+      "stats": {
+        "pv": 74,
+        "attaque": 96,
+        "defense": 88
+      }
+    },
+    {
+      "id": 63,
+      "name": "Suikalin",
+      "type": [
+        "Glace",
+        "Psy"
+      ],
+      "legendary": false,
+      "image": "Suikalin.png",
+      "description": "Suikalin est un pokémon solitaire, il vit dans les régions les plus reculées et les plus froides du monde. Ses pouvoirs psychiques lui permettent de former une protection sur tout le corps.",
+      "stats": {
+        "pv": 76,
+        "attaque": 78,
+        "defense": 95
+      }
+    },
+    {
+      "id": 64,
+      "name": "Mekang",
+      "type": [
+        "Acier",
+        "Spectre"
+      ],
+      "legendary": false,
+      "image": "Mekang.png",
+      "description": "Mekang est un pokémon fantômatique revêtant une armure. On raconte que ce pokémon est un ancien guerrier qui a été piégé dans une armure après une bataille épique. Sa nature mystérieuse et son apparence imposante ont conduit à de nombreuses légendes parmi les dresseurs de Pokémon, certains prétendant que Mekang peut insulfé la vie dans des objets inanimé, tandis que d'autres affirment qu'il peut communiquer avec les esprits des anciens combattants. Sa capacité à se fondre dans les ténèbres et à résister aux attaques physiques en fait un compagnon redoutable pour ceux qui cherchent à explorer les mystères de l'univers spectral.",
+      "stats": {
+        "pv": 80,
+        "attaque": 90,
+        "defense": 97
+      }
+    },
+    {
+      "id": 65,
+      "name": "Onisteve",
+      "type": [
+        "Insecte",
+        "Spectre"
+      ],
+      "legendary": false,
+      "image": "Onisteve.png",
+      "description": "Onisteve est un pokémon insecte qui ressemble à un escargot. On raconte que son apparence étrange et son comportement mystérieux ont conduit à de nombreuses légendes urbaines parmi les dresseurs de Pokémon. Certains disent que ce pokémon est capable de se déplacer silencieusement dans l'ombre, tandis que d'autres prétendent qu'il peut communiquer avec les esprits des forêts. Sa nature énigmatique et sa capacité à se fondre dans son environnement en font un compagnon fascinant pour ceux qui aiment explorer les mystères de la nature, on dit aussi que ce pokémon aurait inspiré le célèbre jeu vidéo Minepraft",
+      "stats": {
+        "pv": 71,
+        "attaque": 78,
+        "defense": 82
+      }
+    },
+    {
+      "id": 66,
+      "name": "Galia",
+      "type": [
+        "Acier",
+        "Fée"
+      ],
+      "legendary": false,
+      "image": "Galia.png",
+      "description": "Galia est un pokémon mécannique de type Acier/Fée. Il a une apparence élégante et futuriste, avec un corps en acier lisse et des détails lumineux qui lui donnent une allure presque magique. On raconte que ce pokémon est capable de manipuler la technologie et les énergies mécaniques pour créer des dispositifs avancés et protéger les autres Pokémon. Sa nature douce et sa capacité à fusionner la technologie avec la magie en font un compagnon précieux pour ceux qui cherchent à explorer les mystères de l'univers mécanique.",
+      "stats": {
+        "pv": 73,
+        "attaque": 81,
+        "defense": 90
+      }
+    },
+    {
+      "id": 67,
+      "name": "Lativa",
+      "type": [
+        "Glace",
+        "Fée"
+      ],
+      "legendary": false,
+      "image": "Lativa.png",
+      "description": "Lativa est un pokémon féerique de type Glace. Il a une apparence délicate et élégante, avec un pelage rouge et blanc immaculé et a des ailes rouges qui scintillent comme des cristaux de glace. On raconte que ce pokémon vit dans les régions les plus froides, où il utilise ses pouvoirs glacés pour créer des sculptures de glace magnifiques et protéger les créatures vulnérables des rigueurs de l'hiver. Sa nature douce et sa capacité à manipuler la glace en font un compagnon précieux pour ceux qui cherchent la beauté dans les environnements glacés.",
+      "stats": {
+        "pv": 75,
+        "attaque": 84,
+        "defense": 77
+      }
+    },
+    {
+      "id": 68,
+      "name": "Karavor",
+      "type": [
+        "Acier",
+        "Eau"
+      ],
+      "legendary": false,
+      "image": "Karavor.png",
+      "description": "Karavor est un pokémon de type Acier/Eau. Il a une apparence robuste et métallique, avec une carapace en acier qui le protège des attaques ennemies. On raconte que ce pokémon vit dans les profondeurs marines, où il utilise sa force et sa résistance pour défendre son territoire contre les intrus. Sa capacité à nager rapidement et à résister à la pression de l'eau en fait un adversaire redoutable pour ceux qui osent s'aventurer dans son domaine aquatique.",
+      "stats": {
+        "pv": 77,
+        "attaque": 95,
+        "defense": 98
+      }
+    },
+    {
+      "id": 69,
+      "name": "Roucarage",
+      "type": [
+        "Vol",
+        "Ténèbres"
+      ],
+      "legendary": false,
+      "image": "Roucarage.png",
+      "description": "Roucarage est un pokémon aigle noir, à cause de son sombre pelage on lui donne une apparence menaçante. On dit que ce pokémon juge son dresseur et ses adversaires en fonction de leurs actions, il peut être un allié loyal ou un ennemi redoutable selon la nature de ceux qu'il rencontre. Sa capacité à voler silencieusement dans l'obscurité en fait un prédateur redoutable, et sa réputation de juge nocturne ajoute à son mystère et à sa légende.",
+      "stats": {
+        "pv": 78,
+        "attaque": 87,
+        "defense": 73
+      }
+    },
+    {
+      "id": 70,
+      "name": "Simiablack",
+      "type": [
+        "Ténèbres",
+        "Électrik"
+      ],
+      "legendary": false,
+      "image": "Simiablack.png",
+      "description": "Simiablack est un pokémon de type Ténèbres/Électrik. On raconte que ce pokémon s'amuse à jouer des tours aux humains, son pelage sombre lui permet de se fondre dans l'ombre pour surprendre ses adversaires. Sa flamme de couleur cian est souvant confondue avec des feux follets, ce qui ajoute à son mystère et à sa réputation de farceur nocturne.",
+      "stats": {
+        "pv": 76,
+        "attaque": 91,
+        "defense": 70
+      }
+    },
+    {
+      "id": 71,
+      "name": "Keunorex",
+      "type": [
+        "Normal",
+        "Roche"
+      ],
+      "legendary": false,
+      "image": "Keunorex.png",
+      "description": "Keunorex est un pokémon dinosaure brun avec des dents massives, ces dents lui permettent d'inciser des matériaux d'une dureté extrême. On raconte que les dents de Keunorex sont si solides qu'elles peuvent même couper des rochers et du diamant.",
+      "stats": {
+        "pv": 82,
+        "attaque": 95,
+        "defense": 89
+      }
+    }
+  ]
+}

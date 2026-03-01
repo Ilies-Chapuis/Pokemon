@@ -1,188 +1,262 @@
 import random
+from pokemon_types import type_dict
+
+
+# Tableau des multiplicateurs de types (attaquant -> défenseur -> multiplicateur)
+MULTIPLICATEURS = type_dict
 
 
 class Combat:
-    def __init__(self, pokemon_joueur, pokemon_sauvage):
-        self.pokemon_joueur = pokemon_joueur
+    def __init__(self, pokemon_joueur, pokemon_sauvage, pokedex=None):
+        self.pokemon_joueur  = pokemon_joueur
         self.pokemon_sauvage = pokemon_sauvage
-        self.tour = 0
-        self.termine = False
-        self.joueur_gagne = False
+        self.pokedex         = pokedex   # PokedexManager optionnel
+        self.tour            = 0
+        self.termine         = False
+        self.joueur_gagne    = False
         self.pokemon_capture = False
-        self.logs = []
+        self.logs            = []
+
+        # Enregistrer automatiquement le Pokémon rencontré dans le Pokédex
+        self.enregistrer_dans_pokedex()
+
+    # ================================================================== #
+    # MÉTHODES OBLIGATOIRES (exigences du cahier des charges)
+    # ================================================================== #
+
+    def calculer_degats_avec_type(self, attaquant, defenseur):
+        """
+        Récupère le type de l'adversaire et multiplie la puissance d'attaque
+        selon le tableau de types.
+        Ex : Eau (10 atk) vs Terre -> 10 * 0.5 = 5 dégâts bruts
+        Retourne (dégâts bruts, multiplicateur).
+        """
+        type_atk = attaquant.types[0] if attaquant.types else "Normal"
+        type_def = defenseur.types[0] if defenseur.types else "Normal"
+
+        multiplicateur = MULTIPLICATEURS.get(type_atk, {}).get(type_def, 1.0)
+        degats_bruts   = int(attaquant.attaque * multiplicateur)
+
+        return degats_bruts, multiplicateur
+
+    def appliquer_degats(self, cible, degats_bruts):
+        """
+        Enlève des points de vie en fonction de la défense de la cible.
+        Formule : dégâts réels = max(1, dégâts bruts - défense)
+        Retourne les dégâts réels infligés.
+        """
+        degats_reels = max(1, degats_bruts - cible.defense)
+        cible.pv = max(0, cible.pv - degats_reels)
+        return degats_reels
+
+    def get_vainqueur(self):
+        """
+        Retourne le nom du vainqueur du combat.
+        Retourne None si le combat n'est pas terminé.
+        """
+        if not self.termine:
+            return None
+        if self.pokemon_capture:
+            return self.pokemon_joueur.nom
+        return self.pokemon_joueur.nom if self.joueur_gagne else self.pokemon_sauvage.nom
+
+    def get_resultats(self):
+        """
+        Retourne un dictionnaire avec le nom du gagnant et du perdant.
+        Retourne None si le combat n'est pas terminé.
+        """
+        if not self.termine:
+            return None
+
+        if self.joueur_gagne or self.pokemon_capture:
+            gagnant = self.pokemon_joueur.nom
+            perdant = self.pokemon_sauvage.nom
+        else:
+            gagnant = self.pokemon_sauvage.nom
+            perdant = self.pokemon_joueur.nom
+
+        return {"gagnant": gagnant, "perdant": perdant}
+
+    def enregistrer_dans_pokedex(self):
+        """
+        Enregistre le Pokémon sauvage rencontré dans le Pokédex (marqué comme vu).
+        Appelé automatiquement à la création du combat.
+        """
+        if self.pokedex is not None:
+            self.pokedex.marquer_vu(self.pokemon_sauvage.nom)
+
+    def enregistrer_capture_pokedex(self):
+        """
+        Enregistre le Pokémon sauvage comme capturé dans le Pokédex.
+        Appelé après une capture réussie.
+        """
+        if self.pokedex is not None:
+            self.pokedex.marquer_capture(self.pokemon_sauvage.nom)
+
+    # ================================================================== #
+    # LOGIQUE DE COMBAT
+    # ================================================================== #
+
+    def _attaque_complete(self, attaquant, defenseur):
+        """
+        Exécute une attaque complète en utilisant les méthodes obligatoires :
+        1. calculer_degats_avec_type (multiplicateur de type)
+        2. appliquer_degats (soustraction de la défense)
+        """
+        # 10% de chance de rater
+        if random.random() < 0.10:
+            return {"degats": 0, "multiplicateur": 1.0,
+                    "message": f"{attaquant.nom} rate son attaque !"}
+
+        critique = random.random() < 0.10
+        degats_bruts, multiplicateur = self.calculer_degats_avec_type(attaquant, defenseur)
+        if critique:
+            degats_bruts = int(degats_bruts * 1.5)
+
+        degats_reels = self.appliquer_degats(defenseur, degats_bruts)
+
+        if multiplicateur > 1.0:
+            msg_eff = " C'est super efficace !"
+        elif 0 < multiplicateur < 1.0:
+            msg_eff = " Ce n'est pas très efficace..."
+        elif multiplicateur == 0:
+            msg_eff = " Ça n'a aucun effet !"
+        else:
+            msg_eff = ""
+
+        msg_crit = " Coup critique !" if critique else ""
+        message = (f"{attaquant.nom} inflige {degats_reels} dégâts "
+                   f"à {defenseur.nom} !{msg_crit}{msg_eff}")
+
+        return {"degats": degats_reels, "multiplicateur": multiplicateur, "message": message}
+
+    def _gain_experience(self):
+        exp = self.pokemon_sauvage.niveau * 50
+        if self.pokemon_sauvage.legendary:
+            exp *= 3
+        self.pokemon_joueur.gagner_experience(exp)
+        self.logs.append(f"{self.pokemon_joueur.nom} gagne {exp} points d'expérience !")
+
+    def _ko_sauvage(self):
+        self.logs.append(f"{self.pokemon_sauvage.nom} est K.O. !")
+        self.termine      = True
+        self.joueur_gagne = True
+        self._gain_experience()
+
+    def _ko_joueur(self):
+        self.logs.append(f"{self.pokemon_joueur.nom} est K.O. !")
+        self.termine      = True
+        self.joueur_gagne = False
+
+    # ------------------------------------------------------------------ #
 
     def tour_combat(self, action_joueur="attaque"):
-        #Execute un tour de combat
+        """Exécute un tour de combat."""
         if self.termine:
             return
 
         self.tour += 1
         self.logs.append(f"--- Tour {self.tour} ---")
 
-        # Le Pokémon le plus rapide attaque en premier
+        if action_joueur == "fuite":
+            self._gerer_fuite()
+        elif action_joueur == "capture":
+            self._gerer_capture()
+        elif action_joueur == "attaque_speciale":
+            self._gerer_attaque_speciale()
+        else:
+            self._gerer_attaque_normale()
+
+    def _gerer_fuite(self):
+        if random.random() < 0.5:
+            self.logs.append("Vous avez réussi à fuir !")
+            self.termine = True
+        else:
+            self.logs.append("Impossible de fuir !")
+            res = self._attaque_complete(self.pokemon_sauvage, self.pokemon_joueur)
+            self.logs.append(res["message"])
+            if not self.pokemon_joueur.est_vivant():
+                self._ko_joueur()
+
+    def _gerer_capture(self):
+        if self.tenter_capture():
+            self.logs.append(f"Vous avez capturé {self.pokemon_sauvage.nom} !")
+            self.termine         = True
+            self.joueur_gagne    = True
+            self.pokemon_capture = True
+            self.enregistrer_capture_pokedex()
+        else:
+            self.logs.append("NUL GERMAIN NUL !")
+            res = self._attaque_complete(self.pokemon_sauvage, self.pokemon_joueur)
+            self.logs.append(res["message"])
+            if not self.pokemon_joueur.est_vivant():
+                self._ko_joueur()
+
+    def _gerer_attaque_speciale(self):
+        if random.random() < 0.33:
+            degats_bruts, _ = self.calculer_degats_avec_type(
+                self.pokemon_joueur, self.pokemon_sauvage)
+            degats_bruts = int(degats_bruts * 1.5)
+            degats_reels = self.appliquer_degats(self.pokemon_sauvage, degats_bruts)
+            self.logs.append(f"ATTAQUE SPÉCIALE CRITIQUE ! {degats_reels} dégâts !")
+            if not self.pokemon_sauvage.est_vivant():
+                self._ko_sauvage()
+                return
+        else:
+            self.logs.append("L'attaque spéciale a échoué !")
+
+        res = self._attaque_complete(self.pokemon_sauvage, self.pokemon_joueur)
+        self.logs.append(res["message"])
+        if not self.pokemon_joueur.est_vivant():
+            self._ko_joueur()
+
+    def _gerer_attaque_normale(self):
         joueur_premier = self.pokemon_joueur.attaque >= self.pokemon_sauvage.attaque
 
-        if action_joueur == "fuite":
-            # 50% de chance de fuir contre un Pokémon sauvage
-            if random.random() < 0.5:
-                self.logs.append("Vous avez réussi à fuir !")
-                self.termine = True
-                return
-            else:
-                self.logs.append("Impossible de fuir c'est la merde!")
-                # Le Pokémon sauvage attaque
-                resultat = self.pokemon_sauvage.attaquer(self.pokemon_joueur)
-                self.logs.append(resultat["message"])
-                if not self.pokemon_joueur.est_vivant():
-                    self.logs.append(f"{self.pokemon_joueur.nom} est K.O. !")
-                    self.termine = True
-                    self.joueur_gagne = False
-                return
-
-        if action_joueur == "capture":
-            # Tentative de capture
-            reussite = self.tenter_capture()
-            if reussite:
-                self.logs.append(f"Vous avez capturé {self.pokemon_sauvage.nom} !")
-                self.termine = True
-                self.joueur_gagne = True
-                self.pokemon_capture = True
-                return
-            else:
-                self.logs.append(f"NUL GERMAIN NUL !")
-                # Le Pokémon sauvage attaque
-                resultat = self.pokemon_sauvage.attaquer(self.pokemon_joueur)
-                self.logs.append(resultat["message"])
-                if not self.pokemon_joueur.est_vivant():
-                    self.logs.append(f"{self.pokemon_joueur.nom} est K.O. !")
-                    self.termine = True
-                    self.joueur_gagne = False
-                return
-
-        # Attaque spéciale : 33% réussite, 100% critique
-        if action_joueur == "attaque_speciale":
-            if random.random() < 0.33:
-                # Attaque réussie avec critique garanti
-                degats = int(self.pokemon_joueur.attaque  * 1.5)  #   x1.5 critique
-                self.pokemon_sauvage.pv = max(0, self.pokemon_sauvage.pv - degats)
-                self.logs.append(f" ATTAQUE SPÉCIALE CRITIQUE ! {degats} dégâts !")
-
-                if not self.pokemon_sauvage.est_vivant():
-                    self.logs.append(f"{self.pokemon_sauvage.nom} est K.O. !")
-                    self.termine = True
-                    self.joueur_gagne = True
-
-                    # Gain d'expérience
-                    exp_gagnee = self.pokemon_sauvage.niveau * 50
-                    if self.pokemon_sauvage.legendary:
-                        exp_gagnee *= 3
-                    self.pokemon_joueur.gagner_experience(exp_gagnee)
-                    self.logs.append(f"{self.pokemon_joueur.nom} gagne {exp_gagnee} points d'expérience !")
-                    return
-            else:
-                # Attaque ratée
-                self.logs.append(f" L'attaque spéciale a échoué !")
-
-            # Le Pokémon sauvage riposte
-            resultat = self.pokemon_sauvage.attaquer(self.pokemon_joueur)
-            self.logs.append(resultat["message"])
-            if not self.pokemon_joueur.est_vivant():
-                self.logs.append(f"{self.pokemon_joueur.nom} est K.O. !")
-                self.termine = True
-                self.joueur_gagne = False
-            return
-
-        # Action du joueur (attaque normale)
         if joueur_premier:
-            # Le joueur attaque en premier
-            resultat = self.pokemon_joueur.attaquer(self.pokemon_sauvage)
-            self.logs.append(resultat["message"])
-
+            res = self._attaque_complete(self.pokemon_joueur, self.pokemon_sauvage)
+            self.logs.append(res["message"])
             if not self.pokemon_sauvage.est_vivant():
-                self.logs.append(f"{self.pokemon_sauvage.nom} est K.O. !")
-                self.termine = True
-                self.joueur_gagne = True
-
-                # Gain d'expérience
-                exp_gagnee = self.pokemon_sauvage.niveau * 50
-                if self.pokemon_sauvage.legendary:
-                    exp_gagnee *= 3
-                self.pokemon_joueur.gagner_experience(exp_gagnee)
-                self.logs.append(f"{self.pokemon_joueur.nom} gagne {exp_gagnee} points d'expérience !")
-                return
-
-            # Le Pokémon sauvage riposte
-            resultat = self.pokemon_sauvage.attaquer(self.pokemon_joueur)
-            self.logs.append(resultat["message"])
-
+                self._ko_sauvage(); return
+            res = self._attaque_complete(self.pokemon_sauvage, self.pokemon_joueur)
+            self.logs.append(res["message"])
             if not self.pokemon_joueur.est_vivant():
-                self.logs.append(f"{self.pokemon_joueur.nom} est K.O. !")
-                self.termine = True
-                self.joueur_gagne = False
+                self._ko_joueur()
         else:
-            # Le Pokémon sauvage attaque en premier
-            resultat = self.pokemon_sauvage.attaquer(self.pokemon_joueur)
-            self.logs.append(resultat["message"])
-
+            res = self._attaque_complete(self.pokemon_sauvage, self.pokemon_joueur)
+            self.logs.append(res["message"])
             if not self.pokemon_joueur.est_vivant():
-                self.logs.append(f"{self.pokemon_joueur.nom} est K.O. !")
-                self.termine = True
-                self.joueur_gagne = False
-                return
-
-            # Le joueur riposte
-            resultat = self.pokemon_joueur.attaquer(self.pokemon_sauvage)
-            self.logs.append(resultat["message"])
-
+                self._ko_joueur(); return
+            res = self._attaque_complete(self.pokemon_joueur, self.pokemon_sauvage)
+            self.logs.append(res["message"])
             if not self.pokemon_sauvage.est_vivant():
-                self.logs.append(f"{self.pokemon_sauvage.nom} est K.O. !")
-                self.termine = True
-                self.joueur_gagne = True
+                self._ko_sauvage()
 
-                # Gain d'expérience
-                exp_gagnee = self.pokemon_sauvage.niveau * 50
-                if self.pokemon_sauvage.legendary:
-                    exp_gagnee *= 3
-                self.pokemon_joueur.gagner_experience(exp_gagnee)
-                self.logs.append(f"{self.pokemon_joueur.nom} gagne {exp_gagnee} points d'expérience !")
+    # ------------------------------------------------------------------ #
 
     def tenter_capture(self):
-        #Tente de capturer le Pokémon sauvage
-        # Formule de capture inspirée de Pokémon
-        # Plus le Pokémon est faible, plus la capture est facile
+        """Taux de capture basé sur les PV restants du Pokémon sauvage."""
         ratio_pv = self.pokemon_sauvage.pv / self.pokemon_sauvage.pv_max
-
-        # Taux de base
-        taux_base = 50
-
-        # Bonus si PV faibles
         if ratio_pv < 0.25:
-            taux_base = 90  # Très faible
+            taux = 90
         elif ratio_pv < 0.5:
-            taux_base = 70  # Faible
-
-        # Malus pour les légendaires
+            taux = 70
+        else:
+            taux = 50
         if self.pokemon_sauvage.legendary:
-            taux_base = max(5, taux_base // 3)  # Très difficile
-
-        # Lancer le dé
-        return random.randint(1, 100) <= taux_base
+            taux = max(5, taux // 3)
+        return random.randint(1, 100) <= taux
 
     def utiliser_potion(self):
-        #Utilise une potion pour soigner le Pokémon
+        """Soigne 50 PV, le Pokémon sauvage riposte pendant ce temps."""
         soin = min(50, self.pokemon_joueur.pv_max - self.pokemon_joueur.pv)
         self.pokemon_joueur.pv += soin
         self.logs.append(f"{self.pokemon_joueur.nom} récupère {soin} PV !")
-
-        # Le Pokémon sauvage attaque pendant ce temps
-        resultat = self.pokemon_sauvage.attaquer(self.pokemon_joueur)
-        self.logs.append(resultat["message"])
-
+        res = self._attaque_complete(self.pokemon_sauvage, self.pokemon_joueur)
+        self.logs.append(res["message"])
         if not self.pokemon_joueur.est_vivant():
-            self.logs.append(f"{self.pokemon_joueur.nom} est K.O. !")
-            self.termine = True
-            self.joueur_gagne = False
+            self._ko_joueur()
 
     def get_derniers_logs(self, n=5):
-        #Retourne les n derniers logs
+        """Retourne les n derniers messages du log de combat."""
         return self.logs[-n:]

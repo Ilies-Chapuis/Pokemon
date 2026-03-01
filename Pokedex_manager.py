@@ -1,6 +1,4 @@
-"""
-Système de Pokédex complet avec suivi des Pokémon vus et capturés
-"""
+
 import json
 import os
 
@@ -13,7 +11,7 @@ class PokedexManager:
         self.charger_progression()
 
     def charger_progression(self):
-        """Charge la progression du Pokédex"""
+        #Charge la progression du Pokédex
         if os.path.exists(self.save_file):
             try:
                 with open(self.save_file, 'r', encoding='utf-8') as f:
@@ -26,7 +24,7 @@ class PokedexManager:
                 self.pokemon_captures = set()
 
     def sauvegarder_progression(self):
-        """Sauvegarde la progression du Pokédex"""
+        #Sauvegarde la progression du Pokédex
         try:
             data = {
                 "vus": list(self.pokemon_vus),
@@ -40,7 +38,7 @@ class PokedexManager:
             return False
 
     def marquer_vu(self, nom_pokemon):
-        """Marque un Pokémon comme vu"""
+        #Marque un Pokémon comme vu
         if nom_pokemon not in self.pokemon_vus:
             self.pokemon_vus.add(nom_pokemon)
             self.sauvegarder_progression()
@@ -48,7 +46,7 @@ class PokedexManager:
         return False
 
     def marquer_capture(self, nom_pokemon):
-        """Marque un Pokémon comme capturé"""
+        #Marque un Pokémon comme capturé
         self.pokemon_vus.add(nom_pokemon)
         if nom_pokemon not in self.pokemon_captures:
             self.pokemon_captures.add(nom_pokemon)
@@ -57,22 +55,22 @@ class PokedexManager:
         return False
 
     def est_vu(self, nom_pokemon):
-        """Vérifie si un Pokémon a été vu"""
+        #Vérifie si un Pokémon a été vu
         return nom_pokemon in self.pokemon_vus
 
     def est_capture(self, nom_pokemon):
-        """Vérifie si un Pokémon a été capturé"""
+        #Vérifie si un Pokémon a été capturé
         return nom_pokemon in self.pokemon_captures
 
     def obtenir_stats(self):
-        """Retourne les statistiques du Pokédex"""
+        #Retourne les statistiques du Pokédex
         return {
             "vus": len(self.pokemon_vus),
             "captures": len(self.pokemon_captures)
         }
 
     def obtenir_completion(self, total_pokemon):
-        """Retourne le pourcentage de completion"""
+        #Retourne le pourcentage de completion
         if total_pokemon == 0:
             return 0
         return (len(self.pokemon_captures) / total_pokemon) * 100

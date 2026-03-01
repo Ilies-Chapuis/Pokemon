@@ -20,17 +20,9 @@ class Combat:
         # Enregistrer automatiquement le Pokémon rencontré dans le Pokédex
         self.enregistrer_dans_pokedex()
 
-    # ================================================================== #
-    # MÉTHODES OBLIGATOIRES (exigences du cahier des charges)
-    # ================================================================== #
 
     def calculer_degats_avec_type(self, attaquant, defenseur):
-        """
-        Récupère le type de l'adversaire et multiplie la puissance d'attaque
-        selon le tableau de types.
-        Ex : Eau (10 atk) vs Terre -> 10 * 0.5 = 5 dégâts bruts
-        Retourne (dégâts bruts, multiplicateur).
-        """
+
         type_atk = attaquant.types[0] if attaquant.types else "Normal"
         type_def = defenseur.types[0] if defenseur.types else "Normal"
 
@@ -40,20 +32,13 @@ class Combat:
         return degats_bruts, multiplicateur
 
     def appliquer_degats(self, cible, degats_bruts):
-        """
-        Enlève des points de vie en fonction de la défense de la cible.
-        Formule : dégâts réels = max(1, dégâts bruts - défense)
-        Retourne les dégâts réels infligés.
-        """
+
         degats_reels = max(1, degats_bruts - cible.defense)
         cible.pv = max(0, cible.pv - degats_reels)
         return degats_reels
 
     def get_vainqueur(self):
-        """
-        Retourne le nom du vainqueur du combat.
-        Retourne None si le combat n'est pas terminé.
-        """
+
         if not self.termine:
             return None
         if self.pokemon_capture:
@@ -61,10 +46,7 @@ class Combat:
         return self.pokemon_joueur.nom if self.joueur_gagne else self.pokemon_sauvage.nom
 
     def get_resultats(self):
-        """
-        Retourne un dictionnaire avec le nom du gagnant et du perdant.
-        Retourne None si le combat n'est pas terminé.
-        """
+
         if not self.termine:
             return None
 
@@ -78,31 +60,21 @@ class Combat:
         return {"gagnant": gagnant, "perdant": perdant}
 
     def enregistrer_dans_pokedex(self):
-        """
-        Enregistre le Pokémon sauvage rencontré dans le Pokédex (marqué comme vu).
-        Appelé automatiquement à la création du combat.
-        """
+
         if self.pokedex is not None:
             self.pokedex.marquer_vu(self.pokemon_sauvage.nom)
 
     def enregistrer_capture_pokedex(self):
-        """
-        Enregistre le Pokémon sauvage comme capturé dans le Pokédex.
-        Appelé après une capture réussie.
-        """
+
         if self.pokedex is not None:
             self.pokedex.marquer_capture(self.pokemon_sauvage.nom)
 
-    # ================================================================== #
-    # LOGIQUE DE COMBAT
-    # ================================================================== #
+
+    # Logique du combat
+
 
     def _attaque_complete(self, attaquant, defenseur):
-        """
-        Exécute une attaque complète en utilisant les méthodes obligatoires :
-        1. calculer_degats_avec_type (multiplicateur de type)
-        2. appliquer_degats (soustraction de la défense)
-        """
+
         # 10% de chance de rater
         if random.random() < 0.10:
             return {"degats": 0, "multiplicateur": 1.0,
@@ -148,10 +120,9 @@ class Combat:
         self.termine      = True
         self.joueur_gagne = False
 
-    # ------------------------------------------------------------------ #
 
     def tour_combat(self, action_joueur="attaque"):
-        """Exécute un tour de combat."""
+        #Exécute un tour de combat.
         if self.termine:
             return
 
@@ -203,7 +174,7 @@ class Combat:
                 self._ko_sauvage()
                 return
         else:
-            self.logs.append("L'attaque spéciale a échoué !")
+            self.logs.append("L'attaque spéciale a échoué ce pokemon est nul comme les dev !")
 
         res = self._attaque_complete(self.pokemon_sauvage, self.pokemon_joueur)
         self.logs.append(res["message"])
@@ -232,10 +203,10 @@ class Combat:
             if not self.pokemon_sauvage.est_vivant():
                 self._ko_sauvage()
 
-    # ------------------------------------------------------------------ #
+
 
     def tenter_capture(self):
-        """Taux de capture basé sur les PV restants du Pokémon sauvage."""
+        #Taux de capture basé sur les PV restants du Pokémon sauvage.
         ratio_pv = self.pokemon_sauvage.pv / self.pokemon_sauvage.pv_max
         if ratio_pv < 0.25:
             taux = 90
@@ -248,7 +219,7 @@ class Combat:
         return random.randint(1, 100) <= taux
 
     def utiliser_potion(self):
-        """Soigne 50 PV, le Pokémon sauvage riposte pendant ce temps."""
+        #Soigne 50 PV, le Pokémon sauvage riposte pendant ce temps.
         soin = min(50, self.pokemon_joueur.pv_max - self.pokemon_joueur.pv)
         self.pokemon_joueur.pv += soin
         self.logs.append(f"{self.pokemon_joueur.nom} récupère {soin} PV !")
@@ -258,5 +229,5 @@ class Combat:
             self._ko_joueur()
 
     def get_derniers_logs(self, n=5):
-        """Retourne les n derniers messages du log de combat."""
+        #Retourne les n derniers messages du log de combat.
         return self.logs[-n:]

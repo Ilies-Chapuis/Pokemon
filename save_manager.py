@@ -1,6 +1,4 @@
-"""
-Gestionnaire de sauvegarde pour Pokémon JVSI
-"""
+
 import json
 import os
 from datetime import datetime
@@ -11,7 +9,7 @@ class SaveManager:
         self.save_file = save_file
 
     def sauvegarder(self, game_state):
-        """Sauvegarde l'état du jeu"""
+        #Sauvegarde l'état du jeu à l'instant t
         try:
             save_data = {
                 "date": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
@@ -54,45 +52,45 @@ class SaveManager:
             with open(self.save_file, 'w', encoding='utf-8') as f:
                 json.dump(save_data, f, indent=2, ensure_ascii=False)
 
-            print(f"✓ Partie sauvegardée : {self.save_file}")
+            print(f" Partie sauvegardée : {self.save_file}")
             print(f"  - Équipe: {len(game_state.equipe_joueur)} Pokémon")
             print(f"  - Réserve: {len(game_state.reserve_pokemon)} Pokémon")
             return True
 
         except Exception as e:
-            print(f"✗ Erreur lors de la sauvegarde : {e}")
+            print(f"ça ne marche pas bon sang! : {e}")
             import traceback
             traceback.print_exc()
             return False
 
     def charger(self):
-        """Charge l'état du jeu"""
+        #Charge la sauvegarde
         try:
             if not os.path.exists(self.save_file):
-                print("⚠ Aucune sauvegarde trouvée")
+                print(" Aucune sauvegarde trouvée pas de pot")
                 return None
 
             with open(self.save_file, 'r', encoding='utf-8') as f:
                 save_data = json.load(f)
 
-            print(f"✓ Sauvegarde chargée : {save_data['date']}")
+            print(f" Sauvegarde chargée hourra : {save_data['date']}")
             return save_data
 
         except Exception as e:
-            print(f"✗ Erreur lors du chargement : {e}")
+            print(f" Erreur lors du chargement : {e}")
             return None
 
     def existe_sauvegarde(self):
-        """Vérifie si une sauvegarde existe"""
+        #Vérifie si il y a une sauvegarde
         return os.path.exists(self.save_file)
 
     def supprimer_sauvegarde(self):
-        """Supprime la sauvegarde"""
+        #retire la sauvegarde
         try:
             if os.path.exists(self.save_file):
                 os.remove(self.save_file)
-                print("✓ Sauvegarde supprimée")
+                print(" Sauvegarde supprimée")
                 return True
         except Exception as e:
-            print(f"✗ Erreur lors de la suppression : {e}")
+            print(f" Erreur lors de la suppression : {e}")
             return False

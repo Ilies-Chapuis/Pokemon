@@ -1,26 +1,12 @@
 {
-  "date": "2026-02-28 19:22:42",
+  "date": "2026-03-01 23:41:27",
   "joueur": {
     "position_x": 11,
-    "position_y": 3,
+    "position_y": 8,
     "potions": 7,
     "pokeballs": 22
   },
   "equipe": [
-    {
-      "nom": "Flamydra",
-      "niveau": 41,
-      "pv": 275,
-      "pv_max": 275,
-      "attaque": 229,
-      "defense": 177,
-      "experience": 351,
-      "types": [
-        "Feu",
-        "Dragon"
-      ],
-      "legendary": false
-    },
     {
       "nom": "Verdalune",
       "niveau": 10,
@@ -28,10 +14,24 @@
       "pv_max": 100,
       "attaque": 108,
       "defense": 96,
-      "experience": 201,
+      "experience": 951,
       "types": [
         "Plante",
         "Eau"
+      ],
+      "legendary": false
+    },
+    {
+      "nom": "Flamydra",
+      "niveau": 41,
+      "pv": 275,
+      "pv_max": 275,
+      "attaque": 229,
+      "defense": 177,
+      "experience": 1001,
+      "types": [
+        "Feu",
+        "Dragon"
       ],
       "legendary": false
     },

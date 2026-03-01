@@ -73,7 +73,7 @@ class Pokemon:
 
     def attaquer(self, defenseur):
         #Attaque un autre Pokémon
-        # 10% de chance de rater
+
         if random.random() < 0.10:
             return {
                 "touche": False,
@@ -122,7 +122,7 @@ class Pokemon:
         }
 
     def to_dict(self):
-        #Convertit le Pokémon en dictionnaire pour la sauvegarde
+        #Convertit le Pokémon en dict pour la sauvegarde
         return {
             "nom": self.nom,
             "types": self.types,
@@ -155,7 +155,7 @@ class Pokemon:
 
     @staticmethod
     def from_pokedex(pokedex_data, niveau=5):
-        #Crée un Pokémon à partir des données du Pokédex
+        #Crée un Pokémon à partir de données du Pokédex
         return Pokemon(
             pokedex_data["name"],
             pokedex_data["type"],

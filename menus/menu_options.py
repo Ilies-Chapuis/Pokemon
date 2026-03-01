@@ -1,4 +1,3 @@
-"""Menu des options"""
 
 import pygame
 
@@ -21,7 +20,7 @@ class MenuOptions:
         self.options   = list(self.parametres.keys()) + ["Retour"]
         self.selection = 0
 
-    # ------------------------------------------------------------------ #
+
     def naviguer(self, direction):
         self.selection = (self.selection + direction) % len(self.options)
 
@@ -37,7 +36,7 @@ class MenuOptions:
         elif opt == "animations":
             self.parametres[opt] = not self.parametres[opt]
 
-    # ------------------------------------------------------------------ #
+
     def afficher(self):
         self.screen.fill((20, 20, 40))
         self._titre()

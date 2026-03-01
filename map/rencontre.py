@@ -1,12 +1,11 @@
-"""Gestionnaire de rencontres Pokémon sauvages"""
 
 import json
 import random
 from pokemon import Pokemon
 from .zones import ZONES
 
-# Rareté : (seuil_cumulé, clé_pool, offset_niv_min, offset_niv_max)
-# Les offsets sont relatifs au niveau moyen de l'équipe du joueur
+# Rareté
+
 TRANCHES_RARETE = [
     (0.60,  "communs",     -2,  3),   # communs  : niv_moy-2  à niv_moy+3
     (0.85,  "peu_communs",  0,  5),   # peu comm : niv_moy    à niv_moy+5
@@ -22,9 +21,9 @@ class RencontreManager:
             data = json.load(f)
         self.pokedex = {p["name"]: p for p in data["pokemon"]}
 
-    # ------------------------------------------------------------------ #
+
     def verifier_rencontre(self, zone_type, position, equipe_joueur=None):
-        """Retourne un Pokémon sauvage adapté au niveau de l'équipe, ou None"""
+        #Retourne un Pokémon sauvage adapté au niveau de l'équipe
         zone = ZONES.get(zone_type)
         if zone and random.random() < zone["taux_rencontre"]:
             niv_ref = self._niveau_reference(equipe_joueur)
@@ -32,7 +31,7 @@ class RencontreManager:
         return None
 
     def _niveau_reference(self, equipe):
-        """Calcule le niveau de référence de l'équipe (moyenne des pokémon vivants)"""
+        #Calcule le niveau de référence de l'équipe
         if not equipe:
             return 5
         vivants = [p for p in equipe if p.est_vivant()]
@@ -48,12 +47,11 @@ class RencontreManager:
         return None
 
     def _tirer(self, pool, niv_ref):
-        """Tire au sort rareté + Pokémon, avec niveau relatif à niv_ref"""
+        #Tire au sort rareté + Pokémon, avec niveau relatif à niv_ref
         rand = random.random()
         for seuil, cle, off_min, off_max in TRANCHES_RARETE:
             if rand < seuil and pool.get(cle):
                 # Niveau entre (niv_ref + off_min) et (niv_ref + off_max)
-                # Borné entre 1 et 100
                 niv_min = max(1, niv_ref + off_min)
                 niv_max = max(niv_min, min(100, niv_ref + off_max))
                 niveau  = random.randint(niv_min, niv_max)

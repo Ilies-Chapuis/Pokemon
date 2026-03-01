@@ -1,5 +1,4 @@
 
-
 import random
 from combat import Combat
 
@@ -44,7 +43,7 @@ class CombatChampion:
 
     #  Tour de combat
     def tour_combat(self, action):
-        """Délègue au Combat interne, puis gère les enchaînements."""
+        #Délègue au Combat interne, puis gère les enchaînements.
         if self.termine:
             return
 
@@ -90,7 +89,7 @@ class CombatChampion:
     def changer_pokemon_joueur(self, nouveau_pokemon):
         #Le joueur envoie un remplaçant (après KO ou volontairement).
         poke_champ = self.equipe_champion[self.idx_champion]
-        # Remettre les PV du Pokémon champion à ce qu'ils sont (pas de reset)
+        # Remettre les PV du Pokémon champion à ce qu'ils sont
         self.combat_actuel = Combat(nouveau_pokemon, poke_champ, pokedex=self.pokedex)
         self.logs.append(f"Allez {nouveau_pokemon.nom} !")
 

@@ -3,15 +3,15 @@ import os
 import json
 
 #  Positions des champions dans la ville (cases de la grille)
-# La ville occupe x:8-11, y:6-8. On place chaque champion sur une case fixe.
+
 POSITION_CHAMPION_PLANTE = (9,  7)
 POSITION_CHAMPION_FEU    = (10, 7)
 
 # Distance (en cases) à laquelle le champion "interpelle" le joueur
-DISTANCE_INTERACTION = 1
+DISTANCE_INTERACTION = 0
 
 
-# Données des champions
+#  Données des champions
 CHAMPIONS = {
     "plante": {
         "id":     "plante",
@@ -45,19 +45,19 @@ CHAMPIONS = {
                 "✦ Badge Feuille obtenu !",
             ],
             "deja_battu": [
-                "Sylvan : Tu m'as déjà battu, dresseur.",
+                "Ilies : Tu m'as déjà battu, dresseur.",
                 "Je m'entraîne encore. Reviens plus tard pour un revanche.",
             ],
         },
 
         # Équipe de 6 Pokémon (nom, niveau, types, pv, atk, def, legendary)
         "equipe": [
-            {"nom": "Floratank",   "niveau": 35, "types": ["Plante"],         "pv": 190, "attaque": 185,  "defense": 175,  "legendary": False},
-            {"nom": "Lumyntha",    "niveau": 38, "types": ["Plante", "Psy"],  "pv": 205, "attaque": 190,  "defense": 170,  "legendary": False},
-            {"nom": "Verdalune",   "niveau": 40, "types": ["Plante", "Lune"], "pv": 230, "attaque": 195,  "defense": 180,  "legendary": False},
-            {"nom": "Mudderon",    "niveau": 37, "types": ["Sol", "Plante"],  "pv": 215, "attaque": 188,  "defense": 155,  "legendary": False},
-            {"nom": "Floraclaw",   "niveau": 42, "types": ["Plante"],         "pv": 241, "attaque": 254, "defense": 178,  "legendary": False},
-            {"nom": "SylphraL",    "niveau": 45, "types": ["Plante", "Vol"],  "pv": 400, "attaque": 420, "defense": 221, "legendary": True},
+            {"nom": "Floratank",   "niveau": 35, "types": ["Plante"],         "pv": 110, "attaque": 85,  "defense": 75,  "legendary": False},
+            {"nom": "Lumyntha",    "niveau": 38, "types": ["Plante", "Psy"],  "pv": 105, "attaque": 90,  "defense": 70,  "legendary": False},
+            {"nom": "Verdalune",   "niveau": 40, "types": ["Plante", "Lune"], "pv": 120, "attaque": 95,  "defense": 80,  "legendary": False},
+            {"nom": "Mudderon",    "niveau": 37, "types": ["Sol", "Plante"],  "pv": 115, "attaque": 88,  "defense": 85,  "legendary": False},
+            {"nom": "Floraclaw",   "niveau": 42, "types": ["Plante"],         "pv": 108, "attaque": 100, "defense": 78,  "legendary": False},
+            {"nom": "SylphraL",    "niveau": 45, "types": ["Plante", "Vol"],  "pv": 145, "attaque": 120, "defense": 100, "legendary": True},
         ],
 
         "recompense": {
@@ -105,12 +105,12 @@ CHAMPIONS = {
         },
 
         "equipe": [
-            {"nom": "Brisadragon", "niveau": 36, "types": ["Feu", "Dragon"], "pv": 212, "attaque": 185,  "defense": 172,  "legendary": False},
-            {"nom": "Magmigos",    "niveau": 38, "types": ["Feu", "Roche"],  "pv": 218, "attaque": 190,  "defense": 168,  "legendary": False},
-            {"nom": "Rubypyros",   "niveau": 41, "types": ["Feu"],           "pv": 208, "attaque": 235, "defense": 175,  "legendary": False},
-            {"nom": "Cendralis",   "niveau": 39, "types": ["Feu", "Vol"],    "pv": 215, "attaque": 198,  "defense": 170,  "legendary": False},
-            {"nom": "Flamelord",   "niveau": 43, "types": ["Feu"],           "pv": 262, "attaque": 264, "defense": 180,  "legendary": False},
-            {"nom": "BraseoL",     "niveau": 46, "types": ["Feu", "Combat"], "pv": 450, "attaque": 430, "defense": 205, "legendary": True},
+            {"nom": "Brisadragon", "niveau": 36, "types": ["Feu", "Dragon"], "pv": 112, "attaque": 95,  "defense": 72,  "legendary": False},
+            {"nom": "Magmigos",    "niveau": 38, "types": ["Feu", "Roche"],  "pv": 118, "attaque": 90,  "defense": 88,  "legendary": False},
+            {"nom": "Rubypyros",   "niveau": 41, "types": ["Feu"],           "pv": 108, "attaque": 105, "defense": 75,  "legendary": False},
+            {"nom": "Cendralis",   "niveau": 39, "types": ["Feu", "Vol"],    "pv": 115, "attaque": 98,  "defense": 70,  "legendary": False},
+            {"nom": "Flamelord",   "niveau": 43, "types": ["Feu"],           "pv": 122, "attaque": 110, "defense": 80,  "legendary": False},
+            {"nom": "BraseoL",     "niveau": 46, "types": ["Feu", "Combat"], "pv": 150, "attaque": 130, "defense": 105, "legendary": True},
         ],
 
         "recompense": {
@@ -134,7 +134,6 @@ def position_champion(champion_id):
 
 
 def champion_a_proximite(joueur_x, joueur_y, champions_battus):
-    #Retourne l'id du champion proche du joueur .
 
     for cid, pos in [("plante", POSITION_CHAMPION_PLANTE),
                      ("feu",    POSITION_CHAMPION_FEU)]:

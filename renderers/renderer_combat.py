@@ -1,4 +1,3 @@
-"""Rendu de l'écran de combat avec boutons graphiques cliquables et animations"""
 
 import pygame
 import math
@@ -35,8 +34,8 @@ class RendererCombat:
         "inactif":  ((28, 28, 30),  ( 70,  70,  70)),
     }
 
-    # Définition des 6 boutons : (id, touche, label, style, colonne, ligne)
-    # grille 2 colonnes gauche (0,1,2,3) + 1 colonne droite (4,5)
+    # Définition des 6 boutons : (id, touche, action, style, colonne, ligne)
+
     BOUTONS_DEF = [
         ("attaque",  "A", "ATTAQUER",       "attaque",  0, 0),
         ("special",  "S", "ATT. SPÉCIALE",  "special",  1, 0),
@@ -72,9 +71,9 @@ class RendererCombat:
         # Calcul des rects cliquables (mis à jour à chaque render)
         self._rects_boutons = {}   # id -> pygame.Rect
 
-    # ================================================================== #
-    # API PUBLIQUE
-    # ================================================================== #
+
+    # API merci le cours
+
 
     def declencher_animation(self, type_anim, cible="sauvage"):
         pos = self.POS_SAUVAGE if cible == "sauvage" else self.POS_JOUEUR
@@ -97,15 +96,14 @@ class RendererCombat:
         return bool(self.animations)
 
     def get_action_clic(self, pos_souris):
-        """Retourne l'id du bouton cliqué, ou None"""
+        #Retourne l'id du bouton cliqué, ou None
         for btn_id, rect in self._rects_boutons.items():
             if rect.collidepoint(pos_souris):
                 return btn_id
         return None
 
-    # ================================================================== #
-    # RENDU PRINCIPAL
-    # ================================================================== #
+
+    # Rendu 1er
 
     def render(self, game):
         if not game.combat_actuel:
@@ -117,9 +115,8 @@ class RendererCombat:
         self._dessiner_animations()
         self._interface(game)
 
-    # ================================================================== #
-    # FOND & POKÉMON
-    # ================================================================== #
+
+    # Fond et pokemon
 
     def _fond(self):
         if self.arena:
@@ -156,9 +153,9 @@ class RendererCombat:
         self.ui.texte(f"Votre {poke.nom} Nv.{poke.niveau}", 720, 75, couleur=(255, 255, 255))
         self.ui.barre_pv(poke, 720, 105, 265)
 
-    # ================================================================== #
-    # ANIMATIONS
-    # ================================================================== #
+
+    # Animation merci tuto
+
 
     def _dessiner_animations(self):
         for anim in self.animations:
@@ -221,9 +218,9 @@ class RendererCombat:
         rot = pygame.transform.rotate(s, p*360)
         self.screen.blit(rot, rot.get_rect(center=(cx,cy)))
 
-    # ================================================================== #
+
     # HELPERS ANIMATION
-    # ================================================================== #
+
 
     def _anim_active(self, type_anim, cible):
         pos = self.POS_SAUVAGE if cible == "sauvage" else self.POS_JOUEUR
@@ -242,9 +239,6 @@ class RendererCombat:
         f.fill((255,255,255,140), special_flags=pygame.BLEND_RGBA_ADD)
         return f
 
-    # ================================================================== #
-    # INTERFACE
-    # ================================================================== #
 
     def _interface(self, game):
         if not game.combat_actuel.termine:
@@ -255,9 +249,9 @@ class RendererCombat:
         else:
             self._ecran_fin(game)
 
-    # ------------------------------------------------------------------ #
+
     def _bande_logs(self, game):
-        """Fine bande de logs juste au-dessus des boutons"""
+        #Fine bande de logs juste au-dessus des boutons
         log_h = 55
         log_y = self.ZONE_Y - log_h
         fond = pygame.Surface((self.W, log_h), pygame.SRCALPHA)
@@ -271,9 +265,9 @@ class RendererCombat:
             self.ui.texte(log, 15, log_y + 6 + i * 23,
                           self.ui.font_petit, (gris, gris, gris))
 
-    # ------------------------------------------------------------------ #
+
     def _bande_boutons(self, game):
-        """Bande compacte en bas avec 6 boutons sur 2 lignes × 3 colonnes"""
+        #Bande compacte en bas avec 6 boutons sur 2 lignes × 3 colonnes
         # Fond
         fond = pygame.Surface((self.W, self.ZONE_H), pygame.SRCALPHA)
         fond.fill((8, 8, 18, 220))
@@ -306,7 +300,7 @@ class RendererCombat:
             self._rects_boutons[btn_id] = rect
             self._dessiner_bouton(rect, touche, label, style, actif)
 
-    # ------------------------------------------------------------------ #
+
     def _dessiner_bouton(self, rect, touche, label, style, actif):
         s = "inactif" if not actif else style
         fond_col, txt_col = self.COULEURS_BTN[s]
@@ -335,9 +329,6 @@ class RendererCombat:
         tl = self.font_btn.render(label, True, txt_col if actif else (60,60,60))
         self.screen.blit(tl, tl.get_rect(center=(rect.x + rect.w//2 + 12, rect.centery)))
 
-    # ================================================================== #
-    # PANNEAU CHANGEMENT POKÉMON (KO)
-    # ================================================================== #
 
     def _panneau_changement(self, game):
         fond = pygame.Surface((self.W, self.H), pygame.SRCALPHA)
@@ -362,7 +353,7 @@ class RendererCombat:
                    if p.est_vivant() and i != 0]
 
         if not vivants:
-            self.ui.texte_centre("Toute l'équipe est K.O. !",
+            self.ui.texte_centre("Toute l'équipe est K.O. comme moi !",
                 self.W//2, py+180, couleur=(255,100,100))
             self.ui.texte_centre("[ESPACE] Accepter la défaite",
                 self.W//2, py+220, self.ui.font_petit, (180,180,180))
@@ -389,9 +380,9 @@ class RendererCombat:
         self.ui.texte_centre("↑↓ Naviguer  |  ENTRÉE Envoyer",
             self.W//2, py+ph-30, self.ui.font_petit, (130,130,130))
 
-    # ================================================================== #
-    # ÉCRAN DE FIN
-    # ================================================================== #
+
+    # C'est fini
+
 
     def _ecran_fin(self, game):
         fond = pygame.Surface((self.W, self.H), pygame.SRCALPHA)

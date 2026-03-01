@@ -1,6 +1,4 @@
 
-
-#  Évolution classique
 EVOLUTIONS = {
     # Starters
     "Keunotor":    ("Keunotaure",    16),
@@ -36,16 +34,15 @@ EVOLUTIONS = {
 NIVEAU_FORME_ULTIME = 30
 
 # Multiplicateur de stats appliqué à la base du Pokédex lors du reset
-# (ex : 1.8 = +80 % sur les stats de base)
 BONUS_FORME_ULTIME = 1.8
 
 # Nom affiché pour la Forme Ultime  ("<NOM> Forme Ultime")
-SUFFIXE_FORME_ULTIME = " ★"
+SUFFIXE_FORME_ULTIME = " GOD MODE"
 
 
 #  Fonctions classiques
 def peut_evoluer(nom_pokemon, niveau):
-    """Vérifie si un Pokémon peut évoluer (évolution classique)."""
+    #Vérifie si un Pokémon peut évoluer (évolution classique).
     if nom_pokemon in EVOLUTIONS:
         nom_evo, niv_requis = EVOLUTIONS[nom_pokemon]
         return niveau >= niv_requis, nom_evo, niv_requis
@@ -70,7 +67,6 @@ def a_une_evolution(nom_pokemon):
 
 #  Forme Ultime
 def peut_forme_ultime(pokemon):
-   #Renvoie True si le Pokémon peut accéder à la Forme Ultime :
 
     return (pokemon.niveau >= NIVEAU_FORME_ULTIME
             and SUFFIXE_FORME_ULTIME not in pokemon.nom)

@@ -11,13 +11,13 @@ import shutil
 
 
 def _chemin_json():
-    """Retourne le chemin absolu vers pokemon.json (portable Windows/Linux/Mac)"""
+    #Retourne le chemin absolu vers pokemon.json
     import os
     return os.path.join(os.path.dirname(os.path.abspath(__file__)), "Data", "pokemon.json")
 
 
 class FileBrowser:
-    """Explorateur de fichiers natif pygame"""
+    #Explorateur de fichiers natif pygame"""
 
     def __init__(self, screen, font_normal, font_petit, font_titre,
                  extensions=(".png", ".jpg", ".jpeg")):
@@ -194,7 +194,7 @@ class AjoutPokemon:
         self.selection_type = 0
         self.stat_selectionnee = 0
 
-    # ------------------------------------------------------------------ #
+
     def selectionner_image(self):
         browser = FileBrowser(self.screen, self.font_normal, self.font_petit, self.font_titre)
         clock = pygame.time.Clock()
@@ -220,7 +220,7 @@ class AjoutPokemon:
                 self.message = f"Erreur : {e}"
                 self.message_couleur = (255, 100, 100)
 
-    # ------------------------------------------------------------------ #
+
     def afficher_etape_nom(self):
         self.screen.fill((30, 30, 50))
         self._titre("Etape 1/6 : Nom du Pokemon")
@@ -298,7 +298,7 @@ class AjoutPokemon:
         self._blit("[N] Non - Pokemon normal",        300, 360, couleur=couleur_n)
         self._blit("[ENTREE] Sauvegarder et terminer", 300, 460, self.font_petit, (150, 150, 150))
 
-    # ------------------------------------------------------------------ #
+
     def afficher_recap(self):
         self.screen.fill((30, 30, 50))
         self._titre("Pokemon cree avec succes !")
@@ -315,7 +315,7 @@ class AjoutPokemon:
             self.screen.blit(self.image_preview, (700, 180))
         self._blit("[ENTREE] Retour au menu  [ESC] Quitter", 200, 500, self.font_petit, (150, 150, 150))
 
-    # ------------------------------------------------------------------ #
+
     def gerer_input(self, event):
         if event.type != pygame.KEYDOWN:
             return True
@@ -435,7 +435,7 @@ class AjoutPokemon:
         except Exception as e:
             print(f"✗ Erreur sauvegarde : {e}")
 
-    # ------------------------------------------------------------------ #
+
     def render(self):
         afficheurs = {
             1: self.afficher_etape_nom,
@@ -461,7 +461,7 @@ class AjoutPokemon:
             self.clock.tick(60)
         pygame.quit()
 
-    # ------------------------------------------------------------------ #
+
     def _titre(self, texte):
         surf = self.font_titre.render(texte, True, (255, 215, 0))
         self.screen.blit(surf, surf.get_rect(center=(self.largeur // 2, 80)))

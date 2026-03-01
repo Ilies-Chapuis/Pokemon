@@ -1,7 +1,7 @@
-"""Rendu de l'écran d'exploration (carte + HUD)"""
 
 import pygame
 from map.zones import ZONES
+
 
 
 class RendererExploration:
@@ -14,7 +14,7 @@ class RendererExploration:
         self.font_normal = pygame.font.SysFont("Arial", 14, bold=True)
         self.font_petit  = pygame.font.SysFont("Arial", 11)
 
-    # ------------------------------------------------------------------ #
+
     def render(self, game):
         self._dessiner_carte(game.carte, game.joueur_x, game.joueur_y)
         self._dessiner_hud_zone(game)
@@ -22,7 +22,7 @@ class RendererExploration:
         self._dessiner_champions(game)
         self._dessiner_instructions()
 
-    # ------------------------------------------------------------------ #
+
     def _dessiner_carte(self, carte, jx, jy):
         tc = self.taille_case
         ox, oy = self.offset_x, self.offset_y
@@ -60,7 +60,7 @@ class RendererExploration:
                      850, y + 45, ui.font_petit, (200, 200, 200))
 
     def _dessiner_champions(self, game):
-        """Dessine les portraits/icônes des champions sur la carte."""
+        #Dessine les portraits/icônes des champions sur la carte.
         from champions import POSITION_CHAMPION_PLANTE, POSITION_CHAMPION_FEU, CHAMPIONS
         tc = self.taille_case
         postes = [

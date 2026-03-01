@@ -20,6 +20,7 @@ from combat_champion import CombatChampion
 
 
 def _chemin_json():
+    #Retourne le chemin absolu vers pokemon.json
     import os
     return os.path.join(os.path.dirname(os.path.abspath(__file__)), "Data", "pokemon.json")
 
@@ -113,9 +114,9 @@ class Game:
         self.m_pokedex       = MenuPokedex(self.screen, self.ui)
         self.m_evolution     = MenuEvolution(self.screen, self.ui)
 
-    # ------------------------------------------------------------------ #
-    # RENDU
-    # ------------------------------------------------------------------ #
+
+    # Rendu
+
     def render(self):
         self.screen.fill((20, 20, 40))
         dispatch = {
@@ -153,9 +154,9 @@ class Game:
     def _render_evolution(self):
         self.m_evolution.afficher(self.pokemon_a_evoluer, self.evolution_en_cours)
 
-    # ------------------------------------------------------------------ #
-    # DÉPLACEMENT & COMBATS
-    # ------------------------------------------------------------------ #
+
+    # Déplacement et combat
+
     def deplacer_joueur(self, dx, dy):
         nx, ny = self.joueur_x + dx, self.joueur_y + dy
         if not (0 <= nx < self.carte.largeur and 0 <= ny < self.carte.hauteur):
@@ -178,15 +179,19 @@ class Game:
         self.pokemon_sauvage = pokemon_sauvage
         actif = self._get_pokemon_actif()
         if actif:
-            # Combat reçoit le pokedex : il gère lui-même marquer_vu et marquer_capture
             self.combat_actuel = Combat(actif, pokemon_sauvage, pokedex=self.pokedex)
+        # Charger le background selon la zone courante
+        zone = self.carte.get_zone(self.joueur_x, self.joueur_y)
+        W, H = self.largeur_ecran, self.hauteur_ecran
+        bg = self.ui.charger_arena_zone(zone, W, H)
+        self.r_combat.arena = bg if bg else self.arena_background
 
     def _get_pokemon_actif(self):
         return next((p for p in self.equipe_joueur if p.est_vivant()), None)
 
-    # ------------------------------------------------------------------ #
-    # INPUTS — EXPLORATION
-    # ------------------------------------------------------------------ #
+
+    # Inputs de l'explo
+
     TOUCHES_DEPLACEMENT = {
         pygame.K_UP: (0, -1), pygame.K_z: (0, -1),
         pygame.K_DOWN: (0, 1), pygame.K_s: (0, 1),
@@ -218,14 +223,17 @@ class Game:
             self._recharger_pokeballs()
         elif event.key == pygame.K_g:
             if self.sauvegarder_partie():
-                print("💾 Partie sauvegardée !")
+                print(" Partie sauvegardée Halleluhia!")
         elif event.key == pygame.K_p:
             self.etat = "pokedex"
             self.selection_pokedex = 0
 
-    # INPUTS — COMBAT
-    def gerer_input_combat(self, event):
 
+    # Inputs combat
+
+    def gerer_input_combat(self, event):
+        # etat_ko prioritaire : le combat est "terminé" côté logique
+        # mais on doit encore choisir un remplaçant
         if self.etat_ko:
             if event.type == pygame.KEYDOWN:
                 self._gerer_input_ko(event.key)
@@ -264,6 +272,7 @@ class Game:
         c = self.combat_actuel
         pv_avant_sauvage = c.pokemon_sauvage.pv
         pv_avant_joueur  = c.pokemon_joueur.pv
+        niveau_avant     = c.pokemon_joueur.niveau
 
         if key == pygame.K_a:
             c.tour_combat("attaque")
@@ -297,7 +306,7 @@ class Game:
             else:
                 self.r_combat.declencher_animation("attaque", "joueur")
 
-        self._verifier_evolution_combat()
+        self._verifier_evolution_combat(niveau_avant)
 
     def _gerer_ko_joueur(self):
         #Appelé quand le Pokémon actif vient d'être mis KO
@@ -309,7 +318,7 @@ class Game:
             self.combat_actuel.joueur_gagne = False
             self.etat_ko      = True
             self.selection_ko = 0
-
+        # sinon : combat.termine reste True → écran défaite normal
 
     def _gerer_input_ko(self, key):
         #Gère la navigation et la sélection du remplaçant
@@ -345,8 +354,8 @@ class Game:
         try:
             with open(_chemin_json(), "r", encoding="utf-8") as f:
                 data = json.load(f)
-            # Chercher par le nom de base (sans le suffixe ★)
-            nom_base = poke.nom.replace(" ★", "").strip()
+            # Chercher par le nom de base (sans le suffixe  GOD MODE)
+            nom_base = poke.nom.replace(" GOD MODE", "").strip()
             pokedex_data = next(
                 (p for p in data["pokemon"] if p["name"] == nom_base), None)
             if pokedex_data:
@@ -363,10 +372,10 @@ class Game:
             # Pokédex déjà mis à jour par Combat.enregistrer_capture_pokedex()
             if len(self.equipe_joueur) < 6:
                 self.equipe_joueur.append(self.pokemon_sauvage)
-                print(f"✓ {self.pokemon_sauvage.nom} ajouté à l'équipe !")
+                print(f" {self.pokemon_sauvage.nom} ajouté à l'équipe !")
             else:
                 self.reserve_pokemon.append(self.pokemon_sauvage)
-                print(f"✓ {self.pokemon_sauvage.nom} envoyé à la réserve !")
+                print(f" {self.pokemon_sauvage.nom} envoyé à la réserve !")
         self.etat     = "exploration"
         self.etat_ko  = False
         self.combat_actuel   = None
@@ -438,7 +447,7 @@ class Game:
         self.screen.fill((10, 10, 30))
         W, H = self.screen.get_size()
         # Titre
-        t = self.font_titre.render("✦ FORME ULTIME ✦", True, (255, 215, 0))
+        t = self.font_titre.render(" FORME ULTIME ", True, (255, 215, 0))
         self.screen.blit(t, t.get_rect(center=(W//2, 100)))
         # Description
         lignes = [
@@ -447,7 +456,7 @@ class Game:
             "Il peut accéder à sa FORME ULTIME :",
             f"  → Revient au niveau 5",
             f"  → Stats de base × {BONUS_FORME_ULTIME}  (+{int((BONUS_FORME_ULTIME-1)*100)}%)",
-            f"  → Nom : {poke.nom} ★",
+            f"  → Nom : {poke.nom} GOD MODE",
             "",
             "Cette transformation est IRRÉVERSIBLE.",
             "",
@@ -460,10 +469,13 @@ class Game:
             surf = self.font_normal.render(ligne, True, c)
             self.screen.blit(surf, surf.get_rect(center=(W//2, 200 + i*38)))
 
-    # CHAMPIONS D'ARÈNE
+
+
+    # C'est nous hihihi
+
 
     def _verifier_champion_proximite(self):
-        #Déclenche le dialogue si le joueur est proche d'un champion.
+        """Déclenche le dialogue si le joueur est proche d'un champion."""
         if self.etat != "exploration":
             return
         cid = champion_a_proximite(self.joueur_x, self.joueur_y, self.champions_battus)
@@ -545,7 +557,7 @@ class Game:
                 self._fin_combat_champion()
             return
 
-        # KO du joueur → choisir remplaçant
+        # KO du joueur il faut choisir un remplaçant
         if self.etat_ko_champion:
             if event.type == pygame.KEYDOWN:
                 self._gerer_ko_champion(event.key)
@@ -630,23 +642,24 @@ class Game:
         self.etat_ko_champion = False
         self.etat = "dialogue_champion"
 
-    def _verifier_evolution_combat(self):
-        #Vérifie si le Pokémon actif peut évoluer après gain d'XP
+    def _verifier_evolution_combat(self, niveau_avant=None):
+        #Vérifie si le Pokémon actif vient de monter de niveau et peut évoluer.
         actif = self._get_pokemon_actif()
         if not actif:
             return
-        # Évolution classique (prioritaire)
+        # N'évoluer QUE si le Pokémon a gagné un niveau CE tour-ci
+        if niveau_avant is not None and actif.niveau <= niveau_avant:
+            return
+        # Évolution classique
         peut, nom_evo, _ = peut_evoluer(actif.nom, actif.niveau)
         if peut and nom_evo:
             self.evolution_en_cours = nom_evo
             self.pokemon_a_evoluer  = actif
             self.etat = "evolution"
-            return
-        # Forme Ultime proposée hors combat (via menu équipe, touche U)
-        if peut_forme_ultime(actif):
-            self.pokemon_forme_ultime = actif
 
-    # INPUTS — MENU ÉQUIPE
+
+    # Inputs équipe
+
     def gerer_input_menu_equipe(self, event):
         if event.type != pygame.KEYDOWN:
             return
@@ -656,8 +669,16 @@ class Game:
             self.selection_equipe = (self.selection_equipe + 1) % len(self.equipe_joueur)
         elif event.key == pygame.K_RETURN:
             self._changer_pokemon_actif()
+        elif event.key == pygame.K_e:
+            # Évolution classique depuis le menu équipe
+            poke = self.equipe_joueur[self.selection_equipe]
+            peut, nom_evo, _ = peut_evoluer(poke.nom, poke.niveau)
+            if peut and nom_evo:
+                self.evolution_en_cours = nom_evo
+                self.pokemon_a_evoluer  = poke
+                self.etat = "evolution"
         elif event.key == pygame.K_u:
-            # Proposer la Forme Ultime pour le Pokémon sélectionné
+            # Forme Ultime
             poke = self.equipe_joueur[self.selection_equipe]
             if peut_forme_ultime(poke):
                 self.pokemon_forme_ultime = poke
@@ -674,7 +695,7 @@ class Game:
         self.equipe_joueur[0], self.equipe_joueur[sel] = \
             self.equipe_joueur[sel], self.equipe_joueur[0]
         self.selection_equipe = 0
-        print(f"✓ {self.equipe_joueur[0].nom} est maintenant actif !")
+        print(f" {self.equipe_joueur[0].nom} est maintenant actif !")
         if self.combat_actuel:
             self._riposte_sauvage_pendant_changement()
             self.etat = "combat"
@@ -693,7 +714,9 @@ class Game:
                     self.combat_actuel.termine = True
                     self.combat_actuel.joueur_gagne = False
 
-    # INPUTS — MENU RÉSERVE
+
+    # Inputs de réserve
+
     def gerer_input_menu_reserve(self, event):
         if event.type != pygame.KEYDOWN:
             return
@@ -720,11 +743,11 @@ class Game:
     def _echanger_equipe_reserve(self):
         if self.mode_reserve == "equipe":
             if len(self.equipe_joueur) <= 1:
-                print("⚠ Gardez au moins 1 Pokémon !"); return
+                print(" Gardez au moins 1 Pokémon bande de débiles!"); return
             poke = self.equipe_joueur.pop(self.selection_equipe)
             self.reserve_pokemon.append(poke)
             self.selection_equipe = min(self.selection_equipe, len(self.equipe_joueur) - 1)
-            print(f"→ {poke.nom} envoyé à la réserve")
+            print(f" {poke.nom} envoyé à la réserve car il est NUL")
         else:
             if not self.reserve_pokemon:
                 print("IL N'Y A PLUS RIEN !"); return
@@ -736,7 +759,8 @@ class Game:
             print(f"→ {poke.nom} ajouté à l'équipe")
 
 
-    # INPUTS — POKÉDEX
+    # Inputs du pokédex
+
     def gerer_input_pokedex(self, event):
         if event.type != pygame.KEYDOWN:
             return
@@ -750,7 +774,8 @@ class Game:
             self.etat = "exploration"
 
 
-    # INPUTS — ÉVOLUTION
+    # Inputs de évo
+
     def gerer_input_evolution(self, event):
         if event.type != pygame.KEYDOWN:
             return
@@ -784,7 +809,7 @@ class Game:
         self.etat = "exploration"
 
 
-    # SAUVEGARDE / CHARGEMENT
+    # Sauvegarde/chargement
 
     def sauvegarder_partie(self):
         return self.save_manager.sauvegarder(self)
@@ -798,10 +823,10 @@ class Game:
             self.pokeballs = j["pokeballs"]
             self.equipe_joueur   = [self._pokemon_from_save(d) for d in save_data["equipe"]]
             self.reserve_pokemon = [self._pokemon_from_save(d) for d in save_data.get("reserve", [])]
-            print("✓ Partie chargée avec succès !")
+            print(" Partie chargée avec succès ! Oui j'ai la tête de Boromir lors du conseil")
             return True
         except Exception as e:
-            print(f"✗ Erreur chargement : {e}")
+            print(f" Erreur chargement, j'en peux plus : {e}")
             import traceback; traceback.print_exc()
             return False
 
@@ -814,7 +839,8 @@ class Game:
         return poke
 
 
-    # DIVERS
+    # Divers
+
     def _recharger_pokeballs(self):
         zone = self.carte.get_zone(self.joueur_x, self.joueur_y)
         if zone == "ville":

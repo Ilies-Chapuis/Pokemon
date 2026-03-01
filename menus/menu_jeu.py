@@ -215,7 +215,7 @@ class MenuPokedex:
         return None
 
 
-# --------------------------------------------------------------------------- #
+
 class MenuEvolution:
     def __init__(self, screen, ui):
         self.screen = screen

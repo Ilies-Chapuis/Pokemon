@@ -19,7 +19,7 @@ class PokedexManager:
                     self.pokemon_vus = set(data.get("vus", []))
                     self.pokemon_captures = set(data.get("captures", []))
             except Exception as e:
-                print(f"⚠ Erreur chargement Pokédex : {e}")
+                print(f" Erreur chargement Pokédex, voila les problèmes : {e}")
                 self.pokemon_vus = set()
                 self.pokemon_captures = set()
 
@@ -34,7 +34,7 @@ class PokedexManager:
                 json.dump(data, f, indent=2, ensure_ascii=False)
             return True
         except Exception as e:
-            print(f"⚠ Erreur sauvegarde Pokédex : {e}")
+            print(f" Erreur sauvegarde Pokédex, je pleure : {e}")
             return False
 
     def marquer_vu(self, nom_pokemon):
@@ -63,7 +63,7 @@ class PokedexManager:
         return nom_pokemon in self.pokemon_captures
 
     def obtenir_stats(self):
-        #Retourne les statistiques du Pokédex
+        #Retourne les statistiques du Pokédex"
         return {
             "vus": len(self.pokemon_vus),
             "captures": len(self.pokemon_captures)

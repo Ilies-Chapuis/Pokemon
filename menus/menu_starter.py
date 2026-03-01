@@ -1,4 +1,4 @@
-"""Menu de choix du Pokémon de départ"""
+
 
 import os
 import pygame
@@ -10,7 +10,7 @@ COULEURS_TYPE = {
 
 
 class MenuStarter:
-    STARTERS = ["Keunotor", "Timiki", "Rubycire"]
+    STARTERS = ["Castopuff", "Timiki", "Rubycire"]
 
     def __init__(self, screen, font_titre, font_normal, pokedex):
         self.screen = screen
@@ -21,14 +21,14 @@ class MenuStarter:
         self.selection = 0
         self._cache = {}
 
-    # ------------------------------------------------------------------ #
+
     def naviguer(self, direction):
         self.selection = (self.selection + direction) % len(self.STARTERS)
 
     def obtenir_choix(self):
         return self.STARTERS[self.selection]
 
-    # ------------------------------------------------------------------ #
+
     def afficher(self):
         self.screen.fill((20, 20, 40))
         self._titre()
@@ -69,7 +69,7 @@ class MenuStarter:
             surf = self.font_petit.render(ligne, True, (150, 150, 150))
             self.screen.blit(surf, surf.get_rect(center=(500, 550 + i * 25)))
 
-    # ------------------------------------------------------------------ #
+
     def _charger_image(self, nom):
         if nom in self._cache:
             return self._cache[nom]

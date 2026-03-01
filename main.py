@@ -1,5 +1,4 @@
 
-
 import pygame
 import sys
 import os
@@ -12,7 +11,7 @@ from menus import Menu, MenuOptions, MenuStarter
 
 
 def _chemin_json():
-    """Retourne le chemin absolu vers pokemon.json (portable Windows/Linux/Mac)"""
+    #Retourne le chemin absolu vers pokemon.json car pas le choix
     import os
     return os.path.join(os.path.dirname(os.path.abspath(__file__)), "Data", "pokemon.json")
 
@@ -32,7 +31,7 @@ class Application:
         self.pokedex = self._charger_pokedex()
         self.etat    = "menu_principal"
         self.game    = None
-        self._game_pokedex = None  # instance légère pour le pokédex du menu
+        self._game_pokedex = None  # instance simpliste pour le pokédex du menu
 
         self.menu_principal = Menu(self.screen, self.font_titre, self.font_normal)
         self.menu_options   = MenuOptions(self.screen, self.font_titre, self.font_normal)
@@ -48,12 +47,11 @@ class Application:
             with open(chemin, "r", encoding="utf-8") as f:
                 data = json.load(f)
             pokedex = {p["name"]: p for p in data["pokemon"]}
-            print(f"✓ Pokédex chargé: {len(pokedex)} Pokémon")
+            print(f" Pokédex chargé, oui je suis en dépression: {len(pokedex)} Pokémon")
             return pokedex
         except Exception as e:
-            print(f"✗ Erreur chargement Pokédex: {e}")
+            print(f" Erreur chargement Pokédex: {e}")
             return {}
-
 
     # ACTIONS
 
@@ -66,16 +64,16 @@ class Application:
         from save_manager import SaveManager
         save = SaveManager()
         if not save.existe_sauvegarde():
-            print("⚠ Aucune sauvegarde — nouvelle partie.")
+            print(" Aucune sauvegarde — nouvelle partie. A l'aide pitié")
             self.nouvelle_partie(); return
         data = save.charger()
         if not data:
-            print("✗ Sauvegarde illisible — nouvelle partie.")
+            print(" Sauvegarde illisible — nouvelle partie.")
             self.nouvelle_partie(); return
         self.game = Game()
         if self.game.charger_partie(data):
             self.etat = "jeu"
-            print(f"✓ Partie chargée : {data['date']}")
+            print(f" Partie chargée, je suis fatigué: {data['date']}")
         else:
             self.nouvelle_partie()
 
@@ -85,21 +83,21 @@ class Application:
         if nom_starter in self.pokedex:
             starter = Pokemon.from_pokedex(self.pokedex[nom_starter], 5)
             self.game.equipe_joueur = [starter]
-            print(f"✓ Partie lancée avec {nom_starter}")
+            print(f" Partie lancée avec {nom_starter} eh ben vous continué à lire")
         self.etat = "jeu"
 
     def lancer_createur(self):
-        print("\n🎨 Lancement du Créateur de Pokémon...\n")
+        print("\n Lancement du Créateur de Pokémon... héhé mon bébé\n")
         pygame.quit()
         try:
             from ajout import AjoutPokemon
             AjoutPokemon().run()
         except Exception as e:
-            print(f"✗ Erreur créateur : {e}")
+            print(f" Erreur créateur,je suis plus rouge que mes cheveux: {e}")
             import traceback; traceback.print_exc()
         pygame.init()
         self.screen = pygame.display.set_mode((self.largeur_ecran, self.hauteur_ecran))
-        pygame.display.set_caption("Pokémon JVSI - Édition Aventure")
+        pygame.display.set_caption("Pokémon FRAUDE - Édition Aventure FRAUDULEUSE")
         self.etat = "menu_principal"
 
     def ouvrir_pokedex_menu(self):
@@ -128,7 +126,7 @@ class Application:
         self.etat = "pokedex_menu"
 
 
-    # GESTION DES ÉVÉNEMENTS
+    # Gestion des évènements
 
     def _gerer_menu_principal(self, event):
         if event.type != pygame.KEYDOWN:
@@ -266,7 +264,7 @@ class Application:
 
 def main():
     print("=" * 50)
-    print("  POKÉMON JVSI - ÉDITION AVENTURE")
+    print("  POKÉMON FRAUDE - ÉDITION AVENTURE FRAUDULEUSE")
     print("=" * 50)
     print()
     try:

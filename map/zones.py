@@ -1,4 +1,3 @@
-"""Données des zones de la carte"""
 
 ZONES = {
     "plaine": {

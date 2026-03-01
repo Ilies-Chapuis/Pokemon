@@ -1,4 +1,4 @@
-"""Génération et lecture de la grille de la carte"""
+
 
 from .zones import ZONES
 
@@ -9,7 +9,7 @@ class Carte:
         self.hauteur = hauteur
         self.grille = self._generer()
 
-    # ------------------------------------------------------------------ #
+
     def _generer(self):
         return [[self._zone_en(x, y) for x in range(self.largeur)]
                 for y in range(self.hauteur)]
@@ -29,7 +29,7 @@ class Carte:
             return "ciel"
         return "plaine"
 
-    # ------------------------------------------------------------------ #
+
     def get_zone(self, x, y):
         if 0 <= x < self.largeur and 0 <= y < self.hauteur:
             return self.grille[y][x]

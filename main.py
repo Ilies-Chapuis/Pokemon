@@ -1,10 +1,10 @@
-class Menu:
-    def __init__():
+import pygame
 
-"""Un menu en début de partie est proposé au joueur permettant les actions
-suivantes :
-● Lancer une partie
-● Ajouter un Pokémon (dans un fichier texte nommé “pokemon.json”)
-● Accéder à son Pokedex."""
+from game2 import game2
 
-# Créer un menu principal avec plusieurs options (Jouer, Ajouter un Pokémon, Pokedex, Quitter)
+pygame.init()
+
+if __name__=="__main__":
+    game2= game2()
+    game2.run()
+    

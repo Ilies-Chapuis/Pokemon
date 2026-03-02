@@ -1,0 +1,277 @@
+{
+  "date": "2026-03-01 23:41:27",
+  "joueur": {
+    "position_x": 11,
+    "position_y": 8,
+    "potions": 7,
+    "pokeballs": 22
+  },
+  "equipe": [
+    {
+      "nom": "Verdalune",
+      "niveau": 10,
+      "pv": 100,
+      "pv_max": 100,
+      "attaque": 108,
+      "defense": 96,
+      "experience": 951,
+      "types": [
+        "Plante",
+        "Eau"
+      ],
+      "legendary": false
+    },
+    {
+      "nom": "Flamydra",
+      "niveau": 41,
+      "pv": 275,
+      "pv_max": 275,
+      "attaque": 229,
+      "defense": 177,
+      "experience": 1001,
+      "types": [
+        "Feu",
+        "Dragon"
+      ],
+      "legendary": false
+    },
+    {
+      "nom": "Rubycire",
+      "niveau": 7,
+      "pv": 89,
+      "pv_max": 89,
+      "attaque": 95,
+      "defense": 99,
+      "experience": 351,
+      "types": [
+        "Feu",
+        "Roche"
+      ],
+      "legendary": false
+    },
+    {
+      "nom": "Lupika",
+      "niveau": 5,
+      "pv": 86,
+      "pv_max": 86,
+      "attaque": 90,
+      "defense": 87,
+      "experience": 1,
+      "types": [
+        "Électrik"
+      ],
+      "legendary": false
+    },
+    {
+      "nom": "Bloupy",
+      "niveau": 13,
+      "pv": 111,
+      "pv_max": 111,
+      "attaque": 106,
+      "defense": 100,
+      "experience": 201,
+      "types": [
+        "Psy"
+      ],
+      "legendary": false
+    },
+    {
+      "nom": "Flameking",
+      "niveau": 14,
+      "pv": 104,
+      "pv_max": 104,
+      "attaque": 111,
+      "defense": 96,
+      "experience": 1,
+      "types": [
+        "Feu"
+      ],
+      "legendary": false
+    }
+  ],
+  "reserve": [
+    {
+      "nom": "ZapZap",
+      "niveau": 10,
+      "pv": 95,
+      "pv_max": 95,
+      "attaque": 100,
+      "defense": 91,
+      "experience": 1,
+      "types": [
+        "Électrik",
+        "Eau"
+      ],
+      "legendary": false
+    },
+    {
+      "nom": "Cendralis",
+      "niveau": 9,
+      "pv": 96,
+      "pv_max": 96,
+      "attaque": 98,
+      "defense": 93,
+      "experience": 1,
+      "types": [
+        "Feu",
+        "Vol"
+      ],
+      "legendary": false
+    },
+    {
+      "nom": "Noctyssor",
+      "niveau": 9,
+      "pv": 93,
+      "pv_max": 93,
+      "attaque": 96,
+      "defense": 85,
+      "experience": 1,
+      "types": [
+        "Spectre",
+        "Feu"
+      ],
+      "legendary": false
+    },
+    {
+      "nom": "Staralon",
+      "niveau": 10,
+      "pv": 96,
+      "pv_max": 97,
+      "attaque": 104,
+      "defense": 108,
+      "experience": 1,
+      "types": [
+        "Acier",
+        "Psy"
+      ],
+      "legendary": false
+    },
+    {
+      "nom": "Bavoir",
+      "niveau": 8,
+      "pv": 87,
+      "pv_max": 88,
+      "attaque": 91,
+      "defense": 101,
+      "experience": 1,
+      "types": [
+        "Acier",
+        "Roche"
+      ],
+      "legendary": false
+    },
+    {
+      "nom": "Dragodash",
+      "niveau": 9,
+      "pv": 98,
+      "pv_max": 98,
+      "attaque": 100,
+      "defense": 95,
+      "experience": 1,
+      "types": [
+        "Glace",
+        "Vol"
+      ],
+      "legendary": false
+    },
+    {
+      "nom": "Voltalin",
+      "niveau": 6,
+      "pv": 81,
+      "pv_max": 81,
+      "attaque": 90,
+      "defense": 81,
+      "experience": 1,
+      "types": [
+        "Électrik"
+      ],
+      "legendary": false
+    },
+    {
+      "nom": "Skelerat",
+      "niveau": 6,
+      "pv": 84,
+      "pv_max": 84,
+      "attaque": 100,
+      "defense": 79,
+      "experience": 1,
+      "types": [
+        "Spectre",
+        "Ténèbres"
+      ],
+      "legendary": false
+    },
+    {
+      "nom": "Reshiflame",
+      "niveau": 17,
+      "pv": 132,
+      "pv_max": 132,
+      "attaque": 127,
+      "defense": 111,
+      "experience": 1,
+      "types": [
+        "Feu",
+        "Dragon"
+      ],
+      "legendary": false
+    },
+    {
+      "nom": "Flameking",
+      "niveau": 15,
+      "pv": 101,
+      "pv_max": 107,
+      "attaque": 113,
+      "defense": 98,
+      "experience": 1,
+      "types": [
+        "Feu"
+      ],
+      "legendary": false
+    },
+    {
+      "nom": "Floraclaw",
+      "niveau": 14,
+      "pv": 106,
+      "pv_max": 106,
+      "attaque": 101,
+      "defense": 98,
+      "experience": 1,
+      "types": [
+        "Plante",
+        "Feu"
+      ],
+      "legendary": false
+    },
+    {
+      "nom": "Cendralis",
+      "niveau": 19,
+      "pv": 126,
+      "pv_max": 126,
+      "attaque": 118,
+      "defense": 113,
+      "experience": 1,
+      "types": [
+        "Feu",
+        "Vol"
+      ],
+      "legendary": false
+    },
+    {
+      "nom": "Brisaflamme",
+      "niveau": 17,
+      "pv": 118,
+      "pv_max": 118,
+      "attaque": 112,
+      "defense": 107,
+      "experience": 1,
+      "types": [
+        "Insecte",
+        "Vol"
+      ],
+      "legendary": false
+    }
+    {
+      "nom": "Joris"
+    }
+  ]
+}

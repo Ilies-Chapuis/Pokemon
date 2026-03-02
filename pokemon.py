@@ -16,6 +16,7 @@ def multiplicateur_type(type_attaquant, type_defenseur):
 class Pokemon:
     def __init__(self, nom, types, pv_max, attaque, defense, niveau=1, legendary=False,):
         self.nom = nom
+        self.nom_sprite = nom   # nom de base pour le sprite (inchangé même après GOD MODE)
         self.types = types
         self.pv_max = pv_max
         self.pv = pv_max
@@ -73,7 +74,7 @@ class Pokemon:
 
     def attaquer(self, defenseur):
         #Attaque un autre Pokémon
-
+        # 10% de chance de rater
         if random.random() < 0.10:
             return {
                 "touche": False,
@@ -122,9 +123,10 @@ class Pokemon:
         }
 
     def to_dict(self):
-        #Convertit le Pokémon en dict pour la sauvegarde
+        """Convertit le Pokémon en dictionnaire pour la sauvegarde"""
         return {
             "nom": self.nom,
+            "nom_sprite": getattr(self, "nom_sprite", self.nom),
             "types": self.types,
             "pv": self.pv,
             "pv_max": self.pv_max,
@@ -148,6 +150,7 @@ class Pokemon:
             data.get("niveau", 5),
             data.get("legendary", False)
         )
+        pokemon.nom_sprite = data.get("nom_sprite", pokemon.nom)
         pokemon.pv = data.get("pv", pokemon.pv_max)
         pokemon.experience = data.get("experience", 0)
         pokemon.experience_max = data.get("experience_max", pokemon.niveau * 100)
@@ -155,7 +158,7 @@ class Pokemon:
 
     @staticmethod
     def from_pokedex(pokedex_data, niveau=5):
-        #Crée un Pokémon à partir de données du Pokédex
+        #Crée un Pokémon à partir des données du Pokédex
         return Pokemon(
             pokedex_data["name"],
             pokedex_data["type"],

@@ -52,12 +52,12 @@ CHAMPIONS = {
 
         # Équipe de 6 Pokémon (nom, niveau, types, pv, atk, def, legendary)
         "equipe": [
-            {"nom": "Floratank",   "niveau": 35, "types": ["Plante"],         "pv": 110, "attaque": 85,  "defense": 75,  "legendary": False},
-            {"nom": "Lumyntha",    "niveau": 38, "types": ["Plante", "Psy"],  "pv": 105, "attaque": 90,  "defense": 70,  "legendary": False},
-            {"nom": "Verdalune",   "niveau": 40, "types": ["Plante", "Lune"], "pv": 120, "attaque": 95,  "defense": 80,  "legendary": False},
-            {"nom": "Mudderon",    "niveau": 37, "types": ["Sol", "Plante"],  "pv": 115, "attaque": 88,  "defense": 85,  "legendary": False},
-            {"nom": "Floraclaw",   "niveau": 42, "types": ["Plante"],         "pv": 108, "attaque": 100, "defense": 78,  "legendary": False},
-            {"nom": "SylphraL",    "niveau": 45, "types": ["Plante", "Vol"],  "pv": 145, "attaque": 120, "defense": 100, "legendary": True},
+            {"nom": "Floratank",  "niveau": 35, "types": ["Plante"],         "pv": 210, "attaque": 185,  "defense": 175,  "legendary": False},
+            {"nom": "Lumyntha",    "niveau": 38, "types": ["Plante", "Psy"],  "pv": 205, "attaque": 190,  "defense": 170,  "legendary": False},
+            {"nom": "Verdalune",   "niveau": 40, "types": ["Plante", "Lune"], "pv": 220, "attaque": 195,  "defense": 180,  "legendary": False},
+            {"nom": "Mudderon",    "niveau": 37, "types": ["Sol", "Plante"],  "pv": 215, "attaque": 188,  "defense": 185,  "legendary": False},
+            {"nom": "Floraclaw",   "niveau": 42, "types": ["Plante"],         "pv": 208, "attaque": 200, "defense": 178,  "legendary": False},
+            {"nom": "SylphraL",   "niveau": 45, "types": ["Plante", "Vol"],  "pv": 445, "attaque": 420, "defense": 300, "legendary": True},
         ],
 
         "recompense": {
@@ -105,12 +105,12 @@ CHAMPIONS = {
         },
 
         "equipe": [
-            {"nom": "Brisadragon", "niveau": 36, "types": ["Feu", "Dragon"], "pv": 112, "attaque": 95,  "defense": 72,  "legendary": False},
-            {"nom": "Magmigos",    "niveau": 38, "types": ["Feu", "Roche"],  "pv": 118, "attaque": 90,  "defense": 88,  "legendary": False},
-            {"nom": "Rubypyros",   "niveau": 41, "types": ["Feu"],           "pv": 108, "attaque": 105, "defense": 75,  "legendary": False},
-            {"nom": "Cendralis",   "niveau": 39, "types": ["Feu", "Vol"],    "pv": 115, "attaque": 98,  "defense": 70,  "legendary": False},
-            {"nom": "Flamelord",   "niveau": 43, "types": ["Feu"],           "pv": 122, "attaque": 110, "defense": 80,  "legendary": False},
-            {"nom": "BraseoL",     "niveau": 46, "types": ["Feu", "Combat"], "pv": 150, "attaque": 130, "defense": 105, "legendary": True},
+            {"nom": "Brisadragon", "niveau": 36, "types": ["Feu", "Dragon"], "pv": 212, "attaque": 195,  "defense": 172,  "legendary": False},
+            {"nom": "Magmigos",    "niveau": 38, "types": ["Feu", "Roche"],  "pv": 218, "attaque": 190,  "defense": 188,  "legendary": False},
+            {"nom": "Rubypyros",   "niveau": 41, "types": ["Feu"],           "pv": 278, "attaque": 255, "defense": 175,  "legendary": False},
+            {"nom": "Cendralis",   "niveau": 39, "types": ["Feu", "Vol"],    "pv": 195, "attaque": 198,  "defense": 170,  "legendary": False},
+            {"nom": "Flamelord",   "niveau": 43, "types": ["Feu"],           "pv": 282, "attaque": 290, "defense": 180,  "legendary": False},
+            {"nom": "BraseoL",     "niveau": 46, "types": ["Feu", "Combat"], "pv": 450, "attaque": 430, "defense": 305, "legendary": True},
         ],
 
         "recompense": {

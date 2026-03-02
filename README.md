@@ -118,8 +118,5 @@ La sauvegarde est stockée dans `save_game.json` à la racine du projet :
 
 Projet réalisé dans le cadre d'un cours de programmation Python.
 
----
 
-## 📄 Licence
 
-Projet éducatif — non affilié à Nintendo ou The Pokémon Company.

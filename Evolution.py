@@ -1,4 +1,3 @@
-
 EVOLUTIONS = {
     # Starters
     "Keunotor":    ("Keunotaure",    16),
@@ -30,13 +29,8 @@ EVOLUTIONS = {
 }
 
 #  Forme Ultime
-# Niveau à partir duquel la Forme Ultime est proposée
-NIVEAU_FORME_ULTIME = 30
-
-# Multiplicateur de stats appliqué à la base du Pokédex lors du reset
-BONUS_FORME_ULTIME = 1.8
-
-# Nom affiché pour la Forme Ultime  ("<NOM> Forme Ultime")
+NIVEAU_FORME_ULTIME  = 30
+BONUS_FORME_ULTIME   = 1.8
 SUFFIXE_FORME_ULTIME = " GOD MODE"
 
 
@@ -67,25 +61,34 @@ def a_une_evolution(nom_pokemon):
 
 #  Forme Ultime
 def peut_forme_ultime(pokemon):
-
     return (pokemon.niveau >= NIVEAU_FORME_ULTIME
             and SUFFIXE_FORME_ULTIME not in pokemon.nom)
 
 
-def appliquer_forme_ultime(pokemon, pokedex_data):
+def nom_base_pokemon(nom):
+    #Retourne le nom sans le suffixe GOD MODE (utilisé pour trouver le sprite).
+    return nom.replace(SUFFIXE_FORME_ULTIME, "").strip()
 
+
+def appliquer_forme_ultime(pokemon, pokedex_data):
+    #Applique la Forme Ultime : reset niveau 5, stats ×1.8, garde le sprite d'origine.
     base_pv  = int(pokedex_data["stats"]["pv"]      * BONUS_FORME_ULTIME)
     base_atk = int(pokedex_data["stats"]["attaque"]  * BONUS_FORME_ULTIME)
     base_def = int(pokedex_data["stats"]["defense"]  * BONUS_FORME_ULTIME)
 
     niveau_depart = 5
-    pokemon.niveau    = niveau_depart
-    pokemon.pv_max    = base_pv  + (niveau_depart - 1) * 3
-    pokemon.attaque   = base_atk + (niveau_depart - 1) * 2
-    pokemon.defense   = base_def + (niveau_depart - 1) * 2
-    pokemon.pv        = pokemon.pv_max
+    pokemon.niveau        = niveau_depart
+    pokemon.pv_max        = base_pv  + (niveau_depart - 1) * 3
+    pokemon.attaque       = base_atk + (niveau_depart - 1) * 2
+    pokemon.defense       = base_def + (niveau_depart - 1) * 2
+    pokemon.pv            = pokemon.pv_max
     pokemon.experience     = 0
     pokemon.experience_max = niveau_depart * 100
+
+    # Le nom de base est conservé dans pokemon.nom_sprite
+    # pour que le renderer retrouve toujours le bon fichier image
+    if not hasattr(pokemon, "nom_sprite") or not pokemon.nom_sprite:
+        pokemon.nom_sprite = pokemon.nom  # mémoriser AVANT d'ajouter GOD MODE
 
     if SUFFIXE_FORME_ULTIME not in pokemon.nom:
         pokemon.nom = pokemon.nom + SUFFIXE_FORME_ULTIME

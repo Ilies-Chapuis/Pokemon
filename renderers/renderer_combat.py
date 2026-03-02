@@ -72,9 +72,6 @@ class RendererCombat:
         self._rects_boutons = {}   # id -> pygame.Rect
 
 
-    # API merci le cours
-
-
     def declencher_animation(self, type_anim, cible="sauvage"):
         pos = self.POS_SAUVAGE if cible == "sauvage" else self.POS_JOUEUR
         couleurs = {"attaque": (255, 200, 50), "ko": (255, 50, 50),
@@ -96,14 +93,15 @@ class RendererCombat:
         return bool(self.animations)
 
     def get_action_clic(self, pos_souris):
-        #Retourne l'id du bouton cliqué, ou None
+        #Retourne l'id du bouton cliqué
         for btn_id, rect in self._rects_boutons.items():
             if rect.collidepoint(pos_souris):
                 return btn_id
         return None
 
 
-    # Rendu 1er
+    # Rendu principale c'est bo
+
 
     def render(self, game):
         if not game.combat_actuel:
@@ -116,7 +114,8 @@ class RendererCombat:
         self._interface(game)
 
 
-    # Fond et pokemon
+    # Fond pour les pokemons
+
 
     def _fond(self):
         if self.arena:
@@ -127,7 +126,7 @@ class RendererCombat:
     def _dessiner_pokemon_sauvage(self, poke):
         px, py = self.POS_SAUVAGE
         px += self._offset_tremblement("sauvage")
-        img = self.ui.charger_image(self.images_cache, poke.nom, (120, 120))
+        img = self.ui.charger_image(self.images_cache, poke, (120, 120))
         if img:
             if self._anim_active("ko", "sauvage"):
                 img = self._flash_img(img)
@@ -142,7 +141,7 @@ class RendererCombat:
     def _dessiner_pokemon_joueur(self, poke):
         px, py = self.POS_JOUEUR
         px += self._offset_tremblement("joueur")
-        img = self.ui.charger_image(self.images_cache, poke.nom, (120, 120))
+        img = self.ui.charger_image(self.images_cache, poke, (120, 120))
         if img:
             if self._anim_active("ko", "joueur"):
                 img = self._flash_img(img)
@@ -154,7 +153,7 @@ class RendererCombat:
         self.ui.barre_pv(poke, 720, 105, 265)
 
 
-    # Animation merci tuto
+    # Animations
 
 
     def _dessiner_animations(self):
@@ -219,8 +218,6 @@ class RendererCombat:
         self.screen.blit(rot, rot.get_rect(center=(cx,cy)))
 
 
-    # HELPERS ANIMATION
-
 
     def _anim_active(self, type_anim, cible):
         pos = self.POS_SAUVAGE if cible == "sauvage" else self.POS_JOUEUR
@@ -238,6 +235,9 @@ class RendererCombat:
         f = img.copy()
         f.fill((255,255,255,140), special_flags=pygame.BLEND_RGBA_ADD)
         return f
+
+
+    # ICoucou c'est moi l'interface
 
 
     def _interface(self, game):
@@ -330,6 +330,9 @@ class RendererCombat:
         self.screen.blit(tl, tl.get_rect(center=(rect.x + rect.w//2 + 12, rect.centery)))
 
 
+    # Panneau quand pokemon ko
+
+
     def _panneau_changement(self, game):
         fond = pygame.Surface((self.W, self.H), pygame.SRCALPHA)
         fond.fill((0,0,0,155))
@@ -353,7 +356,7 @@ class RendererCombat:
                    if p.est_vivant() and i != 0]
 
         if not vivants:
-            self.ui.texte_centre("Toute l'équipe est K.O. comme moi !",
+            self.ui.texte_centre("Toute l'équipe est K.O. !",
                 self.W//2, py+180, couleur=(255,100,100))
             self.ui.texte_centre("[ESPACE] Accepter la défaite",
                 self.W//2, py+220, self.ui.font_petit, (180,180,180))
@@ -381,7 +384,7 @@ class RendererCombat:
             self.W//2, py+ph-30, self.ui.font_petit, (130,130,130))
 
 
-    # C'est fini
+    # C'est la fin de tout
 
 
     def _ecran_fin(self, game):

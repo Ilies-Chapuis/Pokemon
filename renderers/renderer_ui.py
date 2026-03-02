@@ -3,9 +3,20 @@ import pygame
 import os
 
 def _chemin_assets():
-     #Retourne le chemin absolu vers Data/Assets/pokemon/
+    #Retourne le dossier des sprites Pokémon en testant plusieurs emplacements.
     import os
-    return os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "Data", "Assets", "pokemon")
+    base = os.path.dirname(os.path.abspath(__file__))
+    racine = os.path.normpath(os.path.join(base, ".."))
+    candidats = [
+        os.path.join(racine, "Assets", "pokemon"),           # Assets/pokemon/  ← emplacement classique
+        os.path.join(racine, "Data", "Assets", "pokemon"),   # Data/Assets/pokemon/
+        os.path.join(os.getcwd(), "Assets", "pokemon"),      # ./Assets/pokemon/ (CWD)
+        os.path.join(os.getcwd(), "Data", "Assets", "pokemon"),
+    ]
+    for p in candidats:
+        if os.path.isdir(p):
+            return p
+    return candidats[0]  # fallback même si vide
 
 
 class RendererUI:
@@ -27,7 +38,7 @@ class RendererUI:
         surf = font.render(str(texte), True, couleur)
         self.screen.blit(surf, surf.get_rect(center=(cx, y)))
 
-
+    # ------------------------------------------------------------------ #
     def barre_pv(self, pokemon, x, y, largeur):
         ratio = pokemon.pv / pokemon.pv_max if pokemon.pv_max > 0 else 0
         if ratio > 0.5:
@@ -42,27 +53,50 @@ class RendererUI:
         pygame.draw.rect(self.screen, (255, 255, 255), (x, y, largeur, 20), 2)
         self.texte(f"{pokemon.pv}/{pokemon.pv_max}", x + largeur + 10, y, self.font_petit)
 
+    # ------------------------------------------------------------------ #
+    def charger_image(self, cache, nom_ou_poke, taille=(120, 120)):
+        """Charge et met en cache l'image d'un Pokémon.
 
-    def charger_image(self, cache, nom, taille=(120, 120)):
-        #Charge et met en cache l'image d'un Pokémon.
-        if nom in cache:
-            return cache[nom]
-
+        Accepte un nom (str) ou un objet Pokémon.
+        Si l'objet a un attribut nom_sprite (Forme Ultime / GOD MODE),
+        c'est celui-là qui sert à trouver le fichier — le sprite reste
+        toujours celui du Pokémon d'origine.
+        """
         import os
+
+        # Résoudre le nom de sprite à utiliser
+        if hasattr(nom_ou_poke, "nom"):
+            # C'est un objet Pokémon — préférer nom_sprite s'il existe
+            nom_sprite = getattr(nom_ou_poke, "nom_sprite", None) or nom_ou_poke.nom
+        else:
+            nom_sprite = nom_ou_poke  # c'est déjà un str
+
+        # Nettoyer les suffixes connus (★ et GOD MODE) au cas où nom_sprite
+        # n'aurait pas encore été renseigné
+        for suffixe in (" GOD MODE", " ★"):
+            nom_sprite = nom_sprite.replace(suffixe, "")
+        nom_sprite = nom_sprite.strip()
+
+        # Cache par nom de sprite propre
+        if nom_sprite in cache:
+            return cache[nom_sprite]
+
         base = _chemin_assets()
         chemins = [
-            os.path.join(base, f"{nom}.png"),
-            os.path.join(base, f"{nom.lower()}.png"),
+            os.path.join(base, f"{nom_sprite}.png"),
+            os.path.join(base, f"{nom_sprite.lower()}.png"),
+            os.path.join(base, f"{nom_sprite.replace(' ', '_')}.png"),
         ]
         for chemin in chemins:
             if os.path.exists(chemin):
                 try:
                     img = pygame.image.load(chemin)
                     img = pygame.transform.scale(img, taille)
-                    cache[nom] = img
+                    cache[nom_sprite] = img
                     return img
                 except Exception:
                     continue
+        cache[nom_sprite] = None  # mémorise l'échec
         return None
 
     def charger_arena(self, largeur, hauteur):

@@ -1127,6 +1127,35 @@
         "attaque": 95,
         "defense": 89
       }
+    },
+    {
+      "name": "Missingno",
+      "type": [
+        "Psy",
+        "Eau"
+      ],
+      "stats": {
+        "pv": 50,
+        "attaque": 50,
+        "defense": 50
+      },
+      "legendary": true,
+      "description": "",
+      "image_path": "C:\\Users\\chapu\\Downloads\\Missingno_RB.png"
+    },
+    {
+      "name": "Nathan",
+      "type": [
+        "Poison"
+      ],
+      "stats": {
+        "pv": 1,
+        "attaque": 1,
+        "defense": 1
+      },
+      "legendary": true,
+      "description": "Nul",
+      "image_path": "C:\\Users\\chapu\\Downloads\\Missingno_RB.png"
     }
   ]
 }
